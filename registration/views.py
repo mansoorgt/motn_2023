@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse,HttpResponse
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-from project_unioun_fortress import settings
+from motn_2023 import settings
 from portal.models import *
 from django.template.loader import render_to_string
 from django.core import mail 

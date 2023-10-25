@@ -10,7 +10,7 @@ from django.core import mail
 from django.utils.html import strip_tags
 
 
-from project_unioun_fortress import settings
+from motn_2023 import settings
 import json
 
 from django.utils import timezone
