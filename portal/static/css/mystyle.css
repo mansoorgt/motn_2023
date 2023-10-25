@@ -1,0 +1,193 @@
+      .btn-info
+      {
+        background-color:  !important;
+      }
+      /*custom btn-info style start*/
+           .btn-info
+      {
+        background-color: #f27830!important;
+        border: #f27830 !important;
+      }
+      .btn-info:hover
+      {
+        background-color: #e76711 !important;
+      }
+/*custom btn-info style end*/
+/* start preloader */
+.bar {
+    background-color: #fce0de;
+    min-width: 300px;
+    min-height: 5px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bar::after {
+    content: "";
+    min-height: 5px;
+    position: absolute;
+    background: red;
+    transform: translateX(-100%);
+    animation: animate 3s infinite;
+  }
+  .bar::before {
+    content: "";
+    min-height: 5px;
+    position: absolute;
+    background: red;
+    transform: translateX(-100%);
+    animation: animate 3s ease-out infinite;
+    animation-delay: 1s;
+    z-index: 5;
+  }
+  
+  .by {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-family: "roboto";
+    font-size: 20px;
+  }
+  @keyframes animate {
+    0% {
+      transform: translateX(-100%);
+      min-width: 10px;
+    }
+    100% {
+      transform: translateX(300%);
+      min-width: 400px;
+    }
+  }
+/* end preloader */
+
+/* model style start */
+.modal::-webkit-scrollbar{
+    display: none;
+}
+.modal{
+    margin-top: -50px !important;
+    
+}
+
+
+/* model style end */
+
+/* navbar style start */
+.motn-menu-mob
+{
+    display:none;
+}
+
+/* navbar style end */
+.auth .brand-logo 
+{
+    margin-bottom: 0px !important;
+    margin-top:-30px;
+}
+.auth .brand-logo img
+{
+    width: 200px !important;
+}
+.bg-reg
+{
+    background: url('../images/bg/bg_comp.webp') ;
+   background-size:cover;
+ 
+}
+.main-panel
+{
+    width: calc(100% - 0px) !important;
+}
+
+/* card print style start */
+
+.vapp-card
+{
+    background-color:#ae237a ;
+}
+.vapp-font
+{
+    font-size: 70px;
+}
+.vapp-details
+{
+    background-color:#cfd1d0; 
+    height: 50px; 
+    width: 100%;
+}
+/* mansoor works */
+
+
+.input-empty{
+    
+    outline: 1px solid red !important;
+}
+/* mansoor works end */
+
+/* vapp accree card print style start */
+
+.vapp-card-acr
+{
+    background-color:#13b68f;
+}
+
+/* vap acreee card print style end */
+/* vapp accree card print style start */
+
+.vapp-card-val
+{
+    background-color:#9b70b0;
+}
+
+/* vap acreee card print style end */
+
+/* card print style end */
+
+@media screen and (max-width: 991px) 
+{
+    .navbar .navbar-brand-wrapper .navbar-brand img
+
+    {
+        width: 200px !important;
+    }
+    /* navbar-menu mobile view start */
+.motin-menu-web
+{
+    display: none !important;
+
+}
+.motn-menu-mob
+{
+    display: inline-block;
+    
+}
+.navbar-toggler
+{
+    display: none;
+}
+.brand-logo
+{
+    display: none !important;
+}
+.brand-logo-mini
+{
+    display: inline-block !important;
+    z-index: 1;
+    margin-left: 150px;
+   
+}
+.brand-logo-mini img
+{
+    max-width: 200px !important;
+}
+
+
+/* navbar menu mobile view end */
+}
+.swal2-styled.swal2-confirm{
+    color:white!important;
+    background-color: rgb(47, 179, 47) !important;
+}
+.swal2-styled.swal2-cancel{
+    color:white !important;
+}

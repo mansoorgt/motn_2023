@@ -1,0 +1,683 @@
+<!-- {{registrations}} -->
+<!-- day pass start -->
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Infoevent Admin</title>
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+
+
+<link href="https://fonts.cdnfonts.com/css/verdana" rel="stylesheet">
+
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/daz_favicon.png' %}" />
+  <!-- font awesome cdn start -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <style>
+.id_img
+{
+  border: none;
+  width: 80px;
+  height: 100px;
+}
+.log
+{
+  width: 70%;
+}
+.vapp-card
+{
+  background-color:#5fd8f8;
+  height: 700px;
+
+}
+
+.pagebreak {
+        page-break-after: always;
+      }
+
+
+    body{
+      -webkit-print-color-adjust:exact !important;
+  print-color-adjust:exact !important;
+    }
+  
+    @media print {
+      @page {
+   
+          size: 67mm 99mm ;   
+      
+margin: 0px;
+
+        }
+        
+      body * {
+        visibility: hidden;
+
+       
+      
+      
+      }
+  
+      #section-to-print, #section-to-print * {
+        visibility: visible;
+        
+      }
+      #section-to-print {
+        position: relative;
+        left: 0px;
+
+      top:0px;
+   
+
+   
+      }
+  
+    }
+
+</style>
+
+</head>
+<body style="font-family: 'Verdana', sans-serif;">
+<!-- vapp_vip Id card Design Start -->
+
+
+{% for registration in registrations %}
+
+{{reg.cardtype.id}}
+<!-- DCT AAA pass  START-->
+{% if registration.cardtype.id == 1 %}
+
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/DCT AAA.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+<div class="pagebreak"></div>
+  {% endif %}
+  
+  
+
+
+
+<!-- DCT AAA end -->
+
+
+
+
+<!-- DCT Start -->
+
+{% if registration.cardtype.id == 2 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/DCT.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+  {% endif %}
+  
+  
+
+
+
+<!-- DCT  end -->
+
+
+
+<!-- ARTIST start -->
+{% if registration.cardtype.id == 3 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/Artist.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+  {% endif %}
+  
+  
+
+
+
+
+<!-- ARTIST end -->
+
+
+<!-- ORGANIZER AAA start -->
+{% if registration.cardtype.id == 4 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/Orgnaizer aaa.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+{% endif %}
+
+<!-- ORGANIZER AAA end -->
+
+
+<!-- POLICE  start -->
+{% if registration.cardtype.id == 5 %}
+
+<div style="width: 38.2%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/POLICE.png' %}">
+  
+  
+  
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+{% endif %}
+  
+  
+   <!-- Id Card Design End -->
+
+
+
+<!-- police end -->
+
+
+<!-- housekeeper start -->
+
+
+{% if registration.cardtype.id == 6 %}
+
+<!-- vapp_vip Id card Design Start -->
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/housekeeper.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+  
+  
+{% endif %}
+
+
+<!-- housekeeper end -->
+
+
+<!-- production start -->
+{% if registration.cardtype.id == 7 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/production.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+
+{% endif %}
+
+<!-- production end -->
+
+
+<!-- Security pass start -->
+
+{% if registration.cardtype.id == 8 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/security.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+  
+  
+{% endif %}
+   <!-- Id Card Design End -->
+
+
+
+<!-- security pass end -->
+
+<!-- Media pass start -->
+
+{% if registration.cardtype.id == 9 %}
+
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/media.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+{% endif %}
+
+
+<!-- contractor card start -->
+{% if registration.cardtype.id == 10 %}
+
+
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/contractor.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+
+
+{% endif %}
+<!-- contractor card end -->
+
+<!-- vendor start -->
+
+{% if registration.cardtype.id == 11 %}
+
+
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/vendor.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+
+{% endif %}
+
+<!-- vendor end -->
+
+<!-- event staff card start -->
+{% if registration.cardtype.id == 12 %}
+
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/event staff.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+
+{% endif %}
+<!-- event staff card end -->
+
+<!-- PRomoters card start -->
+
+{% if registration.cardtype.id == 13 %}
+
+
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/promoters.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+
+
+
+{% endif %}
+
+
+<!-- promoters card end -->
+
+<!-- medical volunteers start -->
+{% if registration.cardtype.id == 14 %}
+
+<div style="width: 38%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/medical volunteers.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+
+{% endif %}
+<!-- medical volunteers end -->
+
+<!-- Exhibitor start -->
+
+{% if registration.cardtype.id == 15 %}
+
+
+<div style="width: 38%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/exibitor.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+
+
+{% endif %}
+<!-- Exhibitor end -->
+
+<!-- Traffic Marshals start -->
+{% if registration.cardtype.id == 16 %}
+<div style="width: 37.9%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/marshel.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+
+<!-- Traffic Marshals end -->
+{% endif %}
+
+<!-- Volunteers start -->
+{% if registration.cardtype.id == 17 %}
+
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/volunteers.png' %}">
+  <div class="justify-content-center" >
+  <div style="position: absolute; top: 33%; left: 34%;   width: 121px; height: 120px;">
+  <img style="width: 121px; height: 120px;" src="{{registration.badge_photo.url}}">
+  </div>
+  </div>
+  
+  <div style="position: absolute; top: 55%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 28px; font-weight: bold; color:black;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 28px; font-weight: bold; color:black;">{{registration.company}}</h5>
+   </div>
+  
+   
+   
+  </div>
+    <div class="pagebreak"></div>
+{% endif %}
+<!-- Volunteers end -->
+
+
+<!-- Protocol start -->
+{% if registration.cardtype.id == 18 %}
+
+<div style="width: 38.5%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 100%;" src="{% static 'images/fotress/protocol.png' %}">
+
+  
+
+
+  
+   
+   
+  </div>
+  {% endif %}
+
+<!-- Protocol end -->
+
+  {% endfor %}
+
+
+
+
+  
+   <!-- Id Card Design End -->
+
+
+   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+   <!-- endinject -->
+   <!-- Plugin js for this page -->
+   <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+   <script src="{% static 'js/bootstrap.js' %}"></script>
+   <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
+   <script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+   <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+ 
+   <!-- End plugin js for this page -->
+   <!-- inject:js -->
+   <script src="{% static 'js/off-canvas.js' %}"></script>
+   <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+   <script src="{% static 'js/template.js' %}"></script>
+   <script src="{% static 'js/settings.js' %}"></script>
+   <script src="{% static 'js/todolist.js' %}"></script>
+   <!-- endinject -->
+   <!-- Custom js for this page-->
+   <script src="{% static 'js/dashboard.js' %}"></script>
+   <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+   <!-- End custom js for this page-->
+
+   <script>
+    // Get the elements with the specified class
+    var nameElements = document.getElementsByClassName('name');
+    var companyElements = document.getElementsByClassName('company');
+
+    // Function to adjust font size based on text length
+    function adjustFontSize(elements) {
+      for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        var text = element.innerText || element.textContent;
+        var length = text.length;
+
+        // Decrease font size by 2px for every 15 characters
+        var newSize = 28 - Math.floor(length / 15) * 2;
+
+        // Set the new font size
+        element.style.fontSize = newSize + 'px';
+      }
+    }
+
+    // Call the function for elements with 'name' class
+    adjustFontSize(nameElements);
+
+    // Call the function for elements with 'company' class
+    adjustFontSize(companyElements);
+</script>
+
+
+</body>
+</html>
+
+
+<!-- Vip pass end -->

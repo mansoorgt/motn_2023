@@ -1,0 +1,85 @@
+              {% load static %}
+           
+               <tr class="reg-tr" id="reg-{{r.id}}" reg-id="{{r.id}}">
+               
+                <td class="td-tick"><input type="checkbox" class="form-control reg-check-box" reg-id="{{r.id}}" onclick="onClickCheckBox(this)" style="width: 15px; height: 15px;" ></td>
+                <td class="py-1" id="td-user">
+                  <a data-toggle="modal" data-target="#profile-modal" onclick="onProfileClick('{{r.id}}')"><img src="{% static 'images/avatar.webp' %}" alt="image" /></a>
+                </td>
+                <td ><span style="display:none;">{{r.created_at |date:'Y-m-d H:i'}}</span> {{r.created_at |date:'d-m-y'}}
+            
+                  
+                </td>
+                
+                <td class="py-1" id="build-uid">
+                    <div class="uid text-center">{{r.id}}</div>
+                
+                 <br>
+                  {% if r.collected %}
+                  <span class="badge badge-info">Collected</span>
+                  {% endif %}
+                  
+                </td>
+                <td> <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;">{{r.first_name}} {{r.last_name}}</div></td>
+                
+                
+                <td>{{r.cardtype.name}}</td>
+                
+                <td > <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;" id="table-comp-name">{{r.company}} </div> </td>
+
+                <!-- <td>{{r.jobtitle}}</td> -->
+                
+                <td id="td-action" class="td-action">
+
+                  
+                  <i style="font-size: 20px" class="fa-solid fa-trash" reg-id="{{r.id}}" onclick="onDeleteRegistration(this)"></i>
+                  {% if r.verification == 'Approved' %}
+                  <i style="font-size: 20px" class="fa-solid fa-print"  reg-id="{{r.id}}" onclick="onPrint(this)" ></i>
+                  {% endif %}
+                  <a  data-toggle="modal" data-target="#edit-registration" style="color: black;" class="edit-registration-btn" onclick="onEditRegistration(this)" reg-id="{{r.id}}" ><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
+                
+                  {% if r.collected == False and r.print_count > 0 %}
+               
+                  <i style="font-size: 20px; color: #3d7040;" onclick="onCollect(this)" reg-id="{{r.id}}" class="fa-duotone fa-solid fa-circle-check"></i>
+                  
+                  {% endif %}
+               
+                </td>
+
+                <td>
+                  <div class="col-12 text-center">
+                    
+                    {% if r.verification == 'Pending' %}
+                    <i class="btn btn-sm btn-success col-6" onclick="onChangeVerification(this)" reg-id="{{r.id}}" method="Approved">Approve</i>
+                    <i class="btn btn-sm btn-danger col-6" onclick="onChangeVerification(this)" reg-id="{{r.id}}" method="Rejected">Reject</i>
+                    {% endif %}
+
+                    {% if r.verification == 'Approved' %}
+                    
+                    <label class="badge badge-success">Approved</label>
+                    {% endif %}
+
+                    {% if r.verification == 'Rejected' %}
+                    
+                    <label class="badge badge-danger">Rejected</label>
+
+                    {% endif %}
+                    
+                    <div class="col-12 mt-1 text-center">
+                    {% if r.print_count > 0 %}
+                    <label class="badge badge-success">Printed</label>
+                    <label class="badge badge-warning">{{r.print_count}}</label>
+                    {% else %}
+                    <label class="badge badge-danger">Not printed</label>
+                    {% endif %}
+                    <i class="fa-regular fa-square-minus"  reg-id="{{r.id}}" onclick="onMinusCount(this)"></i>
+                  </div>
+
+                  </div>
+                
+ 
+                 
+                  
+                </td>
+                <td class="td-remark"><textarea name="" class="form-control" id="build-remark" style="width:150px;" reg-id="{{r.id}}" onchange="onChageRemark(this)">{% if r.remark != None %} {{r.remark}} {% endif %}</textarea></td>
+              </tr>

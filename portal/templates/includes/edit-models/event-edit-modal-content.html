@@ -1,0 +1,86 @@
+<Form id="edit-registration-form" onsubmit="onSubmitEditForm(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Registration</h5>
+        <i class="fa-solid fa-xmark btn-close"  data-dismiss="modal" aria-label="Close"></i>
+      </div>
+      <div class="modal-body">
+       
+      
+          <div class="row ">
+            <div class="col-6">
+              <label for="">First Name</label>
+              <input type="text" id="edit-first-name" class="form-control" value="{{r.first_name}}" name="first-name" required>
+            </div>
+
+            <div class="col-6">
+              <label for="">Last Name</label>
+              <input type="text" id="edit-last-name" class="form-control" value="{{r.last_name}}" name="last-name" required>
+            </div>
+          </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <label for="">Company</label>
+                <input type="text" id="edit-company" class="form-control" name="company" value="{{r.company}}" required>
+              </div>
+
+              <div class="col-6">
+                <label for="">dob</label>
+                <input type="date" id="edit-dob" class="form-control" value="{{r.dob|date:"Y-m-d" }}" name="dob" required>
+              </div>
+
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-6">
+                <label for="">Mobile</label>
+                <input type="text" id="edit-mobile" class="form-control" value="{{r.mobile}}" name="mobile" required>
+              </div>
+
+              <div class="col-6">
+                <label for="">email</label>
+                <input type="email" id="edit-email" class="form-control" value="{{r.email}}" name="email" required>
+              </div>
+
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-6">
+                <label for="">Nationality</label>
+                <input type="text" id="edit-nationality" value="{{r.nationality}}" class="form-control" name="nationality" required>
+              </div>
+
+              <!-- <div class="col-6">
+                <label for="">Job Title</label>
+                <input type="text" class="form-control" value="{{r.jobtitle}}" id="edit-job-title" name="job-title" required>
+              </div> -->
+
+            </div>
+
+          
+          <div class="row mt-2">
+           
+            <div class="col-6">
+              <label for="">Card Type</label>
+              <select class="form-control" id="edit-card-type" name="card-type" required>
+
+                {% for t in cardtypes %}
+                  <option value="{{t.id}}" {% if r.cardtype.id == t.id %} selected  {% endif %}>{{t.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          
+
+        
+
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+
+ 
+    </div>
+  </Form>

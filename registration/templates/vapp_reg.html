@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Fortress</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/registration-mystyle.css' %}" >
+
+</head>
+<body>
+
+  <div class="background-image"></div>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img class="logo_img" style="" src="{% static 'img/linkviva.png' %}" width="120" height="30" alt="Your Logo">
+        </a>
+        <span class="text-white navbar-text">
+          NEED HELP?
+        </span>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div class="col-md-8">
+        <div class="registration ">
+          <div class="card">
+
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="text-center text-white font-weight-bold">REGISTRATION</h3>
+              </div>
+            </div>
+            <form id="vapp-form">
+            <div class="row">
+
+              <div class="col-md-6 mt-2">
+                <label class="text-white">First Name</label>
+                <input type="text" class="form-control" name="first-name" required>
+              </div>
+
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Last Name</label>
+                <input type="text" class="form-control" name="last-name" required>
+              </div>
+
+
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Email</label>
+                <input type="text" class="form-control" name="email" required>
+              </div>
+
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Vehicle Plate Number</label>
+                <input type="text" class="form-control" name="vehicle-plate-number" required>
+              </div>
+
+              
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Mobile</label>
+                <input type="text" class="form-control" name="mobile" required>
+              </div>
+
+
+         
+
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Company Name</label>
+                <input type="text" class="form-control" name="company" required>
+              </div>
+
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Category</label>
+                <select class="form-control" name="card-type" required>
+                  <option value="">Select Card Type</option>
+                  {% for type in cardtypes %}
+                  <option value="{{type.id}}">{{type.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Vehicle Type</label>
+                <select class="form-control" name="vehicle-type" required>
+                  <option value="">Select Vehicle Type</option>
+                  {% for type in vehicletype %}
+                  <option value="{{type.id}}">{{type.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Vehicle Pass/Mulkiya</label>
+                <input type="file" class="form-control" name="vehicle-pass" required>
+              </div>
+
+
+              <!-- <div class="col-md-6  mt-2">
+                <label class="text-white">Emirates Id Number</label>
+                <input type="file" class="form-control">
+              </div> -->
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Upload Emirates ID front</label>
+                <input type="file" class="form-control" name="id-proof-front-file">
+              </div>
+
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Upload Emirates ID Back</label>
+                <input type="file" class="form-control" name="id-proof-back-file">
+              </div>
+
+              <div class="col-md-6  mt-2">
+                <label class="text-white">Delivery Date</label>
+                <input type="date" class="form-control" name="delivery-date">
+              </div>
+
+
+              <div class="col-md-12">
+                <div class="d-flex justify-content-center ">
+                  <button type="submit" class="sbt_btn"> SUBMIT <div class="spinner-border spinner-border-sm  form-spinner d-none" role="status"></div></button>
+                </div>
+              </div>
+
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="https://unpkg.com/cropperjs/dist/cropper.js"></script>
+  <!-- Bootstrap JS and Popper.js (Optional) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <script>
+    $('#vapp-form').submit(function (event){
+      
+      event.preventDefault()
+      $(':submit').attr('disabled',true)
+      $('.form-spinner').removeClass('d-none')
+      var _formData=new FormData($(event.target)[0])
+      _formData.append('csrfmiddlewaretoken','{{ csrf_token }}')
+      
+      $.ajax({
+        type: "POST",
+        url: "{% url 'submit-vapp-registration' %}",
+        data: _formData,
+        contentType:false,
+        processData:false,
+        dataType: "json",
+        success: function (response) {
+          
+          if(response.success){
+            window.location.href="{% url 'success-page' %}"
+            $(event.target)[0].reset()
+          }else{
+            alert(response.reason)
+          }
+
+          $('.submit-btn-loading').addClass('d-none')
+
+          $(':submit').attr('disabled',false)
+          
+        }
+      });
+    })
+
+  </script>
+</body>
+</html>

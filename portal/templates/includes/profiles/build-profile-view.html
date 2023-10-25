@@ -1,0 +1,159 @@
+
+{% load static %}
+
+
+        
+                    <div class=" col-md-12">
+            <div class="card user-card-full">
+                <div class="row m-l-0 m-r-0">
+                    <div class="col-md-3 col-sm-3 bg-c-lite-green user-profile">
+                        <div class="card-block text-center text-white">
+                            <div class="m-b-25">
+                                <img id="profile-dp" src="{% if registration.badge_photo %} {{registration.badge_photo.url}} {% else %} https://img.freepik.com/premium-vector/file-linear-style-sign-with-cross-sign-inside-it-mobile-concept-web-design-symbol-logo-illustration_691771-123.jpg {% endif %}" style="border-radius:10px; width: 65%; height: 150px;" class="img-radius" alt="User-Profile-Image">
+                            </div>
+                           
+                           
+                            <!-- <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#edit-registration"  onclick="onEditRegistration(this)" reg-id="{{registration.id}}"><i style="font-size: 14px;" class="fa-solid fa-edit"></i></a> -->
+                            <p class="f-w-600 text-capitalize" id="profile-user-name">{{registration.first_name}} {{registration.last_name}}</p>
+                            <p class="f-w-600 text-capitalize" id="profile-des"></p>
+
+                            
+                                
+                            <div class="row" id="id-data-div">
+                                <div class="col-lg-12 col-sm-12 col-md-12">
+                                    <label class="f-w-600 text-center text-capitalize" id='id-proof-lable'></label>
+                                <p class="text-white f-w-600 text-center" id="id-data"></p>
+                                
+                                </div>
+                                
+                            </div>
+
+                            {% if registration.verification == 'Pending' %}
+                            <label class="badge badge-warning">Pending</label>
+                            {% endif %}
+        
+                            {% if registration.verification == 'Approved' %}
+                            
+                            <label class="badge badge-success">Approved</label>
+                            {% endif %}
+        
+                            {% if registration.verification == 'Rejected' %}
+                            
+                            <label class="badge badge-danger">Rejected</label>
+        
+                            {% endif %}
+                            <!-- <textarea class="form-control" id="profile-reason-textarea" readonly></textarea> -->
+                            <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-5">
+                        <div class="card-block">
+                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                            <div class="row">
+
+                                <div class="col-md-6 col-sm-6">
+                                <p class="m-b-10 f-w-600">UID</p>
+                                <h6 class="text-muted f-w-400" id="profile-uid">{{registration.id}}</h6>
+                            </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <p class="m-b-10 f-w-600">Mobile No</p>
+                                    <h6 class="text-muted f-w-400" id="profile-mobile">{{registration.mobile}}</h6>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <p class="m-b-10 f-w-600">Email</p>
+                                    <h6 class="text-muted f-w-400" id="profile-email">{{registration.email}}</h6>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <p class="m-b-10 f-w-600">Created At</p>
+                                    <h6 class="text-muted f-w-400" id="profile-created">{{registration.created_at | date:'d-m-y H:i' }}</h6>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                <p class="m-b-10 f-w-600">Company Name</p>
+                                <h6 class="text-muted f-w-400" id="profile-comp">{{registration.company}}</h6>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <p class="m-b-10 f-w-600">Date Of Birth</p>
+                                <h6 class="text-muted f-w-400" id="profile-created">{{registration.dob | date:'d-m-y' }}</h6>
+                            </div>
+                            <!-- <div class="col-md-6 col-sm-6">
+                                <p class="m-b-10 f-w-600">Nationality</p>
+                                <h6 class="text-muted f-w-400" id="profile-nation">{{registration.nationality}}</h6>
+                            </div> -->
+                            <!-- <div class="col-md-6 col-sm-6">
+                                <p class="m-b-10 f-w-600">Country</p>
+                                <h6 class="text-muted f-w-400" id="profile-country">98979989898</h6>
+                            </div> -->
+                            
+                        
+<!--                             
+                        <div class="col-md-6 col-sm-6">
+                            <p class="m-b-10 f-w-600">Do you require KSA visa?</p> 
+                            <h6 class="text-muted f-w-400" id="profile-ksa-visa"></h6>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                        <p class="m-b-10 f-w-600">National ID / Passport Number</p> 
+                        <h6 class="text-muted f-w-400" id="profile-passport-id"></h6>
+                    </div> -->
+
+                    <!-- <div class="col-md-6 col-sm-6">
+                        <p class="m-b-10 f-w-600">Salutation</p> 
+                        <h6 class="text-muted f-w-400" id="profile-salutation"></h6>
+                    </div> -->
+
+                    <!-- <div class="col-md-6 col-sm-6">
+                    <p class="m-b-10 f-w-600">Your Postion</p> 
+                    <h6 class="text-muted f-w-400" id="profile-your-postion"></h6>
+                </div> -->
+
+                        <!-- <div class="col-md-6 col-sm-6" id="reason-for-attend-div">
+                        <p class="m-b-10 f-w-600">Reason for Attend</p> 
+                        <textarea class="text-muted form-control f-w-400" id="profile-reason-attend" readonly></textarea>
+                    </div> -->
+                            <!-- <div class="col-md-6 col-sm-6" id='vehicle-num'>
+                                <p class="m-b-10 f-w-600" >Vehicle Number </p>
+                                <h6 class="text-muted f-w-400" id="profile-vehicle-num">98979989898</h6>
+                            </div>
+                            <div class="col-md-6 col-sm-6" id='vapp-type-div'>
+                            <p class="m-b-10 f-w-600" >Vehicle Type </p>
+                            <h6 class="text-muted f-w-400" id="type-lable">98979989898</h6>
+                        </div> -->
+
+                            </div>
+                          
+                            <div id='id-photo-hover-div'>
+                            <div class="row" >
+                            <!-- <div class="col-lg-3 col-md-3 col-sm-3" >
+                            <p class="m-b-10 f-w-600" id="id-image-lable">Passport</p>
+                            <img class="img-fluid" height="50px" width="50px" id="id-photo-img" width="50px" onclick="change_image(this)" src="https://seuclick.com/imagens/loading.gif?%3E">
+                            <br>
+                            <a href="" id="download-id-proof" download="">
+                                <img  width="20px" src="{% static 'images/download.png' %}" class="img-fluid down_icon ml-3 mt-2" alt="">
+                            </a>  
+                            </div> -->
+
+                           
+
+                          
+                    </div>
+                    </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="col-md-3 col-sm-3" id="id-photo-hover-div">
+                        <canvas style="width: 300px; height: 400px;"></canvas>
+                      </div> -->
+            <div class="col-md-4" style="border:1px solid black ; width: 400px; height: 400px;" >
+            <div id="panzoom">
+            
+                <img id="profile-preview-img" src="{% static 'images/no-image-selected.png' %}" width="300" height="300">
+            
+            </div>
+            </div>
+            
+        </div>
+            </div>
+            </div>
+
+       

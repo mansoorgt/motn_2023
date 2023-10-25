@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>INFOEVENTZ-DASHBOARD</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/info_logo.png' %}" />
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+  
+  <style>
+  @font-face {
+  font-family: 'AcuminCondensedSemiBold';
+  src: url('{% static 'fonts/AcuminVariableConcept.otf' %}') format('truetype'); /* Adjust the path as needed */
+  font-weight: 600; /* Adjust to match the font's actual weight */
+  font-style: normal; /* Adjust if the font has a specific style */
+}
+body
+{
+      font-family: 'AcuminCondensedSemiBold' !important;
+}
+    .daz_menu:hover
+  {
+    color: #1CAFA0 ;
+    text-decoration: none;
+  }
+  
+  .img-ss
+  {
+    width: 10px;
+    height: 10px;
+  }
+  #settings-trigger
+  {
+    background-color: green !important;
+    color: white !important;
+    cursor: pointer;
+  }
+  #settings-trigger:hover
+  {
+    background-color: white !important;
+  
+    cursor: pointer;
+  }
+
+  .ti-face-smile:hover
+  {
+    color: green !important;
+    cursor: pointer;
+    font-size: 30px !important;
+  }
+</style>
+  
+
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    {% include 'includes/nav.html' %}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+    
+      <!--<div class="theme-setting-wrapper">-->
+      <!--  <div id="settings-trigger"><i class="ti-face-smile"></i></div>-->
+      <!--  <div id="theme-settings" class="settings-panel">-->
+      <!--  <i class="settings-close ti-close"></i>-->
+      <!--    <p class="settings-heading">USER NOW</p>-->
+      <!--    <div class="sidebar-bg-options" ><div class="img-ss rounded-circle bg-success border mr-3"></div>SHADIN</div>-->
+      <!--    <div class="sidebar-bg-options" ><div class="img-ss rounded-circle bg-success border mr-3"></div>UWAISE</div>-->
+      <!--    <p class="settings-heading mt-2">HEADER SKINS</p>-->
+      <!--    <div class="color-tiles mx-0 px-4">-->
+      <!--      <div class="tiles success"></div>-->
+      <!--      <div class="tiles warning"></div>-->
+      <!--      <div class="tiles danger"></div>-->
+      <!--      <div class="tiles info"></div>-->
+      <!--      <div class="tiles dark"></div>-->
+      <!--      <div class="tiles default"></div>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--</div>-->
+      
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Welcome {{username}}</h3>
+                  <h6 class="font-weight-normal mb-0"> <span id="greetings"></span><span class="text-primary" id="message"></span></h6>
+                </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                    <button class="btn btn-sm btn-light bg-white" type="button" id="dropdownMenuDate2">
+                     <i class="mdi mdi-calendar"></i> <span  class="badge badge-primary mr-1" id="date"></span><span class="badge badge-info" id="time"></span>
+                    </button>
+                
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card tale-bg">
+                <div class="card-people mt-auto">
+                  <img src="/static/images/dashboard/people.svg"  alt="people">
+                  <div class="weather-info">
+                    <div class="d-flex">
+                    
+                      <div class="ml-3">
+                        <h2  class="mb-0 font-weight-normal"><span class="temp"></span><sup>°C</sup><img src="" style="width: 30%;" id="wh-icon" alt=""></h2>
+                        <h4 class="location font-weight-normal city" id="place"></h4>
+                        <h6 class="font-weight-normal" id="country" ></h6>
+                        <small class="text-uppercase" id="wh-desc">Please enable your location </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 grid-margin transparent mt-3">
+              <div class="row">
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                    
+                   
+                  <div class="card card-tale">
+                    <div class="card-body">
+                      <p class="mb-4">All Registrations</p>
+                      <p class="fs-30 mb-2">{{reg_count.total}}</p>
+                      <p>Union Fortress 9</p>
+                      
+                    </div>
+
+                  </div>
+               
+  
+                </div>
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                    
+                  <!-- <div class="card card-dark-blue">
+                      <a href="{% url 'registrations' %}?table-name=build" style="text-decoration: none; color: white;">
+                    <div class="card-body">
+                      <p class="mb-4">Build Pass</p>
+                      <p class="fs-30 mb-2">{{reg_count.build}}</p>
+                      <p>Union Fortress 9</p>
+                    </div>
+                    </a>
+                  </div> -->
+                </div>
+              </div>
+              <div class="row"> 
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                  <div class="card card-light-blue">
+                      <a href="{% url 'registrations' %}?table-name=event" style="text-decoration: none; color: white;">
+                    <div class="card-body">
+                      <p class="mb-4">Event Pass</p>
+                      <p class="fs-30 mb-2">{{reg_count.event}}</p>
+                      <p>Union Fortress 9</p>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+             <!-- <div class="col-md-6 stretch-card transparent">
+                  <div class="card card-light-danger">
+                      <a href="{% url 'registrations' %}?table-name=vapp" style="text-decoration: none; color: white;">
+                    <div class="card-body">
+                      <p class="mb-4">Vapp</p>
+                      <p class="fs-30 mb-2">{{reg_count.vapp}}</p>
+                      <p>Union Fortress 9</p>
+                    </div>
+                    </a>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+
+
+
+
+   
+        </div>
+
+
+
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.<a href="https://www.infomeuae.com/" target="_blank">INFOME TECHNOLOGIES LLC</a>. All rights reserved.</span>
+
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- chart js  -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+
+<script>
+"use strict";
+function DateAndTime() {
+	var dt = new Date();
+
+	var Hours = dt.getHours();
+	var Min = dt.getMinutes();
+	var Sec = dt.getSeconds();
+	// var MilliSec = dt.getMilliseconds();  + MilliSec + "MilliSec " (for milliseconds).
+
+	//strings
+	var days = [
+		"Sunday",
+		"Monday",
+		"Tuesday",
+		"Wednesday",
+		"Thursday",
+		"Friday",
+		"Saturday"
+	];
+
+	//strings
+	var months = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December"
+	];
+
+	// var localTime = dt.getLocaleTimeString();
+	// var localDate = dt.getLocaleDateString();
+
+	if (Min < 10) {
+		Min === "0" + Min;
+	} //displays two digits even Min less than 10
+
+	if (Sec < 10) {
+		Sec === "0" + Sec;
+	} //displays two digits even Sec less than 10
+
+	var suffix = "AM"; //cunverting 24Hours to 12Hours with AM & PM suffix
+	if (Hours >= 12) {
+		suffix = "PM";
+		Hours = Hours - 12;
+	}
+	if (Hours === 0) {
+		Hours = 12;
+	}
+
+	// document.getElementById("time").innerHTML = localTime;
+	
+	document.getElementById("time").innerHTML =
+		Hours + " : " + Min + ": " + Sec  + suffix + ".";
+	document.getElementById("date").innerHTML =
+		days[dt.getDay()] +
+		", " +
+		dt.getDate() +
+		" " +
+		months[dt.getMonth()] +
+		" " +
+		dt.getFullYear();
+}
+
+new DateAndTime();
+setInterval("DateAndTime()", 1000);
+
+  </script>
+
+<script>
+  var myDate = new Date();
+var hrs = myDate.getHours();
+
+var greet;
+var massage;
+if (hrs < 12){
+  greet = 'Good Morning'
+    massage='Have a great day';
+} 
+else if (hrs >= 12 && hrs <= 15){
+  greet = 'Good Afternoon';
+  massage='Its time for lunch'
+}
+else if (hrs >= 15 && hrs <= 24){
+  greet = 'Good Evening';
+  massage='Be Passionate What You Do'
+}
+  
+
+document.getElementById('greetings').innerHTML ='<b>' + greet + '</b>';
+
+document.getElementById('message').innerHTML =' '+massage;
+
+</script>
+
+<script>
+  const api='8e87bcb2958b1d16235d0f3d430eda69'
+
+
+window.addEventListener('load', () => {
+
+  let long;
+  let lat;
+
+
+
+  // Accesing Geolocation of User
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      // Storing Longitude and Latitude in variables
+      let long = position.coords.longitude;
+      let  lat = position.coords.latitude;
+      const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
+      console.log(base)
+      // Using fetch to get data
+      fetch(base)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          const { temp } = data.main;
+          const country=data.sys.country
+          const place = data.name;
+          const { description, icon } = data.weather[0];
+          $('#place').html(place)
+          $('#country').html(country)
+          $('.temp').html(temp.toFixed())
+          $('#wh-desc').html(description)
+          document.getElementById('wh-icon').src=`http://openweathermap.org/img/wn/${icon}@2x.png`
+   
+        });
+    });
+  }
+});
+
+ 
+
+</script>
+
+</body>
+
+</html>
+

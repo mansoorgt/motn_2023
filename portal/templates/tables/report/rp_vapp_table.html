@@ -1,0 +1,131 @@
+{% load static %}
+
+            <table   class="table table-striped display vapp" id="vapp-table">
+              <thead >
+                <tr>
+                  
+            
+
+                  <th id="th-user">
+                    User
+                  </th>
+                  <th>Created at </th>
+                  <th>Valid from <br> (Collection Date) </th>
+                  <th id="VAPID">
+                    UID
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                  Category
+                  </th>
+                  <th>
+                    Vehicle number
+                    </th>
+                    
+                  <th>
+                  Company Name
+                  </th>
+                  
+                 
+                  <th>
+                    Status
+                  </th>
+                  <th>
+                   Remark
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for v in vpp_table %}
+                <tr id="VA-{{v.id}}">
+                
+                  <td class="py-1" id="td-user">
+                    <a  data-toggle="modal" data-target="#profilemodal" ><img src="{% static 'images/avatar.webp' %}" alt="image" /></a>
+
+                  </td>
+                  <td><span style="display:none;">{{v.created_at |date:'Y-m-d H:i'}}</span> {{v.created_at | date:'d-m-y H:i' }}
+                  {% if v.status != 0 and e.approved_by_id != null %}
+                  <br>
+                  <small style="font-size: 12px;" class="text-muted">Approved By:</small><br>
+                  <small style="font-size:12px;" class="text-muted">{{v.approved_by}}</small>
+                  {% endif %}
+                  </td>
+                  <td> {{v.approved_date | date}}</td>
+                  <td id="vapp-uid">
+                      <div class="uid">{{v.UID}}</div>
+                  
+                  <br>
+                    {% if v.collected == 1 %}
+                    <span class="badge badge-info">Collected</span>
+                    {% endif %}
+                  
+                  </td>
+                  <td>
+                    <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;">{{v.name}}</div>
+                  </td>
+                  <td>
+                    {% if role_id == 3 %}
+                    <select name=""class='form-control' style="width: 150px;">
+                      {% for r in categorys %}
+                      <option {% if v.category_id == r.id %} selected {% endif %} value="{{r.id}}">{{r.category}}</option>
+                      {% endfor %}
+                    </select>
+                    {% else %}
+                    {{v.category}}
+                    {% endif %}
+
+                  </td>
+                  <td>
+                    {{v.vehicle_number}}
+                    </td>
+                    
+                  <td>
+                    <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;" id="table-comp-name"> {{v.comp}}</div> 
+                  </td>
+                  
+              
+
+                  <td>
+                
+                    
+                    <!-- superadmin -->
+                    {% if v.status == 0 %}
+                    <label class="badge badge-warning">pending</label>
+                     {% endif %}
+
+                  {% if v.status == 1 %}
+                  <label class="badge badge-success">Approved</label>
+                  {% endif %}
+                  {% if v.status == 2 %}
+                  <label class="badge badge-danger">Rejected</label>
+                  {% endif %}
+                  
+
+
+  
+                    <!-- infome user  -->
+                  {% if v.status == 1 %}
+                  
+                  {% if v.print_status == 0 %}
+                  <label class="badge badge-danger">Not printed</label>
+                  {% else %}
+                  <label class="badge badge-success">Printed</label>
+                  <label class="badge badge-warning">{{v.print_count}}</label>
+                  <i class="fa-regular fa-square-minus" style="color:blue;" onclick="update_reset_print_status(3,{{v.id}})"></i>
+                  {% endif %}
+
+                  {% endif %}
+                  {% if role_id == 2 and v.status != 1 %}
+                  <label class="badge badge-warning">Approvel Pending</label>
+                  {% endif %}
+
+                
+
+                  </td>
+                  <td><textarea name="" class="form-control" id="vapp-remark" style="width:150px;" >{% if v.remark != None %} {{v.remark}} {% endif %}</textarea></td>
+                </tr>
+               {% endfor %}
+              </tbody>
+            </table>

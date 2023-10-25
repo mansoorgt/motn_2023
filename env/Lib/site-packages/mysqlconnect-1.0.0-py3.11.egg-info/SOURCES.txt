@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+mysqlconnect/mysql_db.py
+mysqlconnect.egg-info/PKG-INFO
+mysqlconnect.egg-info/SOURCES.txt
+mysqlconnect.egg-info/dependency_links.txt
+mysqlconnect.egg-info/top_level.txt

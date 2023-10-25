@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>INFOEVENTZ</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}"> -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/info_logo.png' %}" />
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+  <!-- font awesome cdn start -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <!-- font awesome cdn end -->
+  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css"> -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui@4/material-ui.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    .daz_menu:hover
+  {
+    color: #1CAFA0 ;
+    text-decoration: none;
+  }
+  
+  
+    canvas { 
+   display:block;
+   margin:1em auto; 
+   background:#fff; 
+   border: 1px solid black;
+ 
+}
+/* image hover style start */
+
+.images-container {
+  width: 90%;
+  text-align: center;
+  margin: 60px auto 60px;
+}
+table th{
+  pointer-events: none;
+}
+.container-enlarges
+{
+  z-index: 1 !important;
+}
+.container-enlarge {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    margin: 15px;
+}
+.container-enlarge > img {
+    height: auto;
+    width: 50%;
+    width: 150px;
+    border-radius: 5px;
+}
+.container-enlarge span {
+    position: absolute;
+    top: -9999em;
+    left: -9999em;
+}
+.container-enlarge:hover span {
+    top: -120px;
+    left: -405px;
+    width: 90%;
+    z-index: 1000 !important;
+  
+}
+.img-ss
+  {
+    width: 10px;
+    height: 10px;
+  }
+
+/* image hover style end */
+
+    /* profile style start  */
+    .m-r-0 {
+    margin-right: 0px;
+}
+
+.m-l-0 {
+    margin-left: 0px;
+}
+
+.user-card-full .user-profile {
+    border-radius: 5px 0 0 5px;
+}
+
+.bg-c-lite-green {
+        background: -webkit-gradient(linear, left top, right top, from(#6389f2), to(#705aee));
+    background: linear-gradient(to right, #5c5aee, #6390f2);
+}
+
+.user-profile {
+    padding: 20px 0;
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.m-b-25 {
+    margin-bottom: 25px;
+}
+
+.img-radius {
+    border-radius: 5px;
+}
+
+
+ 
+h6 {
+    font-size: 14px;
+}
+
+.card .card-block p {
+    line-height: 25px;
+}
+
+@media only screen and (min-width: 1400px){
+p {
+    font-size: 14px;
+}
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.card .card-block p {
+    line-height: 25px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.text-muted {
+    color: #919aa3 !important;
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.f-w-600 {
+    font-weight: 600;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.m-t-40 {
+    margin-top: 20px;
+}
+
+.p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.m-t-40 {
+    margin-top: 20px;
+}
+
+.user-card-full .social-link li {
+    display: inline-block;
+}
+
+.user-card-full .social-link li a {
+    font-size: 20px;
+    margin: 0 10px 0 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+    /* profile style end */
+
+
+    @media print {
+      @page {
+          /*size: A5;
+          margin: 5px;*/
+          size: 86mm 54mm portrait;  
+          
+          margin: 0;
+   
+        }
+       
+      body * {
+        visibility: hidden;
+        height: 86mm;
+        width: 54mm;
+      }
+      #section-to-print, #section-to-print * {
+        visibility: visible;
+      }
+      #section-to-print {
+        position: absolute;
+        left: 0px;
+       
+        top: 0;
+   
+      }
+    .main-vapp-card
+    {
+      width: 100% !important;
+      
+    }
+      .vapp-details
+{
+    background-color:#cfd1d0; 
+    height: 50px; 
+    width: 100%;
+    font-size: 12px;
+}
+.vapp-font
+{
+    
+}
+    }
+
+
+
+  #settings-trigger
+  {
+    background-color: green !important;
+    color: white !important;
+    cursor: pointer;
+  }
+  #settings-trigger:hover
+  {
+    background-color: rgb(0, 185, 19) !important;
+  
+    cursor: pointer;
+  }
+
+  .ti-plus:hover
+  {
+    color: rgb(197, 255, 197) !important;
+    cursor: pointer;
+    font-size: 30px !important;
+  }
+  
+</style>
+
+
+</head>
+<body>
+  
+  
+  
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    {% include 'includes/nav.html' %}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <!--<div class="container-fluid page-body-wrapper">-->
+      <!-- partial:partials/_settings-panel.html -->
+      <!-- <div class="theme-setting-wrapper" data-bs-toggle="modal" data-bs-target="#add-registration">
+        <div id="settings-trigger"><i class="ti-plus"></i></div>
+        
+      </div> -->
+      
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+
+      <!-- partial -->
+      
+      <div class="main-panel">
+        
+          <div class="bar" style="position:fixed; z-index: 1; width: 100%;"  ></div>
+        
+<div class="row">
+  <div class="col-xl-12 col-md-12 c0l-sm-12">
+ 
+    {% load static %}
+
+    <div class="tab-pane fade  show active " id="build-table-div" role="tabpanel">
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <!--filter buttons start  -->
+     
+        <!-- filter button end -->
+          <div class="card-body">
+           
+            <div  class="row">
+              <div class="col-md-4">
+            <h4 class="card-title">Vapp Registrations</h4>
+            <p class="card-description">Union Fortress 9</p>
+          </div>
+    
+          <div class="col-md-6" >
+            <div class="row float-right d-none  " id="bulk-buttons-top-row"> 
+              <!-- <div class="co-md-3">
+                <button class="btn btn-sm btn-behance ml-2" data-target="#bulid-bulk-edit" data-toggle="modal" onclick="bulk_edit(1)" >Edit</button>
+              </div> -->
+              <div class="co-md-3">
+                <button class="btn btn-sm btn-secondary text-white ml-2 deselect-all-bulk-btn">Deselect All</button>
+              </div>
+              <!-- <div class="co-md-3">
+                <button class="btn btn-sm btn-primary ml-2" onclick="select_all(1)">Select All</button>
+              </div> -->
+             
+              
+                <div class="co-md-3">
+                  <button class="btn btn-sm btn-dark ml-2 bulk-print-btn">Bulk Print</button>
+                </div>
+              
+            </div>
+          </div>
+        
+          <div class="col-md-2" id='build-export-as-excel'>
+            <div class="d-flex content-justify-right">
+            <button class="float-right btn btn-sm btn-primary ml-2" onclick="ExportToExcel('xlsx')">Export As Excel</button>
+            <i class="fa-solid fa-upload ml-2 float-right btn btn-sm btn-success " id="excel-upload-btn" ></i>
+
+            <input type="file" class="d-none" id="excel-upload-file-inp" accept=".xlsx">
+          </div>
+
+         
+          
+       
+         
+
+         
+          </div>
+    
+          </div>
+          <!-- <div class="row mb-3">
+            <div class="col-2">
+              <input type="text" id="build-min" name="min" class="form-control" placeholder="from date">
+            
+            </div>
+            
+            <div class="col-2">
+              <input type="text" id="build-max" name="max" class="form-control"    placeholder="to date">
+            
+            </div>
+            </div> -->
+            <div class="table-responsive">
+              <tr>
+                
+                <td></td>
+            </tr>
+            <tr>
+                
+           
+            </tr>
+              <table class="table table-striped display build" id="regitration-table">
+                <thead>
+                  <tr>
+                    
+                    <th class="text-center"  id="th-tick">#</th>
+                    <th class="text-center"  id="th-user">User</th>
+                    <th class="text-center" >Created at </th>
+                    <th class="text-center" >UID</th>
+                    <th class="text-center" >Name</th>
+                    <th class="text-center" >Designation</th>
+                    <th class="text-center" >Company Name</th>
+                    
+                    <th class="text-center"  id="th-action">Actions</th>
+                  
+                    <th class="text-center" id="th-status">Status</th>
+                    <th class="th-remark">Remark</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for r in registrations %}
+
+                    {% include 'tables/table-rows/vapp-registrations-row.html' %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      </div>
+    </div> 
+  </div>
+</div>
+        <!-- content-wrapper ends -->
+
+<!-- Id card Design Start -->
+
+
+
+<!-- build table  -->
+<!-- build model -->
+
+
+<!-- Id Card Design End -->
+
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2022.<a href="https://www.infomeuae.com/" target="_blank">INFOME TECHNOLOGIES LLC</a>. All rights reserved.</span>
+
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+
+<!-- add registration model -->
+  <div class="modal fade" id="add-registration" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <Form id="add-registration-form">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Registration</h5>
+          <i class="fa-solid fa-xmark"  data-bs-dismiss="modal" aria-label="Close"></i>
+          <!-- <button type="button" >x</button> -->
+        </div>
+        <div class="modal-body">
+         
+        
+            <div class="row ">
+              <div class="col-6">
+                <label for="">Name</label>
+                <input type="text" class="form-control" name="name" required>
+              </div>
+              <div class="col-6">
+                <label for="">Company</label>
+                <input type="text" class="form-control" name="company" required>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <label for="">Job Title</label>
+                <input type="text" class="form-control" name="job-title" required>
+              </div>
+              <div class="col-6">
+                <label for="">Card Type</label>
+                <select class="form-control" name="card-type" required>
+
+                  {% for t in cardtypes %}
+                    <option value="{{t.id}}">{{t.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            
+
+          
+
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+   
+      </div>
+    </Form>
+    </div>
+  </div>
+
+  <!-- end registration model -->
+
+
+  <!-- edit registration model -->
+  <div class="modal fade" id="edit-registration" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <Form id="edit-registration-form">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Registration</h5>
+          <i class="fa-solid fa-xmark btn-close"  data-bs-dismiss="modal" aria-label="Close"></i>
+        </div>
+        <div class="modal-body">
+         
+        
+            <div class="row ">
+              <div class="col-6">
+                <label for="">First Name</label>
+                <input type="text" id="edit-first-name" class="form-control" name="first-name" required>
+              </div>
+
+              <div class="col-6">
+                <label for="">Last Name</label>
+                <input type="text" id="edit-last-name" class="form-control" name="last-name" required>
+              </div>
+              
+              <div class="row mt-2">
+                <div class="col-6">
+                  <label for="">Company</label>
+                  <input type="text" id="edit-company" class="form-control" name="company" required>
+                </div>
+
+                <div class="col-6">
+                  <label for="">dob</label>
+                  <input type="date" id="edit-dob" class="form-control" name="dob" required>
+                </div>
+
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-6">
+                  <label for="">Mobile</label>
+                  <input type="text" id="edit-mobile" class="form-control" name="mobile" required>
+                </div>
+
+                <div class="col-6">
+                  <label for="">email</label>
+                  <input type="email" id="edit-email" class="form-control" name="email" required>
+                </div>
+
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-6">
+                  <label for="">Nationality</label>
+                  <input type="text" id="edit-nationality" class="form-control" name="nationality" required>
+                </div>
+
+               
+
+              </div>
+
+              </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <label for="">Job Title</label>
+                <input type="text" class="form-control" id="edit-job-title" name="job-title" required>
+              </div>
+              <div class="col-6">
+                <label for="">Card Type</label>
+                <select class="form-control" id="edit-card-type" name="card-type" required>
+
+                  {% for t in cardtypes %}
+                    <option value="{{t.id}}">{{t.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            
+
+          
+
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+   
+      </div>
+    </Form>
+    </div>
+  </div>
+  
+
+  <!-- end edit registration model -->
+
+
+  <div class="modal fade" id="excel-upload-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload Excel</h5>
+          <i class="fa-solid fa-xmark"  data-bs-dismiss="modal" aria-label="Close"></i>
+        </div>
+        <div class="modal-body">
+          <table class="table table-responsive" style=" max-height: 300px;">
+            <thead>
+              <th>Name</th>
+              <th>Company</th>
+              <th>Job Title</th>
+              <th>Type</th>
+            </thead>
+            
+            
+            <tbody>
+
+            </tbody>
+
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="onSaveExcel()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- profile view -->
+  <div class="modal bd-example-modal-lg fade" id="profile-modal"  role="dialog" aria-labelledby="profilemodalcenterTitle" aria-hidden="true" style="overflow: scroll !important;">
+ 
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+         
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row container profile-content">
+ 
+
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="col-md-12">
+  <button type="button" class="btn btn-danger float-left ml-2 profile-verification-btn" id="profile-reject-btn" onclick="onChangeVerification(this)" reg-id="0" method="Rejected" >Reject</button>
+  <button type="button" class="btn btn-warning  float-left ml-2 profile-verification-btn" id="profile-apporve-btn" onclick="onChangeVerification(this)" reg-id="0" method="Approved" >Approve</button>
+
+ 
+ 
+  
+  <button type="button profile-navigation-btn" class="btn btn-primary float-right ml-2 profile-navigation-btn profile-next-btn"  >Next</button>
+  <button type="button" class="btn btn-secondary float-right ml-2" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-primary float-right ml-2 profile-navigation-btn  profile-previous-btn"  >Previous</button>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </div>
+
+
+<!-- bulk vpp edit end -->
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <!-- <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script> -->
+  <!-- <script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script> -->
+  <!-- <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+ -->
+
+  <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+  <script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.12.13/xlsx.full.min.js"
+></script>
+
+  <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="{% static 'scripts/portal.js' %}?update=1"></script>
+  <script src="{% static 'scripts/profile-view.js' %}?update=1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom/dist/panzoom.min.js"></script>
+  <script>
+
+    var csrf_token='{{csrf_token}}'
+    $(window).on('load', function(){
+//   console.log('lofin')
+   $('.bar').fadeOut('slow');
+    })
+
+
+
+  </script>
+
+<script>
+
+</script>
+
+</body>
+
+</html>
+

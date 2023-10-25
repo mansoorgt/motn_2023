@@ -1,0 +1,126 @@
+{% load static %}
+
+
+           
+            <table class="table table-striped display event" id="event-table">
+              <thead>
+                <tr>
+                 
+    
+
+                  <th id="th-user">
+                    User
+                  </th>
+                  <th>Created at </th>
+                  <th>
+                    UID
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                  Designation
+                  </th>
+                  <th>
+                  Company Name
+                  </th>
+                 <th>Expiry Date</th>
+               
+                  <th>
+                    Status
+                  </th>
+                  <th>
+                    Remark
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for e in event_table %}
+                <tr id="EV-{{e.id}}"> 
+             
+                  <td class="py-1" id="td-user">
+                    
+                   <a  data-toggle="modal" data-target="#profilemodal"> <img src="{% static 'images/avatar.webp' %}" alt="image"/></a>
+                  </td>
+
+                  <td><span style="display:none;">{{e.created_at |date:'Y-m-d H:i'}}</span> {{e.created_at |date:'d-m-y H:i' }}
+                  {% if e.status != 0 and e.approved_by_id != null %}
+                  <br>
+                  <small style="font-size: 12px;" class="text-muted">Approved By:</small><br>
+                  <small style="font-size:12px;" class="text-muted">{{e.approved_by}}</small>
+                  {% endif %}
+                  </td>
+
+                  <td id="event-uid">
+                       <div class="uid">{{e.UID}}</div>
+                  
+                   <br>
+                  {% if e.collected == 1 %}
+                  <span class="badge badge-info">Collected</span>
+                  {% endif %}
+                  
+                  </td>
+
+                  <td>
+                    <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;"> {{e.name}} </div>
+                  </td>
+                 
+                    {% if e.des_id == 0 %}
+                    <td>{{e.other_des}}</td>
+                    {% else %}
+                    <td>{{e.designation}} </td>
+                    {% endif %}
+            
+                  <td>
+                    <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;" id="table-comp-name">{{e.comp}}</div>
+                  </td>
+
+                  <td>{% if e.exp_date != None %} {{e.exp_date | date:'d-m-Y'}} {% else %} NO DATE {% endif %}</td>
+                  
+                  <td>
+                
+                    
+  
+                    <!-- superadmin -->
+
+                    {% if e.status == 0 %}
+                    <label class="badge badge-warning">Pending</label>
+                  <!-- <button class="btn btn-sm btn-warning" onclick="update_status(1,2,{{e.id}})"  >Approve</button>
+                  <button class="btn btn-sm btn-danger" data-target="#reject-popup" data-toggle="modal"  onclick="send_rejection_mail([{{e.id}}],2,false)" >Reject</button> -->
+                  {% endif %}
+
+                  {% if e.status == 1 %}
+                  <label class="badge badge-success">Approved</label>
+                  {% endif %}
+                  {% if e.status == 2 %}
+                  <label class="badge badge-danger">Rejected</label>
+                  {% endif %}
+
+       
+  
+                   <!-- infome user  -->
+                   {% if e.status == 1 %}
+                  
+                  {% if e.print_status == 0 %}
+                  <label class="badge badge-danger">Not printed</label>
+                  {% else %}
+                  <label class="badge badge-success">Printed</label>
+                  <label class="badge badge-warning">{{e.print_count}}</label>
+                  <i class="fa-regular fa-square-minus" style="color:blue;" onclick="update_reset_print_status(2,{{e.id}})"></i>
+                  {% endif %}
+                  {% endif %} 
+                  {% if role_id == 2 and e.status != 1 %}
+                  <label class="badge badge-warning">Approvel Pending</label>
+                  {% endif %}
+       
+
+                
+                  </td>
+
+                   <td><textarea name="" class="form-control" id="event-remark" style="width:150px;" >{% if e.remark != None %} {{e.remark}} {% endif %}</textarea></td> 
+
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+   

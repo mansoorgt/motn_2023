@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>INFOEVENTZ-LOGIN</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/info_logo.png' %}" />
+  
+  <link
+  rel="stylesheet"
+  href="{% static 'css/mystyle.css' %}"
+ 
+/>
+
+<style>
+          /*custom btn-info style start*/
+           .btn-info
+      {
+        background-color: #1CAFA0;
+        border: #1CAFA0;
+      }
+      .btn-info:hover
+      {
+        background-color: #47948c;
+      }
+/*custom btn-info style end*/
+</style>
+
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0 " style="background:url('../static/images/bg/bg_comp.webp'); background-size: cover; ">
+        <div class="row w-100 mx-0 ">
+          <div class="col-lg-4 mx-auto ">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5 shadow-lg">
+                <a target="_blank" href="https://infoeventz.com/"
+                        >
+              <div class="brand-logo">
+                <img src="{% static 'images/infoevent_logo.png' %}" alt="logo">
+              </div>
+              </a>
+              <h4>Welcome, Let's Rock This</h4>
+              <h6 class="font-weight-light">Sign in to continue.</h6>
+              <form class="pt-3">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-lg " id="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control form-control-lg" id="password" placeholder="Password">
+                </div>
+                <div class="mt-3">
+                  <a  class="btn btn-info btn-block text-white btn-lg font-weight-medium auth-form-btn" onclick="validate_login()">LOGIN</a>
+                </div>
+                <div id="login-failed" style="display: none;">
+
+                  <div style="color: red;font-weight: 1000;" align="center"> login failed  
+                  <span>😥</span>  
+                  </div>
+                  <div align="center" style="font-size: 12px;" class="text-danger">please enther correct password and username</div>
+                  
+                </div>
+              
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+  <!-- endinject -->
+</body>
+
+<script>
+  
+
+  function validate_login() {
+    var username=document.getElementById('username')
+    var password=document.getElementById('password')
+
+    if (!username.value){
+      username.classList.add('input-empty')
+      console.log('username')
+      return false;
+    }
+    else{
+      username.classList.remove('input-empty')
+    }
+    if (!password.value){
+      console.log('pas')
+      password.classList.add('input-empty')
+      return false;
+    }
+    else{
+      password.classList.remove('input-empty')
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "{% url 'validate' %}",
+      data: {username:username.value,password:password.value,csrfmiddlewaretoken:'{{ csrf_token }}'},
+      dataType: "json",
+      success: function (data) {
+        if (data.success){
+          window.location.replace('{% url "dashboard" %}');
+        }
+        else{
+          document.getElementById('login-failed').style.display='block'
+        }
+      }
+      
+
+    });
+    
+  }
+  $(document).on('keypress',function(e) {
+    if(e.which == 13) {
+        validate_login();
+    }
+});
+</script>
+</html>
