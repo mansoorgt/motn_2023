@@ -53,12 +53,12 @@
   
 <div class="card mt-5 mb-5">
 
-<div class="card-head">
+<div class="buildcard-head">
 <h3 class="text-center text-white">
-  REGISTER FOR EVENT PASS
+  REGISTER FOR BUILD PASS
 </h3>
 </div>
-<div class="event_form p-2">
+<div class="build_form p-2">
 <div class="row">
 <div class="col-md-6">
 <label>FIRST NAME</label>
@@ -88,19 +88,31 @@
       <label>COMPANY NAME</label>
       <input type="text" class="form-control">
       </div>
+      <div class="col-md-6">
+        <label>EVENT LOCATION</label>
+        <select class="form-control">
+          <option>AL-AIN</option>
+          <option>DHAFRA</option>
+        </select>
+        </div>
+      <div class="col-md-6">
+        <label>NEED EVENT PASS?</label>
+        <br>
+        <label class="radio-inline">
+          <input type="radio" name="optradio"  name="optradio"  id="yesRadio"> YES
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio"  id="noRadio"> NO
+        </label>
 
+      </div>
+<div class="row" id="passDetails" style="display:none; transition: opacity 0.5s;">
       <div class="col-md-6">
         <label>NATIONALITY</label>
         <input type="text" class="form-control">
         </div>
 
-        <div class="col-md-6">
-          <label>EVENT LOCATION</label>
-          <select class="form-control">
-            <option>AL-AIN</option>
-            <option>DHAFRA</option>
-          </select>
-          </div>
+
 
         <div class="col-md-6">
 <label>ID</label>
@@ -135,7 +147,8 @@
                                         <input type="file" class="form-control">
                                                 </div>
 
-
+                                              </div>
+<div class="row">
                                                 
                                                 <div class="col-md-6">
                                                  
@@ -146,7 +159,7 @@
   <button class="rst_button">RESET</button>
   </div>  
                                                 
-
+</div>
 
 </div>
 </div>
@@ -166,7 +179,23 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+  <script>
+    const yesRadio = document.getElementById('yesRadio');
+    const noRadio = document.getElementById('noRadio');
+    const passDetails = document.getElementById('passDetails');
+  
+    yesRadio.addEventListener('change', function () {
+      passDetails.style.display = this.checked ? 'contents' : 'none';
+    });
+  
+    noRadio.addEventListener('change', function () {
+      passDetails.style.display = this.checked ? 'none' : 'none';
+    });
+  
+    // Ensure that no radio button is checked by default
+    yesRadio.checked = false;
+    noRadio.checked = false;
+  </script>
   
 </body>
 </html>

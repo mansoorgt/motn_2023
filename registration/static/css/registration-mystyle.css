@@ -89,6 +89,12 @@
   background-color: rgb(53, 135, 190); 
   padding: 10px;
 }
+.buildcard-head
+{
+  background-color: rgb(176, 190, 53); 
+  padding: 10px;
+}
+
 .event_form .form-control
 {
   border: 1px solid rgba(53, 135, 190, 0.705);
@@ -99,6 +105,18 @@
   box-shadow: none;
   border-bottom: 1px solid rgba(53, 135, 190, 0.705); 
 }
+
+.build_form .form-control
+{
+  border: 1px solid  rgb(176, 190, 53);
+  border-bottom: 3px solid rgba(176, 190, 53, 0.432);
+}
+.build_form .form-control:focus
+{
+  box-shadow: none;
+  border-bottom: 1px solid  rgb(176, 190, 53); 
+}
+
 
 .evnt_button
 {
