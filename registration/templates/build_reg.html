@@ -1,29 +1,46 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Fortress</title>
+  <title>MOTN 2023</title>
   
   <!-- Bootstrap CSS -->
+  <link rel="icon" type="image/x-icon" href="{% static 'img/motn/favicon.jfif' %}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'css/registration-mystyle.css' %}" >
-  <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.css">
-</head>
-<body>
+<link rel="stylesheet" href="{% static 'css/registration-mystyle.css' %}" >
 
-  <div class="background-image"></div>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@900&display=swap" rel="stylesheet">
+
+<style>
+
+@font-face {
+      font-family: 'montbold'; /* Give your font a name */
+      src: url("{% static 'font/FontsFree-Net-Mont-Bold.ttf' %}") format('truetype'); /* Specify the path to your .ttf file */
+    }
+
+    body {
+      font-family: 'montbold' !important; /* Apply the custom font to the body or any other element */
+    }
+
+</style>
+
+</head>
+<body style=" font-family: 'montbold' !important;">
+
+
 
   <header>
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'root-registration-page' %}">s
-          <img style="margin-left: -80px;" src="{% static 'img/linkviva.png' %}" width="120" height="30" alt="Your Logo">
+        <a class="navbar-brand" href="#">
+          <img class="logo_img" src="{% static 'img/motn/logo.png' %}" width="170" height="60" alt="logo union">
         </a>
-        <span class="text-white navbar-text">
-          NEED HELP?
-        </span>
+    
       </div>
     </nav>
   </header>
@@ -31,347 +48,125 @@
   <div class="container">
     <div class="row justify-content-center">
 
+
       <div class="col-md-8">
-        <div class="registration ">
-          <div class="card">
+  
+<div class="card mt-5 mb-5">
 
-            <div class="row">
-              <div class="col-md-12">
-                <h3 class="text-center text-white font-weight-bold">REGISTRATION</h3>
-              </div>
-            </div>
+<div class="card-head">
+<h3 class="text-center text-white">
+  REGISTER FOR EVENT PASS
+</h3>
+</div>
+<div class="event_form p-2">
+<div class="row">
+<div class="col-md-6">
+<label>FIRST NAME</label>
+<input class="form-control" type="text">
+</div>
 
-            <form  id="build-form">
-            <div class="row">
+<div class="col-md-6">
+<label>LAST NAME</label>
+<input class="form-control" type="text">
+</div>
+<div class="col-md-6">
+<label>MOBILE</label>
+<input type="tel" class="form-control">
+</div>
 
-              <div class="col-md-6">
-                <label class="text-white">First Name</label>
-                <input type="text" class="form-control" name="first-name" required>
-              </div>
+<div class="col-md-6">
+  <label>EMAIL</label>
+  <input type="email" class="form-control">
+  </div>
 
-              <div class="col-md-6">
-                <label class="text-white">Last Name</label>
-                <input type="text" class="form-control" name="last-name" required>
-              </div>
+  <div class="col-md-6">
+    <label>DESIGNATION</label>
+    <input type="text" class="form-control">
+    </div>
 
-              <div class="col-md-6">
-                <label class="text-white">Mobile</label>
-                <input type="text" class="form-control" name="mobile" required>
-              </div>
+    <div class="col-md-6">
+      <label>COMPANY NAME</label>
+      <input type="text" class="form-control">
+      </div>
 
-              <div class="col-md-6">
-                <label class="text-white">Email</label>
-                <input type="email" class="form-control" name="email" required>
-              </div>
-
-              <div class="col-md-6">
-                <label class="text-white">Designation</label>
-                <select class="form-control" name="card-type" required>
-                  <option value="">Select Card Type</option>
-                  {% for type in cardtypes %}
-                  <option value="{{type.id}}">{{type.name}}</option>
-                  {% endfor %}
-                </select>
-                
-              </div>
-
-              <div class="col-md-6">
-                <label class="text-white">Company Name</label>
-                <input type="text" name="company" class="form-control" required>
-              </div>
-              <div class="col-md-6">
-                <label class="text-white">Date Of Birth</label>
-                <input type="date" class="form-control" name="date-of-birth" required>
-              </div>
-
-              <div class="col-md-6">
-                <label class="text-white">Do you need an event pass?</label>
-                <div class="form-check" style="">
-                  <input class="form-check-input" type="radio" name="needEventPass" id="eventPassYes" value="Yes" onchange="toggleAdditionalRow()" required>
-                  <label class="form-check-label text-white" for="eventPassYes">
-                    Yes
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="needEventPass" id="eventPassNo" value="No" onchange="toggleAdditionalRow()">
-                  <label class="form-check-label text-white" for="eventPassNo">
-                    No
-                  </label>
-                </div>
-              </div>
-
-              <!-- Additional row to show when "Yes" is selected -->
-              
-              <div class="row additional-row" style="display: none;">
-              <div class="col-md-6" >
-                <label class="text-white">Nationality</label>
-                <input type="text" name="nationality" class="form-control set-additional-required">
-              </div>
-              <div class="col-md-6">
-                <label class="text-white">Id Proof</label>
-                <select name="id-proof-type" class="form-control id-proof-select set-additional-required" >
-                  <option  value="Emirates-Id" selected>Emirates ID</option>
-                  <option  value="Passport-Id">Passport ID</option>
-
-                </select>
-              </div>
-            
-
-              <div class="col-md-6  mt-2">
-                <label class="text-white id-proof-number-lable set-additional-required">Emirates Id Number</label>
-                <input type="text" class="form-control set-additional-required" name="id-proof-number" >
-              </div>
-              <div class="col-md-6  mt-2">
-                <label class="text-white id-proof-file-front-lable">Upload Emirates ID front</label>
-                <input type="file" class="form-control set-additional-required" name="id-proof-front-file" >
-              </div>
-
-              <div class="col-md-6  mt-2 id-proof-file-back-div">
-                <label class="text-white id-proof-file-back-lable">Upload Emirates ID Back</label>
-                <input type="file" class="form-control emirates-id-back set-additional-required" name="id-proof-back-file" >
-              </div>
-
-              <div class="col-md-6  mt-2">
-                <label class="text-white id-proof-expire-date-lable">Emirates ID Expiry Date</label>
-                <input type="date" class="form-control set-additional-required" name="id-expiry-date" >
-              </div>
-
-              <div class="col-md-6  mt-2">
-                <label class="text-white">Select Badge Photo</label>
-                <input type="file" class="form-control set-additional-required" id="photo-badge-upload" onchange="openImageCropPopup(this)" name="badge-photo-file" >
-              </div>
-
-            </div>
-
-
-              <div class="col-md-12">
-                <div class="d-flex justify-content-center ">
-                  <button type="submit" class="sbt_btn"> SUBMIT <div class="spinner-border spinner-border-sm  form-spinner d-none" role="status"></div></button>
-                </div>
-              </div>
-
-            </div>
-          </form>
-          </div>
+      <div class="col-md-6">
+        <label>NATIONALITY</label>
+        <input type="text" class="form-control">
         </div>
+
+        <div class="col-md-6">
+          <label>EVENT LOCATION</label>
+          <select class="form-control">
+            <option>AL-AIN</option>
+            <option>DHAFRA</option>
+          </select>
+          </div>
+
+        <div class="col-md-6">
+<label>ID</label>
+<select class="form-control">
+  <option>PASSPORT</option>
+  <option>EMIRATES ID</option>
+</select>
+        </div>
+
+
+        <div class="col-md-6">
+<label>EMIRATES ID NUMBER</label>
+<input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-6">
+          <label>UPLOAD EMIRATES ID FRONT</label>
+          <input type="file" class="form-control">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label>UPLOAD EMIRATES ID BACK</label>
+                    <input type="file" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                              <label>EMIRATES ID EXPIRY DATE</label>
+                              <input type="file" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-6">
+                                        <label>UPLOAD PHOTO</label>
+                                        <input type="file" class="form-control">
+                                                </div>
+
+
+                                                
+                                                <div class="col-md-6">
+                                                 
+<button class="evnt_button">SUBMIT</button>
+</div>  
+<div class="col-md-6">
+                                                 
+  <button class="rst_button">RESET</button>
+  </div>  
+                                                
+
+
+</div>
+</div>
+
+
+</div>
+
+
+
       </div>
 
     </div>
   </div>
 
-
-  <div class="modal fade"  id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="imageCropModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-lg" role="document">
-      <div class="modal-content text-white" style="background-color: black;">
-        <div class="modal-header" style="border-bottom: none ;">
-          <h5 class="modal-title" id="imageCropModalLabel">Crop Image</h5>
-          <!-- <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button> -->
-        </div>
-        <div class="modal-body" >
-          <div style="display: inline-block;" id="cropper-container">
-            <img id="uploaded-image" src="" alt="Uploaded Image">
-            
-          </div>
-          <div style="display: inline-block; position: absolute; padding: 50px;">
-            <p style="font-size: 20px;">Please crop the image as you want in badge</p>
-          </div>
-
-        </div>
-        <div class="modal-footer" style="border-top: none;">
-          <button type="button" class="btn btn-light btn-lg" onclick="cropImage()">Done</button>
-          <button type="button" class="btn btn-danger btn-lg" onclick="cancelCrop()" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="https://unpkg.com/cropperjs/dist/cropper.js"></script>
   <!-- Bootstrap JS and Popper.js (Optional) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-  <script
-  src="https://code.jquery.com/jquery-3.7.1.min.js"
-  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-  <script>
-    function toggleAdditionalRow() {
-      const needEventPassYes = document.getElementById("eventPassYes");
-      const additionalRow = document.querySelector(".additional-row");
-
-      if (needEventPassYes.checked) {
-        additionalRow.style.display = "flex";
-
-        $('.set-additional-required').attr('required',true)
-
-      } else {
-        additionalRow.style.display = "none";
-        $('.set-additional-required').attr('required',false)
-        
-      }
-    }
-  </script>
-
-<script>
-      $('#build-form').submit(function (event){
-      
-      event.preventDefault()
-      $(':submit').attr('disabled',true)
-      $('.form-spinner').removeClass('d-none')
-      var _formData=new FormData($(event.target)[0])
-      _formData.append('csrfmiddlewaretoken','{{ csrf_token }}')
-      
-      $.ajax({
-        type: "POST",
-        url: "{% url 'submit-build-registration' %}",
-        data: _formData,
-        contentType:false,
-        processData:false,
-        dataType: "json",
-        success: function (response) {
-          
-          if(response.success){
-            window.location.href="{% url 'success-page' %}"
-            $(event.target)[0].reset()
-          }else{
-            alert(response.reason)
-          }
-
-          $('.submit-btn-loading').addClass('d-none')
-
-          $(':submit').attr('disabled',false)
-          
-        }
-      });
-    })
-
-    $('.id-proof-select').change(function() {
-      
-      if ($(this).val() == 'Emirates-Id'){
-        $('.id-proof-number-lable').text("Emirates Id Number")
-        $('.id-proof-file-front-lable').text("Upload Emirates ID front")
-        $('.id-proof-file-back-lable').text("Upload Emirates ID Back")
-        $('.id-proof-expire-date-lable').text("Emirates ID Expiry Date")
-        $(".id-proof-file-back-div").removeClass('d-none')
-        $('.emirates-id-back').attr('required',true)
-      }
-      if ($(this).val() == 'Passport-Id'){
-        $('.id-proof-number-lable').text("Passport Number")
-        $('.id-proof-file-front-lable').text("Upload Passport front")
-        
-        $(".id-proof-file-back-div").addClass('d-none')
-        $('.id-proof-file-back-lable').text("Upload Passport Back")
-        $('.id-proof-expire-date-lable').text("Passport Expiry Date")
-        $('.emirates-id-back').attr('required',false)
-
-      }
-
-    })
-
-</script>
-
-<script>
-  var cropper; // Variable to store the Cropper.js instance
-
-  function openImageCropPopup(input) {
-    var file = input.files[0];
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      // Update the image source with the uploaded file
-      document.getElementById('uploaded-image').src = e.target.result;
-
-      // Destroy the previous Cropper.js instance, if exists
-      if (cropper) {
-        cropper.destroy();
-      }
-
-      // Show the image cropping popup
-      $('#imageCropModal').modal('show');
-
-      // Initialize Cropper.js inside the modal
-      cropper = new Cropper(document.getElementById('uploaded-image'), {
-        aspectRatio: 1, // Set the aspect ratio for cropping (e.g., 1:1 for a square)
-        viewMode: 1, // Set the view mode to restrict the cropping area within the container
-        zoomable: false, // Disable zooming the image
-        guides: true, // Show guides for the cropping area
-        minContainerWidth: 400, // Set the minimum width of the cropping container
-        minContainerHeight: 400, // Set the minimum height of the cropping container
-      });
-
-   
-
-
-    };
-    reader.readAsDataURL(file);
-  }
-
-
-
-  function cropImage() {
-    if (cropper) {
-      // Get the cropped image data
-      var croppedDataUrl = cropper.getCroppedCanvas().toDataURL();
-
-      var m_input =document.getElementById('photo-badge-upload')
-
-      // var image = base64toBlob(croppedDataUrl)
-
-      // console.log(image)
-        let list = new DataTransfer();
-        const file = dataURLtoFile(croppedDataUrl,m_input.files[0].name)
-        list.items.add(file);
-        m_input.files=list.files
-            // Perform any actions with the cropped image data (e.g., upload, save, etc.)
-      //console.log(croppedDataUrl);
-
-    
-
-    // Hide the image cropping popup
-    $('#imageCropModal').modal('hide');
-  }
-}
-
-  function cancelCrop() {
-    // Reset the file input to clear the selected file
-    var fileInput = document.getElementById('photo-badge-upload');
-    fileInput.value = '';
-
-    // Clone and replace the file input element with a new instance
-    // var newFileInput = fileInput.cloneNode(true);
-    // fileInput.parentNode.replaceChild(newFileInput, fileInput);
-
-    // Hide the image cropping popup
-    $('#imageCropModal').modal('hide');
-  }
-
   
-  $('#imageCropModal').on('hidden.bs.modal', function() {
-    if (cropper) {
-      // Destroy the Cropper.js instance when closing the modal
-      cropper.destroy();
-      cropper = null;
-    }
-  });
-
-
-
-function dataURLtoFile(dataurl, filename) {
-    var arr = dataurl.split(","),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, { type: mime });
-}
-
-  
-</script>
 </body>
 </html>
