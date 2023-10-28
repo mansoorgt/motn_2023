@@ -94,16 +94,31 @@
   background-color: rgb(176, 190, 53); 
   padding: 10px;
 }
+.vappcard-head
+{
+  background-color: rgb(190, 53, 183); 
+  padding: 10px;
+}
 
 .event_form .form-control
 {
   border: 1px solid rgba(53, 135, 190, 0.705);
   border-bottom: 3px solid rgba(53, 135, 190, 0.342);
 }
+.vapp_form .form-control
+{
+  border: 1px solid rgba(190, 53, 183, 0.788);
+  border-bottom: 3px solid rgba(90, 32, 87, 0.678);
+}
 .event_form .form-control:focus
 {
   box-shadow: none;
   border-bottom: 1px solid rgba(53, 135, 190, 0.705); 
+}
+.vapp_form .form-control:focus
+{
+  box-shadow: none;
+  border-bottom: 1px solid rgba(190, 53, 183, 0.788); 
 }
 
 .build_form .form-control
@@ -133,6 +148,12 @@
 
 
 .event_form,label
+{
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 15px;
+}
+.vapp_form,label
 {
   margin-top: 5px;
   font-weight: 400;
