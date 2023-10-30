@@ -51,7 +51,7 @@
                     
                     {% if r.verification == 'Pending' %}
                     <i class="btn btn-sm btn-success col-6" onclick="onChangeVerification(this)" reg-id="{{r.id}}" method="Approved">Approve</i>
-                    <i class="btn btn-sm btn-danger col-6" onclick="onChangeVerification(this)" reg-id="{{r.id}}" method="Rejected">Reject</i>
+                    <a class="btn btn-sm btn-danger col-6" onclick="onClickRejectBtn(this)" reg-id="{{r.id}}" method="Rejected">Reject</a>
                     {% endif %}
 
                     {% if r.verification == 'Approved' %}

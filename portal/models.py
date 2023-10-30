@@ -115,9 +115,3 @@ class EventRegistrations(models.Model):
 
     class Meta:
         db_table='event_registrations'
-
-class Locations(models.Model):
-    name=models.CharField(max_length=50)
-    active=models.BooleanField(default=True)
-    class Meta:
-        db_table='event_locations'

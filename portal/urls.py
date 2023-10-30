@@ -20,6 +20,7 @@ urlpatterns = [
     path('submit-add-registration',views.submit_add_registrations,name='submit-add-registration'),
     path('get-registration-details',views.get_registration_details,name='get-registration-details'),
     path('submit-edit-registration',views.submit_edit_registration,name='submit-edit-registration'),
+    path('submit-bulk-edit-registration',views.submit_bulk_edit_registration,name='submit-bulk-edit-registration'),
     path('delete-registration',views.delete_registrtion,name='delete-registration'),
     path('collect-registration',views.collect_registration,name='collect-registration'),
     path('change-registration-remark',views.change_remark,name='change-registration-remark'),
@@ -38,4 +39,5 @@ urlpatterns = [
     path('sse', SSEView.as_view(), name='sse'),
     
     path('print-page',views.print_page,name='print-page'),
+    path('get-latest-data',views.get_latest_data,name='get-latest-data')
 ]

@@ -36,7 +36,7 @@
                   {% if r.verification == 'Approved' %}
                   <i style="font-size: 20px" class="fa-solid fa-print"  reg-id="{{r.id}}" onclick="onPrint(this)" ></i>
                   {% endif %}
-                  <a  data-toggle="modal" data-target="#edit-registration" style="color: black;" class="edit-registration-btn" onclick="onEditRegistration(this)" reg-id="{{r.id}}" ><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
+                  <a  data-toggle="modal" data-target="#edit-registration" style="color: black;" class="edit-registration-btn" onclick="onEditRegistration(this)" reg-id="{{r.id}}" profile-edit="false"><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
                 
                   {% if r.collected == False and r.print_count > 0 %}
                
@@ -51,7 +51,7 @@
                     
                     {% if r.verification == 'Pending' %}
                     <i class="btn btn-sm btn-success col-6" onclick="onChangeVerification(this)" reg-id="{{r.id}}" method="Approved">Approve</i>
-                    <i class="btn btn-sm btn-danger col-6" onclick="onChangeVerification(this)" reg-id="{{r.id}}" method="Rejected">Reject</i>
+                    <i class="btn btn-sm btn-danger col-6" onclick="onClickRejectBtn(this)" reg-id="{{r.id}}" method="Rejected">Reject</i>
                     {% endif %}
 
                     {% if r.verification == 'Approved' %}

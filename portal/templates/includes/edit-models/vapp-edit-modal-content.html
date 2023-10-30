@@ -25,8 +25,8 @@
               </div>
 
               <div class="col-6">
-                <label for="">dob</label>
-                <input type="date" id="edit-dob" class="form-control" value="{{r.dob|date:"Y-m-d" }}" name="dob" required>
+                <label for="">Vehicle Plate Number</label>
+                <input type="text" id="edit-vehicle_number" class="form-control" value="{{r.vehicle_number}}" name="vehicle_number" required>
               </div>
 
             </div>
@@ -38,7 +38,7 @@
               </div>
 
               <div class="col-6">
-                <label for="">email</label>
+                <label for="">Email</label>
                 <input type="email" id="edit-email" class="form-control" value="{{r.email}}" name="email" required>
               </div>
 
@@ -46,8 +46,13 @@
 
             <div class="row mt-2">
               <div class="col-6">
-                <label for="">Nationality</label>
-                <input type="text" id="edit-nationality" value="{{r.nationality}}" class="form-control" name="nationality" required>
+                <label for="">Category</label>
+                <select class="form-control" id="edit-category" name="vehicle-type" required>
+  
+                  {% for c in category %}
+                    <option value="{{c.id}}" {% if r.vehicletype.id == c.id %} selected  {% endif %}>{{c.name}}</option>
+                  {% endfor %}
+                </select>
               </div>
 
               <div class="col-6">
@@ -55,7 +60,7 @@
                 <select class="form-control" id="edit-card-type" name="card-type" required>
   
                   {% for t in cardtypes %}
-                    <option value="{{t.id}}" {% if r.cardtype.id == t.id %} selected  {% endif %}>{{t.name}}</option>
+                    <option value="{{t.id}}" {% if r.cardtype.id == t.id %} selected  {% endif %} >{{t.name}}</option>
                   {% endfor %}
                 </select>
               </div>
@@ -71,12 +76,13 @@
           <div class="row mt-2">
            
             <div class="col-6">
-              <label for="">Badge Photo <a href="{{r.badge_photo.url}}" target="_blank">View</a> </label>
-              <input type="file" id="edit-badge-photo" class="form-control" name="badge-photo" >
+              <label for="">Vehicle Pass/Mulkiya<a href="{{r.vehicle_pass.url}}" target="_blank">View</a> </label>
+              <input type="file" id="edit-vehicle-pass-photo" class="form-control" name="vehicle-pass-photo" >
             </div>
+           
             <div class="col-6">
-              <label for="">{{r.id_proof_type}} Proof Number</label>
-              <input type="text" id="edit-id-number" value="{{r.id_proof_number}}" class="form-control" name="id-proof-number" required>
+              <label for="">Emirates ID Front<a href="{{r.id_proof_front.url}}" target="_blank">View</a> </label>
+              <input type="file" id="edit-id-front-photo" class="form-control" name="id-front-photo" >
             </div>
 
           </div>
@@ -84,17 +90,13 @@
             
           <div class="row mt-2">
            
-            <div class="col-6">
-              <label for="">{{r.id_proof_type}} Front Photo <a href="{{r.id_proof_front.url}}" target="_blank">View</a> </label>
-              <input type="file" id="edit-badge-photo" class="form-control" name="id-front-photo" >
-            </div>
 
-            {% if r.id_proof_type == 'Emirates-Id' %}
+        
             <div class="col-6">
-              <label for="">{{r.id_proof_type}} Back Photo <a href="{{r.id_proof_back.url}}" target="_blank">View</a> </label>
-              <input type="file" id="edit-badge-photo" class="form-control" name="id-back-photo" >
+              <label for="">Emirates ID Back <a href="{{r.id_proof_back.url}}" target="_blank">View</a> </label>
+              <input type="file" id="edit-id-back-photo" class="form-control" name="id-back-photo" >
             </div>
-            {% endif %}
+       
 
           </div>
 

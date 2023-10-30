@@ -127,10 +127,15 @@ def get_registration_details(request):
             modal_html=render_to_string('includes/edit-models/event-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes})
         elif getTable(request) == BuildRegistrations:
             obj=BuildRegistrations.objects.get(id=edit_id)
+            cardtypes=BuildCardType.objects.filter(active=True)
             
-            modal_html=render_to_string('includes/edit-models/build-edit-modal-content.html',{"r":obj})
+            modal_html=render_to_string('includes/edit-models/build-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes})
         elif getTable(request) == VappRegistrations:
-            obj=VappRegistrations.objects.filter(id=edit_id).values('name','jobtitle','company','cardtype')
+            obj=VappRegistrations.objects.get(id=edit_id)
+            cardtypes=VappCardType.objects.filter(active=True)
+            category=VehicleType.objects.filter(active=True)
+        
+            modal_html=render_to_string('includes/edit-models/vapp-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes,'category':category})
             
         data['content_html']=modal_html   
         data['success']=True 
@@ -159,12 +164,37 @@ def submit_edit_registration(request):
             mobile=request.POST.get('mobile')
             email=request.POST.get('email')
             nationality=request.POST.get('nationality')
+            id_proof_number=request.POST.get('id-proof-number')
+            
+            id_proof_front=request.FILES.get('id-front-photo')
+            id_proof_back=request.FILES.get('id-back-photo')
+            
+            badge_photo=request.FILES.get('badge-photo')
+            
+            
             # jobtitle=request.POST.get('job-title')
             cardtype=request.POST.get('card-type')
             edit_id=request.POST.get('edit-id')
             
+            
+            
+            print(badge_photo)
             obj=EventRegistrations.objects.filter(id=edit_id)
-            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,nationality=nationality,email=email,mobile=mobile,cardtype=cardtype,updated_at=timezone.now())
+            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,nationality=nationality,email=email,mobile=mobile,cardtype=cardtype,id_proof_number=id_proof_number,updated_at=timezone.now())
+            
+            instance_obj=obj.first()
+            if badge_photo != None:
+                instance_obj.badge_photo=badge_photo
+            
+            if id_proof_front != None:
+                instance_obj.id_proof_front=id_proof_front
+            if id_proof_back != None:
+                instance_obj.id_proof_back=id_proof_back
+        
+            instance_obj.save()
+            
+            
+            
             row=render_to_string(getTableRow(request),{'r':obj.first()})
         
         if getTable(request) == BuildRegistrations:
@@ -175,20 +205,102 @@ def submit_edit_registration(request):
             dob=request.POST.get('dob')
             mobile=request.POST.get('mobile')
             email=request.POST.get('email')
-          
+
             edit_id=request.POST.get('edit-id')
+            cardtype=request.POST.get('card-type')
             
             obj=BuildRegistrations.objects.filter(id=edit_id)
-            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,email=email,mobile=mobile,updated_at=timezone.now())
+            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,email=email,cardtype=cardtype,mobile=mobile,updated_at=timezone.now())
             row=render_to_string(getTableRow(request),{'r':obj.first()})
         
-        
+        if getTable(request) == VappRegistrations:
+            first_name=request.POST.get('first-name')
+            last_name=request.POST.get('last-name')
+            company=request.POST.get('company')
+            vehicle_number=request.POST.get('vehicle_number')
+            mobile=request.POST.get('mobile')
+            email=request.POST.get('email')
+            category=request.POST.get('vehicle-type')
+            card_type=request.POST.get('card-type')
+           
+            vehicle_pass=request.FILES.get('vehicle-pass-photo')
+            id_proof_front=request.FILES.get('id-front-photo')
+            id_proof_back=request.FILES.get('id-back-photo')
+            
+            print(id_proof_front,id_proof_back)
+            edit_id=request.POST.get('edit-id')
+
+            obj=VappRegistrations.objects.filter(id=edit_id)
+            obj.update(first_name=first_name,last_name=last_name,company=company,vehicle_number=vehicle_number,mobile=mobile,email=email,cardtype=card_type,vehicletype=category)
+            
+            instance_obj=obj.first()
+            if vehicle_pass != None:
+                instance_obj.vehicle_pass=vehicle_pass
+            if id_proof_front!=None:
+                instance_obj.id_proof_front=id_proof_front
+            if id_proof_back!=None:
+                instance_obj.id_proof_back=id_proof_back
+            instance_obj.save()
+            
+            row=render_to_string(getTableRow(request),{'r':obj.first()})
+         
         data['success']=True
         data['row']=row
     except Exception as e:
         print(e)
         data['success']=False     
         
+    return JsonResponse(data)
+
+def submit_bulk_edit_registration(request):
+    
+    data={'success':False}
+    
+    try:
+        ids=json.loads(request.POST.get('edit-ids'))
+        cardtype_id=request.POST.get('card-type')
+        company=request.POST.get('company')
+        if getTable(request) == EventRegistrations:
+            
+            
+            registrations=EventRegistrations.objects.filter(id__in=ids)
+            if cardtype_id != '0':
+                
+                cardtype=EventCardType.objects.get(id=cardtype_id)
+            
+                registrations.update(cardtype=cardtype,updated_at=timezone.now())
+            if company != '':
+                registrations.update(company=company,updated_at=timezone.now())
+        if getTable(request) == BuildRegistrations:
+            
+            
+            registrations=BuildRegistrations.objects.filter(id__in=ids)
+            if cardtype_id != '0':
+                
+                cardtype=BuildCardType.objects.get(id=cardtype_id)
+            
+                registrations.update(cardtype=cardtype,updated_at=timezone.now())
+            if company != '':
+                registrations.update(company=company,updated_at=timezone.now())
+                
+        if getTable(request) == VappRegistrations:
+            
+            
+            registrations=VappRegistrations.objects.filter(id__in=ids)
+            if cardtype_id != '0':
+                
+                cardtype=VappCardType.objects.get(id=cardtype_id)
+            
+                registrations.update(cardtype=cardtype,updated_at=timezone.now())
+            if company != '':
+                registrations.update(company=company,updated_at=timezone.now())
+                  
+        data['success']=True
+    except Exception as e:
+        print(e)
+        data['reason']=str(e)
+        data['success']=False    
+
     return JsonResponse(data)
 ###### EDITS ENDS HERE
 
@@ -388,11 +500,16 @@ def send_mail(request):
     if getTable(request) == EventRegistrations:
         registration=EventRegistrations.objects.get(id=id)
         uid='EVP-'+str(registration.id)
-        
+    if getTable(request) == BuildRegistrations:
+        registration=BuildRegistrations.objects.get(id=id)
+        uid='BUP-'+str(registration.id)
+    if getTable(request) == VappRegistrations:
+        registration=VappRegistrations.objects.get(id=id)
+        uid='VAP-'+str(registration.id)
+     
     if method == 'Approved':
 
       
-            
         data={"name":registration.first_name+' '+registration.last_name,'uid':uid}
         html_contect=render_to_string("email/approved.html",data)
         email_from = settings.EMAIL_HOST_USER
@@ -404,9 +521,9 @@ def send_mail(request):
     
     if method == 'Rejected':
 
-        
-            
-        data={"name":registration.first_name+' '+registration.last_name,'uid':uid}
+        reason=request.POST.get('reason')
+        print(reason)
+        data={"name":registration.first_name+' '+registration.last_name,'reason':reason,'uid':uid}
         html_contect=render_to_string("email/rejected.html",data)
         email_from = settings.EMAIL_HOST_USER
         subject = 'Registration Status – Rejected'
@@ -417,3 +534,28 @@ def send_mail(request):
     
     
     return JsonResponse({})
+
+
+#Get latest update 
+
+def get_latest_data(request):
+    checktime_range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()]
+    # print(checktime_range)
+    updatedQuery=getTable(request).objects.filter(updated_at__range=checktime_range)
+
+    if updatedQuery.exists():
+        try:
+            updated_ids=updatedQuery.filter(updated_at__range=checktime_range).values_list('id',flat=True)
+            updated_rows=[]
+            for i in updatedQuery:
+                html=render_to_string(getTableRow(request),{'r':i})
+                updated_rows.append(html)
+        
+            data={'ids':list(updated_ids),'rows':updated_rows,'new_data':True} 
+        except Exception as e:
+            data={'error':str(e),'new_data':False}
+        
+        return JsonResponse(data)
+    
+    return JsonResponse({'new_data':False})
+    

@@ -105,29 +105,29 @@
 
         <div class="col-md-6">
 <label>ID</label>
-<select class="form-control">
-  <option>PASSPORT</option>
-  <option>EMIRATES ID</option>
+<select class="form-control id-proof-select">
+  <option value="Passport-Id">PASSPORT</option>
+  <option value="Emirates-Id">EMIRATES ID</option>
 </select>
         </div>
 
 
         <div class="col-md-6">
-<label>EMIRATES ID NUMBER</label>
+<label class="id-proof-number-lable">EMIRATES ID NUMBER</label>
 <input type="text" class="form-control">
         </div>
 
         <div class="col-md-6">
-          <label>UPLOAD EMIRATES ID FRONT</label>
+          <label class=".id-proof-file-front-lable">UPLOAD EMIRATES ID FRONT</label>
           <input type="file" class="form-control">
                   </div>
 
-                  <div class="col-md-6">
-                    <label>UPLOAD EMIRATES ID BACK</label>
-                    <input type="file" class="form-control">
+                  <div class="col-md-6 id-proof-file-back-div">
+                    <label class="id-proof-file-back-lable">UPLOAD EMIRATES ID BACK</label>
+                    <input type="file" class="form-control emirates-id-back">
                             </div>
                             <div class="col-md-6">
-                              <label>EMIRATES ID EXPIRY DATE</label>
+                              <label class="id-proof-expire-date-lable">EMIRATES ID EXPIRY DATE</label>
                               <input type="date" class="form-control">
                                       </div>
 
@@ -137,7 +137,7 @@
                                                 </div>
 
 
-                                                
+       <div class="row">                                     
                                                 <div class="col-md-6">
                                                  
 <button class="evnt_button">SUBMIT</button>
@@ -147,7 +147,7 @@
   <button class="rst_button">RESET</button>
   </div>  
                                                 
-
+</div>     
 
 </div>
 </div>
@@ -168,6 +168,31 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-  
+  <script>
+    
+    $('.id-proof-select').change(function() {
+      
+      if ($(this).val() == 'Emirates-Id'){
+        $('.id-proof-number-lable').text("Emirates Id Number")
+        $('.id-proof-file-front-lable').text("Upload Emirates ID front")
+        $('.id-proof-file-back-lable').text("Upload Emirates ID Back")
+        $('.id-proof-expire-date-lable').text("Emirates ID Expiry Date")
+        $(".id-proof-file-back-div").removeClass('d-none')
+        $('.emirates-id-back').attr('required',true)
+      }
+      if ($(this).val() == 'Passport-Id'){
+        $('.id-proof-number-lable').text("Passport Number")
+        $('.id-proof-file-front-lable').text("Upload Passport front")
+        
+        $(".id-proof-file-back-div").addClass('d-none')
+        $('.id-proof-file-back-lable').text("Upload Passport Back")
+        $('.id-proof-expire-date-lable').text("Passport Expiry Date")
+        $('.emirates-id-back').attr('required',false)
+
+      }
+
+    })
+
+  </script>
 </body>
 </html>

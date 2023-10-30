@@ -27,7 +27,7 @@
          
                 <div class="col-6">
                   <label for="">Date of Birth</label>
-                  <input type="text" class="form-control" value="{{r.dob|date:"Y-m-d"}}" name="dob" required>
+                  <input type="date" class="form-control" value="{{r.dob|date:"Y-m-d"}}" name="dob" required>
                 </div>
 
             </div>
@@ -43,6 +43,20 @@
                 <input type="text" id="edit-company" class="form-control" value="{{r.company}}" name="company" required>
               </div>
             </div>
+
+            <div class="row mt-2">
+              <div class="col-6">
+                <label for="">Card Type</label>
+                <select class="form-control" id="edit-card-type" name="card-type" required>
+  
+                  {% for t in cardtypes %}
+                    <option value="{{t.id}}" {% if r.cardtype.id == t.id %} selected  {% endif %}>{{t.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+             
+            </div>
+
           </div>
 
     

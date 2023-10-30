@@ -54,11 +54,12 @@ $('#add-registration-form').submit(function (e) {
 })
 var edit_id=0
 var edit_row;
+var edit_btn;
 function onEditRegistration(elm) {
 
     edit_id=$(elm).attr('reg-id')
     edit_row=$('#reg-'+edit_id)
-    
+    edit_btn=elm
     $.ajax({
         type: "GET",
         url: "get-registration-details",
@@ -120,7 +121,10 @@ function onSubmitEditForm (e) {
                   })
 
                 $(e.target)[0].reset()
-
+               
+                if ($(edit_btn).attr('profile-edit')=='true'){
+                    onProfileClick(edit_id)
+                }
 
             }else{
                 Swal.fire({
@@ -136,6 +140,67 @@ function onSubmitEditForm (e) {
 
 }
 
+
+function onSubmitEditBulkForm(e){
+    e.preventDefault(); 
+
+    var ids_array=[]
+    
+    $('.reg-check-box:checked').each(function () {
+        ids_array.push($(this).attr('reg-id'))
+    })
+
+    var _FormData=new FormData($(e.target)[0])
+    _FormData.append('edit-ids',JSON.stringify(ids_array))
+    _FormData.append('csrfmiddlewaretoken',csrf_token)
+
+    $.ajax({
+        type: "POST",
+        url: "submit-bulk-edit-registration",
+        data: _FormData,
+        processData: false,
+        contentType: false,
+        dataType: "json",
+
+        success: function (response) {
+           
+            if (response.success){
+
+                $('#edit-bulk-registration .btn-close').click()
+                $('.deselect-all-bulk-btn').click()
+                // $(edit_row).html(response.row.replace(/<tr[^>]*>/g, '').replace(/<\/tr>/g, ''))
+                // main_table.order([2,"desc"]).draw(false)
+                // $('#regitration-table').DataTable()
+
+                
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+
+                $(e.target)[0].reset()
+               
+                // if ($(edit_btn).attr('profile-edit')=='true'){
+                //     onProfileClick(edit_id)
+                // }
+
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong! Error :'+response.reason,
+                  
+                  })
+            }
+
+        }
+    });
+
+
+}   
 
 function onDeleteRegistration(elm) {
 
@@ -285,6 +350,11 @@ function onClickCheckBox(elm) {
 $('.deselect-all-bulk-btn').click(function(){
     $('#bulk-buttons-top-row').addClass('d-none')
     $('.reg-check-box').prop('checked',false)
+})
+
+$('.select-all-bulk-btn').click(function(){
+    
+    $('.reg-check-box').prop('checked',true)
 })
 
 $('.bulk-print-btn').click(function () {
@@ -462,13 +532,13 @@ function onChangeVerification(elm) {
                 $('#reg-'+id).html(response.row.replace(/<tr[^>]*>/g, '').replace(/<\/tr>/g, ''))
                 main_table.order([2,"desc"]).draw(false)
                 $('#regitration-table').DataTable()
-                console.log($(elm).hasClass('profile-verification-btn'))
+                
                 if ($(elm).hasClass('profile-verification-btn')){
                     
                     onProfileClick(id)
-
+                    console.log('profile')
                 }
-
+                $('#rejection-reason-model').modal('hide')
                 sendMail(id,method)
             }
         }
@@ -476,76 +546,129 @@ function onChangeVerification(elm) {
 
 }
 
+function onClickRejectBtn(elm){
 
+    if ($(elm).hasClass('profile-verification-btn')){
+        console.log('has')
+        $('.rejection-reason-submit').addClass('profile-verification-btn')
+    }else{
+        $('.rejection-reason-submit').removeClass('profile-verification-btn')
+    }
+
+    id=$(elm).attr('reg-id')
+    $('#rejection-reason-model').modal('show')
+    $('.rejection-reason-submit').attr('reg-id',id)
+    
+
+}
 
 
 function sendMail(id,method='approved'){
+    reason=$('#rejection-reason-textarea').val()
+    console.log(reason)
+
     $.ajax({
         type: "POST",
         url: "send-mail-in-portal",
-        data: {id:id,method:method,'csrfmiddlewaretoken':csrf_token},
-        dataType: "dataType",
+        data: {id:id,reason:reason,method:method,'csrfmiddlewaretoken':csrf_token},
+        dataType: "json",
         success: function (response) {
-            
+            $('#rejection-reason-textarea').val('')
         }
     });
 }
 
 // SSE ----------------------------------------------------------------------------------------
 
-let eventSource = new EventSource('sse?table-name='+table_name);
 
-eventSource.onmessage = (event) => {
-    updateDataSSE(event)
-};
+setInterval(() => {
+    getLatestData()
+}, 5000);
 
-
-eventSource.onerror = function (error) {
-    // Handle any errors here
-    
-    reconnectEventSource();
-};
-
-function updateDataSSE(event){
-    const data = JSON.parse(event.data);
-    // Update the page with the received data
-    console.log('Received data:', data);
-
-    for (let i = 0; i < data.ids.length; i++) {
+function getLatestData(){
+    $.ajax({
+        type: "GET",
+        url: "get-latest-data",
+        data: {"table-name":table_name},
+        dataType: "json",
+        success: function (response) {
        
-        if ($('#reg-'+data.ids[i])){
-           // $('#reg-'+data.ids[i]).html(data.rows[i].replace(/<tr[^>]*>/g, '').replace(/<\/tr>/g, ''))
-           main_table.row('#reg-'+data.ids[i]).remove().draw(false)
-           main_table.row.add($(data.rows[i])).draw(false)
-            main_table.draw(false)
-            $('#regitration-table').DataTable()
+            const data=response
+
+           if (data.new_data){
+
+                for (let i = 0; i < data.ids.length; i++) {
+                    
+                    if ($('#reg-'+data.ids[i])){
+                    // $('#reg-'+data.ids[i]).html(data.rows[i].replace(/<tr[^>]*>/g, '').replace(/<\/tr>/g, ''))
+                    main_table.row('#reg-'+data.ids[i]).remove().draw(false)
+                    main_table.row.add($(data.rows[i])).draw(false)
+                        main_table.draw(false)
+                        $('#regitration-table').DataTable()
+                    }
+                    
+                    
+                }
+
+           }
+             
+
         }
-        
-        
-    }
+    });
 }
+// let eventSource = new EventSource('sse?table-name='+table_name);
+
+// eventSource.onmessage = (event) => {
+//     updateDataSSE(event)
+// };
 
 
-/// in live enviroment we using the gunicorn ---reload it will restart the server after a perticular time it cuassig the continues sse connction so 
-/// i don like this to reconnect after sse connection lost :) 
-function reconnectEventSource() {
-    console.log('reconnection started ---')
-    setTimeout(() => {
-      eventSource.close(); // Close the existing connection
-      eventSource = new EventSource('sse?table-name='+table_name);
-      eventSource.onopen = (event) => {
-        console.log('Reconnected');
-      };
-
-      eventSource.onmessage = (event) => {
-        updateDataSSE(event)
-        };
-
-        eventSource.onerror = function (error) {
-            // Handle any errors here
-           
-            reconnectEventSource();
-        };
+// eventSource.onerror = function (error) {
+//     // Handle any errors here
     
-    }, 1000); // Delay before reconnection (adjust as needed)
-  }
+//     reconnectEventSource();
+// };
+
+// function updateDataSSE(event){
+//     const data = JSON.parse(event.data);
+//     // Update the page with the received data
+//     console.log('Received data:', data);
+
+//     for (let i = 0; i < data.ids.length; i++) {
+       
+//         if ($('#reg-'+data.ids[i])){
+//            // $('#reg-'+data.ids[i]).html(data.rows[i].replace(/<tr[^>]*>/g, '').replace(/<\/tr>/g, ''))
+//            main_table.row('#reg-'+data.ids[i]).remove().draw(false)
+//            main_table.row.add($(data.rows[i])).draw(false)
+//             main_table.draw(false)
+//             $('#regitration-table').DataTable()
+//         }
+        
+        
+//     }
+// }
+
+
+// /// in live enviroment we using the gunicorn ---reload it will restart the server after a perticular time it cuassig the continues sse connction so 
+// /// i don like this to reconnect after sse connection lost :) 
+// function reconnectEventSource() {
+//     console.log('reconnection started ---')
+//     setTimeout(() => {
+//       eventSource.close(); // Close the existing connection
+//       eventSource = new EventSource('sse?table-name='+table_name);
+//       eventSource.onopen = (event) => {
+//         console.log('Reconnected');
+//       };
+
+//       eventSource.onmessage = (event) => {
+//         updateDataSSE(event)
+//         };
+
+//         eventSource.onerror = function (error) {
+//             // Handle any errors here
+           
+//             reconnectEventSource();
+//         };
+    
+//     }, 1000); // Delay before reconnection (adjust as needed)
+//   }

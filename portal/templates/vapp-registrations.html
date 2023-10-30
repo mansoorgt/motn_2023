@@ -332,18 +332,29 @@ p {
               <!-- <div class="co-md-3">
                 <button class="btn btn-sm btn-behance ml-2" data-target="#bulid-bulk-edit" data-toggle="modal" onclick="bulk_edit(1)" >Edit</button>
               </div> -->
+             
+              
               <div class="co-md-3">
                 <button class="btn btn-sm btn-secondary text-white ml-2 deselect-all-bulk-btn">Deselect All</button>
               </div>
+              <div class="co-md-3 mr-2">
+                <button class="btn btn-sm btn-success text-white ml-2 select-all-bulk-btn">Select All</button>
+              </div>
+
+            
               <!-- <div class="co-md-3">
                 <button class="btn btn-sm btn-primary ml-2" onclick="select_all(1)">Select All</button>
               </div> -->
              
               
-                <div class="co-md-3">
+                <div class="co-md-3 ml-2">
                   <button class="btn btn-sm btn-dark ml-2 bulk-print-btn">Bulk Print</button>
                 </div>
-              
+
+                <div>
+                  <button type="button" class="btn btn-sm btn-warning ml-2" data-bs-toggle="modal" data-bs-target="#edit-bulk-registration">Bulk Edit</button>
+                </div>
+                         
             </div>
           </div>
         
@@ -504,96 +515,7 @@ p {
 
 
   <!-- edit registration model -->
-  <div class="modal fade" id="edit-registration" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <Form id="edit-registration-form">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Registration</h5>
-          <i class="fa-solid fa-xmark btn-close"  data-bs-dismiss="modal" aria-label="Close"></i>
-        </div>
-        <div class="modal-body">
-         
-        
-            <div class="row ">
-              <div class="col-6">
-                <label for="">First Name</label>
-                <input type="text" id="edit-first-name" class="form-control" name="first-name" required>
-              </div>
-
-              <div class="col-6">
-                <label for="">Last Name</label>
-                <input type="text" id="edit-last-name" class="form-control" name="last-name" required>
-              </div>
-              
-              <div class="row mt-2">
-                <div class="col-6">
-                  <label for="">Company</label>
-                  <input type="text" id="edit-company" class="form-control" name="company" required>
-                </div>
-
-                <div class="col-6">
-                  <label for="">dob</label>
-                  <input type="date" id="edit-dob" class="form-control" name="dob" required>
-                </div>
-
-              </div>
-
-              <div class="row mt-2">
-                <div class="col-6">
-                  <label for="">Mobile</label>
-                  <input type="text" id="edit-mobile" class="form-control" name="mobile" required>
-                </div>
-
-                <div class="col-6">
-                  <label for="">email</label>
-                  <input type="email" id="edit-email" class="form-control" name="email" required>
-                </div>
-
-              </div>
-
-              <div class="row mt-2">
-                <div class="col-6">
-                  <label for="">Nationality</label>
-                  <input type="text" id="edit-nationality" class="form-control" name="nationality" required>
-                </div>
-
-               
-
-              </div>
-
-              </div>
-            <div class="row mt-2">
-              <div class="col-6">
-                <label for="">Job Title</label>
-                <input type="text" class="form-control" id="edit-job-title" name="job-title" required>
-              </div>
-              <div class="col-6">
-                <label for="">Card Type</label>
-                <select class="form-control" id="edit-card-type" name="card-type" required>
-
-                  {% for t in cardtypes %}
-                    <option value="{{t.id}}">{{t.name}}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-            
-
-          
-
-         
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-
-   
-      </div>
-    </Form>
-    </div>
-  </div>
+  
   
 
   <!-- end edit registration model -->
@@ -631,48 +553,126 @@ p {
   </div>
 
 
-  <!-- profile view -->
-  <div class="modal bd-example-modal-lg fade" id="profile-modal"  role="dialog" aria-labelledby="profilemodalcenterTitle" aria-hidden="true" style="overflow: scroll !important;">
- 
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-         
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="page-content page-container" id="page-content">
-            <div class="padding">
-                <div class="row container profile-content">
- 
 
-  </div>
-</div>
-<div class="modal-footer">
-  <div class="col-md-12">
-  <button type="button" class="btn btn-danger float-left ml-2 profile-verification-btn" id="profile-reject-btn" onclick="onChangeVerification(this)" reg-id="0" method="Rejected" >Reject</button>
-  <button type="button" class="btn btn-warning  float-left ml-2 profile-verification-btn" id="profile-apporve-btn" onclick="onChangeVerification(this)" reg-id="0" method="Approved" >Approve</button>
-
+    <!-- profile view -->
+    <div class="modal bd-example-modal-lg fade" id="profile-modal"  role="dialog" aria-labelledby="profilemodalcenterTitle" aria-hidden="true" style="overflow: scroll !important;">
  
- 
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="page-content page-container" id="page-content">
+              <div class="padding">
+                  <div class="row container profile-content">
+   
   
-  <button type="button profile-navigation-btn" class="btn btn-primary float-right ml-2 profile-navigation-btn profile-next-btn"  >Next</button>
-  <button type="button" class="btn btn-secondary float-right ml-2" data-dismiss="modal">Close</button>
-  <button type="button" class="btn btn-primary float-right ml-2 profile-navigation-btn  profile-previous-btn"  >Previous</button>
-
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-
+    </div>
   </div>
-
-
+  <div class="modal-footer">
+    <div class="col-md-12">
+    <button type="button" class="btn btn-danger float-left ml-2 profile-verification-btn" id="profile-reject-btn" onclick="onClickRejectBtn(this)" reg-id="0" method="Rejected" >Reject</button>
+    <button type="button" class="btn btn-warning  float-left ml-2 profile-verification-btn" id="profile-apporve-btn" onclick="onChangeVerification(this)" reg-id="0" method="Approved" >Approve</button>
+  
+   
+   
+    
+    <button type="button profile-navigation-btn" class="btn btn-primary float-right ml-2 profile-navigation-btn profile-next-btn"  >Next</button>
+    <button type="button" class="btn btn-secondary float-right ml-2" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary float-right ml-2 profile-navigation-btn  profile-previous-btn"  >Previous</button>
+  
+  </div>
+  
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+    </div>
+  
+  
+  
+  
+    <div class="modal fade" id="edit-registration" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1052 !important;">
+      <div class="modal-dialog edit-model-content-body shadow-lg" >
+       
+      </div>
+    </div>
+  
+  
+    <!-- Reason Modal -->
+  
+    <div class="modal fade" id="rejection-reason-model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Rejection Reason</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <textarea name="" class="form-control" id="rejection-reason-textarea" cols="30" rows="10"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary rejection-reason-submit" onclick="onChangeVerification(this)" reg-id="0" method="Rejected">Submit Rejection</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+    <div class="modal fade" id="edit-bulk-registration" tabindex="-2" aria-labelledby="bulk-edit" aria-hidden="true" style="z-index: 1052 !important;">
+      <div class="modal-dialog shadow-lg" >
+        <Form id="edit-bulk-registration-form" onsubmit="onSubmitEditBulkForm(event)">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="bulk-edit">Edit Bulk Registrations</h5>
+              <i class="fa-solid fa-xmark btn-close"  data-bs-dismiss="modal" aria-label="Close"></i>
+            </div>
+            <div class="modal-body">
+             
+              <div class="row mt-2">
+                <div class="col-6">
+                  <label for="">Company</label>
+                  <input type="text" id="edit-company" class="form-control" name="company" >
+                </div>
+  
+                
+                <div class="col-6">
+                  <label for="">Card Type</label>
+                  <select class="form-control" id="edit-card-type" name="card-type">
+                    <option value="0" selected>No Select</option>
+                    {% for t in cardtypes %}
+                      <option value="{{t.id}}"   >{{t.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+  
+              </div>
+               
+                </div>
+               
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary btn-close" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+             
+            </div>
+         
+      
+       
+          </div>
+        </Form>
+      </div>
+ 
 <!-- bulk vpp edit end -->
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>

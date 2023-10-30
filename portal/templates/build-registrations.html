@@ -332,16 +332,27 @@ p {
               <!-- <div class="co-md-3">
                 <button class="btn btn-sm btn-behance ml-2" data-target="#bulid-bulk-edit" data-toggle="modal" onclick="bulk_edit(1)" >Edit</button>
               </div> -->
+             
+              
               <div class="co-md-3">
                 <button class="btn btn-sm btn-secondary text-white ml-2 deselect-all-bulk-btn">Deselect All</button>
               </div>
+              <div class="co-md-3 mr-2">
+                <button class="btn btn-sm btn-success text-white ml-2 select-all-bulk-btn">Select All</button>
+              </div>
+
+            
               <!-- <div class="co-md-3">
                 <button class="btn btn-sm btn-primary ml-2" onclick="select_all(1)">Select All</button>
               </div> -->
              
               
-                <div class="co-md-3">
+                <div class="co-md-3 ml-2">
                   <button class="btn btn-sm btn-dark ml-2 bulk-print-btn">Bulk Print</button>
+                </div>
+
+                <div>
+                  <button type="button" class="btn btn-sm btn-warning ml-2" data-bs-toggle="modal" data-bs-target="#edit-bulk-registration">Bulk Edit</button>
                 </div>
               
             </div>
@@ -505,12 +516,32 @@ p {
 
 
   <!-- edit registration model -->
-  <div class="modal fade" id="edit-registration" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="edit-registration" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1052 !important;">
     <div class="modal-dialog edit-model-content-body">
      
     </div>
   </div>
 
+
+  <div class="modal fade" id="rejection-reason-model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1051;;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Rejection Reason</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea name="" class="form-control" id="rejection-reason-textarea" cols="30" rows="10"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary rejection-reason-submit" onclick="onChangeVerification(this)" reg-id="0" method="Rejected">Submit Rejection</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- end edit registration model -->
 
 
@@ -567,7 +598,7 @@ p {
 </div>
 <div class="modal-footer">
   <div class="col-md-12">
-  <button type="button" class="btn btn-danger float-left ml-2 profile-verification-btn" id="profile-reject-btn" onclick="onChangeVerification(this)" reg-id="0" method="Rejected" >Reject</button>
+    <button type="button" class="btn btn-danger float-left ml-2 profile-verification-btn" id="profile-reject-btn" onclick="onClickRejectBtn(this)" reg-id="0" method="Rejected" >Reject</button>
   <button type="button" class="btn btn-warning  float-left ml-2 profile-verification-btn" id="profile-apporve-btn" onclick="onChangeVerification(this)" reg-id="0" method="Approved" >Approve</button>
 
  
@@ -589,6 +620,53 @@ p {
 
 
 <!-- bulk vpp edit end -->
+<div class="modal fade" id="edit-bulk-registration" tabindex="-2" aria-labelledby="bulk-edit" aria-hidden="true" style="z-index: 1052 !important;">
+  <div class="modal-dialog shadow-lg" >
+    <Form id="edit-bulk-registration-form" onsubmit="onSubmitEditBulkForm(event)">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bulk-edit">Edit Bulk Registrations</h5>
+          <i class="fa-solid fa-xmark btn-close"  data-bs-dismiss="modal" aria-label="Close"></i>
+        </div>
+        <div class="modal-body">
+         
+          <div class="row mt-2">
+            <div class="col-6">
+              <label for="">Company</label>
+              <input type="text" id="edit-company" class="form-control" name="company" >
+            </div>
+
+            
+            <div class="col-6">
+              <label for="">Card Type</label>
+              <select class="form-control" id="edit-card-type" name="card-type">
+                <option value="0" selected>No Select</option>
+                {% for t in cardtypes %}
+                  <option value="{{t.id}}"   >{{t.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+          </div>
+           
+            </div>
+           
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-close" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+         
+        </div>
+     
+  
+   
+      </div>
+    </Form>
+
+  </div>
+
+
+
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
   <!-- endinject -->

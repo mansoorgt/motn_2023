@@ -12,10 +12,11 @@
                                 <img id="profile-dp" src="{% if registration.badge_photo %} {{registration.badge_photo.url}} {% else %} https://img.freepik.com/premium-vector/file-linear-style-sign-with-cross-sign-inside-it-mobile-concept-web-design-symbol-logo-illustration_691771-123.jpg {% endif %}" style="border-radius:10px; width: 65%; height: 150px;" class="img-radius" alt="User-Profile-Image">
                             </div>
                            
-                           
+                            <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#edit-registration" profile-edit="true" onclick="onEditRegistration(this)" reg-id="{{registration.id}}"><i style="font-size: 14px;" class="fa-solid fa-edit"></i> Edit</a>
+
                             <!-- <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#edit-registration"  onclick="onEditRegistration(this)" reg-id="{{registration.id}}"><i style="font-size: 14px;" class="fa-solid fa-edit"></i></a> -->
                             <p class="f-w-600 text-capitalize" id="profile-user-name">{{registration.first_name}} {{registration.last_name}}</p>
-                            <p class="f-w-600 text-capitalize" id="profile-des"></p>
+                            <p class="f-w-600 text-capitalize" id="profile-des">{{registration.cardtype.name}}</p>
 
                             
                                 

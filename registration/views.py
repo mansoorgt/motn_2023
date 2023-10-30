@@ -148,8 +148,8 @@ def send_success_mail(request):
     id=request.POST.get('id')
     table=request.POST.get('table-name')
     
-    print(request.POST)
     
+   
     if table == 'event':
         registration=EventRegistrations.objects.get(id=id)    
         uid='EVP-'+str(registration.id)

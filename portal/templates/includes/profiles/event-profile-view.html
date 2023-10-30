@@ -13,9 +13,10 @@
                             </div>
                            
                            
-                            <!-- <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#edit-registration"  onclick="onEditRegistration(this)" reg-id="{{registration.id}}"><i style="font-size: 14px;" class="fa-solid fa-edit"></i></a> -->
+                            <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#edit-registration" profile-edit="true" onclick="onEditRegistration(this)" reg-id="{{registration.id}}"><i style="font-size: 14px;" class="fa-solid fa-edit"></i> Edit</a>
+
                             <p class="f-w-600 text-capitalize" id="profile-user-name">{{registration.first_name}} {{registration.last_name}}</p>
-                            <p class="f-w-600 text-capitalize" id="profile-des"></p>
+                            <p class="f-w-600 text-capitalize" id="profile-des">{{registration.cardtype.name}}</p>
 
                             
                                 
@@ -127,7 +128,7 @@
 
                             <div class="col-md-6 col-sm-6">
                                 <p class="m-b-10 f-w-600">{% if registration.id_proof_type == 'Passport-Id' %} Passport Number {% endif %} {% if registration.id_proof_type == 'Emirates-Id' %} Emirates Id Number {% endif %}</p>
-                                <h6 class="text-muted f-w-400" id="profile-exp-date">{{registration.id_proof_expiry|date:"d-m-y"}}</h6>
+                                <h6 class="text-muted f-w-400" id="profile-exp-date">{{registration.id_proof_number}}</h6>
                             </div>
                             
                             </div>
