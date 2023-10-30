@@ -480,11 +480,11 @@ def print_page(request):
     if table == 'build':
         
         registration=BuildRegistrations.objects.get(id=id)
-        return render(request,f"print/build-print.html",{'registration':registration})
+        return render(request,f"print/build_print/{registration.cardtype.name}.html",{'registration':registration})
     elif table == 'event':
         registration=EventRegistrations.objects.get(id=id)
         
-        return render(request,f"print/{registration.cardtype.name}.html",{'registration':registration})
+        return render(request,f"print/event_print/{registration.cardtype.name}.html",{'registration':registration})
     elif table == 'vapp':
         registration=VappRegistrations.objects.get(id=id)
         
