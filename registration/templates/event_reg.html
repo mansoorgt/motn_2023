@@ -91,9 +91,8 @@
     <select class="form-control" name="card-type" required>
       <option value="">Select Card Type</option>
       {% for type in cardtypes %}
-      {% if type.id != 4 %}
+     
       <option value="{{type.id}}" >{{type.name}}</option>
-      {% endif %}
       {% endfor %}
     </select>
     </div>
