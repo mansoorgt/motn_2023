@@ -2,7 +2,15 @@ from django.db import models
 
 # Create your models here.
 
-
+        
+        
+class Locations(models.Model):
+    name=models.CharField(max_length=50)
+    active=models.BooleanField(default=True)
+    
+    class Meta:
+        db_table='locations'
+        
 class EventCardType(models.Model):
     name=models.CharField(max_length=100)
     active=models.BooleanField(default=True)
@@ -37,6 +45,8 @@ class BuildRegistrations(models.Model):
     
     dob=models.DateField(null=True)
     cardtype=models.ForeignKey(BuildCardType, on_delete=models.CASCADE)
+    #locaiton
+    location=models.ForeignKey(Locations,on_delete=models.CASCADE)
     
     remark=models.TextField(default='',null=True)
     collected=models.BooleanField(default=False)
@@ -63,6 +73,8 @@ class VappRegistrations(models.Model):
     cardtype=models.ForeignKey(VappCardType, on_delete=models.CASCADE)
     vehicletype=models.ForeignKey(VehicleType, on_delete=models.CASCADE)
     vehicle_number=models.TextField(null=True)
+    #location
+    location=models.ForeignKey(Locations,on_delete=models.CASCADE)
     
     id_proof_front=models.FileField(upload_to='id-proof-front/',null=True)
     id_proof_back=models.FileField(upload_to='id-proof-back/',null=True)
@@ -93,6 +105,9 @@ class EventRegistrations(models.Model):
     nationality=models.TextField(null=True)
     mobile=models.TextField(null=True)
     email=models.TextField(null=True)
+    
+    #locations
+    location=models.ForeignKey(Locations,on_delete=models.CASCADE)
     
     id_proof_expiry=models.DateField(null=True)
     id_proof_type=models.CharField(max_length=50,choices=(("Passport-Id",'Passport-Id'),("Emirates-Id","Emirates-Id")),default="Emirates-Id")

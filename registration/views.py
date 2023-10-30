@@ -35,11 +35,13 @@ def root_page(request):
 
 def build_registration_form_page(request):
     cardtypes=BuildCardType.objects.filter(active=True)
-    return render(request,'build_reg.html',{'cardtypes':cardtypes})
+    locations=Locations.objects.filter(active=True).order_by('-id')
+    return render(request,'build_reg.html',{'cardtypes':cardtypes,'locations':locations})
 
 def event_registration_form_page(request):
     cardtypes=EventCardType.objects.filter(active=True)
-    return render(request,'event_reg.html',{'cardtypes':cardtypes})
+    locations=Locations.objects.filter(active=True).order_by('-id')
+    return render(request,'event_reg.html',{'cardtypes':cardtypes,'locations':locations})
 
 def vapp_registration_form_page(request):
     cardtypes=VappCardType.objects.filter(active=True)
@@ -53,6 +55,8 @@ def submit_event_registration(request):
     mobile=request.POST.get('mobile')
     email=request.POST.get('email')
     date_of_birth=request.POST.get('date-of-birth')
+    
+    location=request.POST.get('location')
     
     company=request.POST.get('company')
     nationality=request.POST.get('nationality')
@@ -68,8 +72,9 @@ def submit_event_registration(request):
     
     data={'success':False}
     try:
+        location_instance=Locations.objects.get(id=location)
         cardType=EventCardType.objects.get(id=card_type_id)
-        obj=EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,
+        obj=EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,location=location_instance,
                                         nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=cardType)
         data['success']=True
         data['id']=obj.id
@@ -93,6 +98,7 @@ def submit_build_registration(request):
     id_proof_number=request.POST.get('id-proof-number')
     id_proof_expiry=request.POST.get('id-expiry-date')
 
+    location=request.POST.get('location')
     card_type_id=request.POST.get('card-type')
     
     id_proof_front=request.FILES.get('id-proof-front-file')
@@ -103,12 +109,13 @@ def submit_build_registration(request):
     
     data={'success':False}
     try:
+        location_instance=Locations.objects.get(id=location)
         buildcardType=BuildCardType.objects.get(id=card_type_id)
-        obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,
+        obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,location=location_instance,
                                           dob=date_of_birth,cardtype=buildcardType)
         if need_event_pass == 'Yes':
             EventcardType=EventCardType.objects.get(id=card_type_id)
-            EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,
+            EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,location=location_instance,
                                             nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=EventcardType)
         data['success']=True
         data['id']=obj.id
@@ -181,7 +188,15 @@ def send_success_mail(request):
     return JsonResponse({})
    
 def success_page(request):
-    return render(request,'success.html')
+    if request.GET.get('reg-form') == 'event':
+    
+        return render(request,'event_success.html')
+    if request.GET.get('reg-form') == 'build':
+    
+        return render(request,'build_success.html')
+    if request.GET.get('reg-form') == 'vapp':
+    
+        return render(request,'vapp_success.html')
 
 def event_success(request):
     return render(request,'evnt_success.html')

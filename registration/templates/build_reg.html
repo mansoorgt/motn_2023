@@ -102,9 +102,11 @@
       </div>
       <div class="col-md-6">
         <label>EVENT LOCATION</label>
-        <select class="form-control">
-          <option>AL-AIN</option>
-          <option>DHAFRA</option>
+        <select class="form-control" name="location" required>
+          {% for loc in locations %}
+          <option value="{{loc.id}}">{{loc.name}}</option>
+         
+          {% endfor %}
         </select>
         </div>
       <div class="col-md-6">
@@ -252,20 +254,20 @@
     $('.id-proof-select').change(function() {
       
       if ($(this).val() == 'Emirates-Id'){
-        $('.id-proof-number-lable').text("Emirates Id Number")
-        $('.id-proof-file-front-lable').text("Upload Emirates ID front")
-        $('.id-proof-file-back-lable').text("Upload Emirates ID Back")
-        $('.id-proof-expire-date-lable').text("Emirates ID Expiry Date")
+        $('.id-proof-number-lable').text("EMIRATES ID NUMBER")
+        $('.id-proof-file-front-lable').text("UPLOAD EMIRATES ID FRONT")
+        $('.id-proof-file-back-lable').text("UPLOAD EMIRATES ID BACK")
+        $('.id-proof-expire-date-lable').text("EMIRATES ID EXPIRY DATE")
         $(".id-proof-file-back-div").removeClass('d-none')
         $('.emirates-id-back').attr('required',true)
       }
       if ($(this).val() == 'Passport-Id'){
-        $('.id-proof-number-lable').text("Passport Number")
-        $('.id-proof-file-front-lable').text("Upload Passport front")
+        $('.id-proof-number-lable').text("PASSPORT NUMBER")
+        $('.id-proof-file-front-lable').text("UPLOAD PASSPORT FRONT")
         
         $(".id-proof-file-back-div").addClass('d-none')
-        $('.id-proof-file-back-lable').text("Upload Passport Back")
-        $('.id-proof-expire-date-lable').text("Passport Expiry Date")
+        $('.id-proof-file-back-lable').text("UPLOAD PASSPORT BACK")
+        $('.id-proof-expire-date-lable').text("PASSPORT EXPIRY DATE")
         $('.emirates-id-back').attr('required',false)
 
       }
@@ -458,17 +460,23 @@ function change_pattern_id_card_number_on_change(inp) {
             sendSuccessMail(response.id)
             
             setTimeout(() => {
-              window.location.href="{% url 'success-page' %}"
+              window.location.href="{% url 'success-page' %}?reg-form=build"
+            
+            
               $(event.target)[0].reset()
+              $('.form-spinner').addClass('d-none')
+
+              $(':submit').attr('disabled',false)
+            
             }, 2000);
+
+
 
           }else{
             alert(response.reason)
           }
 
-          $('.submit-btn-loading').addClass('d-none')
-
-          $(':submit').attr('disabled',false)
+          
           
         }
       });
