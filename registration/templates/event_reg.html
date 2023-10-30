@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@900&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.css">
 <style>
 
 @font-face {
@@ -60,44 +60,57 @@
 </h3>
 </div>
 <div class="event_form p-2">
+  <form id="event-form">
 <div class="row">
 <div class="col-md-6">
 <label>FIRST NAME</label>
-<input class="form-control" type="text">
+<input class="form-control" name="first-name" type="text" required> 
 </div>
 
 <div class="col-md-6">
 <label>LAST NAME</label>
-<input class="form-control" type="text">
+<input class="form-control" name="last-name" type="text" required>
 </div>
 <div class="col-md-6">
 <label>MOBILE</label>
-<input type="tel" class="form-control">
+<input type="tel" name="mobile" class="form-control" required>
 </div>
 
 <div class="col-md-6">
   <label>EMAIL</label>
-  <input type="email" class="form-control">
+  <input type="email" name="email" class="form-control" required>
+  </div>
+  
+  <div class="col-md-6 ">
+    <label >Date Of Birth</label>
+    <input type="date" class="form-control" name="date-of-birth" id="dob" required>
   </div>
 
   <div class="col-md-6">
     <label>DESIGNATION</label>
-    <input type="text" class="form-control">
+    <select class="form-control" name="card-type" required>
+      <option value="">Select Card Type</option>
+      {% for type in cardtypes %}
+      {% if type.id != 4 %}
+      <option value="{{type.id}}" >{{type.name}}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
     </div>
 
     <div class="col-md-6">
       <label>COMPANY NAME</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" name="company" required >
       </div>
 
       <div class="col-md-6">
         <label>NATIONALITY</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" name="nationdality" required>
         </div>
 
         <div class="col-md-6">
           <label>EVENT LOCATION</label>
-          <select class="form-control">
+          <select class="form-control" name="event-location">
             <option>AL-AIN</option>
             <option>DHAFRA</option>
           </select>
@@ -105,51 +118,53 @@
 
         <div class="col-md-6">
 <label>ID</label>
-<select class="form-control id-proof-select">
+<select name="id-proof-type" class="form-control id-proof-select" >
   <option value="Passport-Id">PASSPORT</option>
-  <option value="Emirates-Id">EMIRATES ID</option>
+  <option value="Emirates-Id" selected>EMIRATES ID</option>
 </select>
         </div>
 
 
         <div class="col-md-6">
 <label class="id-proof-number-lable">EMIRATES ID NUMBER</label>
-<input type="text" class="form-control">
+<input type="text " onkeyup="change_pattern_id_card_number_on_change(this)" class="form-control"name="id-proof-number" required>
         </div>
 
         <div class="col-md-6">
           <label class=".id-proof-file-front-lable">UPLOAD EMIRATES ID FRONT</label>
-          <input type="file" class="form-control">
+          <input type="file" class="form-control" name="id-proof-front-file" accept="image/* , .pdf" required>
                   </div>
 
                   <div class="col-md-6 id-proof-file-back-div">
                     <label class="id-proof-file-back-lable">UPLOAD EMIRATES ID BACK</label>
-                    <input type="file" class="form-control emirates-id-back">
+                    <input type="file" class="form-control emirates-id-back" accept="image/* , .pdf" name="id-proof-back-file" required>
                             </div>
                             <div class="col-md-6">
                               <label class="id-proof-expire-date-lable">EMIRATES ID EXPIRY DATE</label>
-                              <input type="date" class="form-control">
+                              <input type="date" class="form-control expiry-check extra-validation" name="id-expiry-date" required>
+                            <span class="id-expiry-date-is-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">  Expired </span>
                                       </div>
 
                                       <div class="col-md-6">
                                         <label>UPLOAD PHOTO</label>
-                                        <input type="file" class="form-control">
+                                        <input type="file" onchange="openImageCropPopup(this)" id="photo-badge-upload" accept="image/*" name="badge-photo-file" class="form-control">
                                                 </div>
 
 
        <div class="row">                                     
                                                 <div class="col-md-6">
                                                  
-<button class="evnt_button">SUBMIT</button>
+<button type="submit" class="evnt_button">SUBMIT  <div class="spinner-border spinner-border-sm  form-spinner d-none" role="status"></div></button>
 </div>  
 <div class="col-md-6">
                                                  
-  <button class="rst_button">RESET</button>
+  <button type="reset" class="rst_button">RESET</button>
   </div>  
                                                 
 </div>     
 
 </div>
+</form>
 </div>
 
 
@@ -162,13 +177,99 @@
     </div>
   </div>
 
+<!-- cropper js -->
+
+  <div class="modal fade"  id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="imageCropModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content text-white" style="background-color: black;">
+        <div class="modal-header" style="border-bottom: none ;">
+          <h5 class="modal-title" id="imageCropModalLabel">Crop Image</h5>
+          <!-- <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+        </div>
+        <div class="modal-body" >
+          <div style="display: inline-block;" id="cropper-container">
+            <img id="uploaded-image" src="" alt="Uploaded Image">
+            
+          </div>
+          <div style="display: inline-block; position: absolute; padding: 50px;">
+            <p style="font-size: 20px;">Please crop the image as you want in badge</p>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="border-top: none;">
+          <button type="button" class="btn btn-light btn-lg" onclick="cropImage()">Done</button>
+          <button type="button" class="btn btn-danger btn-lg" onclick="cancelCrop()" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://unpkg.com/cropperjs/dist/cropper.js"></script>
   <!-- Bootstrap JS and Popper.js (Optional) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
+  
   <script>
+
+    $('#event-form').submit(function (event){
+      
+      event.preventDefault()
+      
+      if (ExtravalidationPass() == false){
+        return false
+      }
+
+  
+      $(':submit').attr('disabled',true)
+      $('.form-spinner').removeClass('d-none')
+      var _formData=new FormData($(event.target)[0])
+      _formData.append('csrfmiddlewaretoken','{{ csrf_token }}')
+      
+
+
+
+      $.ajax({
+        type: "POST",
+        url: "{% url 'submit-event-registration' %}",
+        data: _formData,
+        contentType:false,
+        processData:false,
+        dataType: "json",
+        success: function (response) {
+          
+          if(response.success){
+
+            sendSuccessMail(response.id)
+
+            
+
+            setTimeout(() => {
+              window.location.href="{% url 'success-page' %}"
+              $(event.target)[0].reset()
+
+            }, 2000);
+
+          }else{
+            alert(response.reason)
+          }
+
+          $('.submit-btn-loading').addClass('d-none')
+
+          $(':submit').attr('disabled',false)
+          
+        }
+      });
+    })
+
     
     $('.id-proof-select').change(function() {
       
@@ -192,6 +293,185 @@
       }
 
     })
+
+
+var cropper; // Variable to store the Cropper.js instance
+
+function openImageCropPopup(input) {
+  var file = input.files[0];
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    // Update the image source with the uploaded file
+    document.getElementById('uploaded-image').src = e.target.result;
+
+    // Destroy the previous Cropper.js instance, if exists
+    if (cropper) {
+      cropper.destroy();
+    }
+
+    // Show the image cropping popup
+    $('#imageCropModal').modal('show');
+
+    // Initialize Cropper.js inside the modal
+    cropper = new Cropper(document.getElementById('uploaded-image'), {
+      aspectRatio: 1, // Set the aspect ratio for cropping (e.g., 1:1 for a square)
+      viewMode: 1, // Set the view mode to restrict the cropping area within the container
+      zoomable: false, // Disable zooming the image
+      guides: true, // Show guides for the cropping area
+      minContainerWidth: 400, // Set the minimum width of the cropping container
+      minContainerHeight: 400, // Set the minimum height of the cropping container
+    });
+
+ 
+
+
+  };
+  reader.readAsDataURL(file);
+}
+
+
+
+function cropImage() {
+  if (cropper) {
+    // Get the cropped image data
+    var croppedDataUrl = cropper.getCroppedCanvas().toDataURL();
+
+    var m_input =document.getElementById('photo-badge-upload')
+
+    // var image = base64toBlob(croppedDataUrl)
+
+    // console.log(image)
+      let list = new DataTransfer();
+      const file = dataURLtoFile(croppedDataUrl,m_input.files[0].name)
+      list.items.add(file);
+      m_input.files=list.files
+          // Perform any actions with the cropped image data (e.g., upload, save, etc.)
+    //console.log(croppedDataUrl);
+
+  
+
+  // Hide the image cropping popup
+  $('#imageCropModal').modal('hide');
+}
+}
+
+function cancelCrop() {
+  // Reset the file input to clear the selected file
+  var fileInput = document.getElementById('photo-badge-upload');
+  fileInput.value = '';
+
+  // Clone and replace the file input element with a new instance
+  // var newFileInput = fileInput.cloneNode(true);
+  // fileInput.parentNode.replaceChild(newFileInput, fileInput);
+
+  // Hide the image cropping popup
+  $('#imageCropModal').modal('hide');
+}
+
+
+$('#imageCropModal').on('hidden.bs.modal', function() {
+  if (cropper) {
+    // Destroy the Cropper.js instance when closing the modal
+    cropper.destroy();
+    cropper = null;
+  }
+  });
+
+
+
+function dataURLtoFile(dataurl, filename) {
+  var arr = dataurl.split(","),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new File([u8arr], filename, { type: mime });
+}
+
+
+
+
+    ///emirrates id format change
+//key up
+
+
+//key number
+function change_pattern_id_card_number_on_change(inp) {
+      if ($('.id-proof-select').val() == 'Emirates-Id'){
+
+        
+        var text=inp.value.replaceAll('-','').split('')
+
+              for (let i = 0; i < text.length; i++) {
+        
+                if (i== 3 ){
+                    text.splice(3,0,'-')
+
+                  
+                  }
+
+                  if (i == 8 ){
+                      text.splice(8,0,'-')
+
+                      
+                  }
+
+                  if (i == 16 ){
+                        text.splice(16,0,'-')
+                  }
+
+                  // if (i == 1 ){
+                  //       text.splice(16,0,'-')
+                  // }
+              
+
+              }
+
+              inp.value=text.join('')
+             
+       
+      }
+       
+     }
+
+     $('.extra-validation').change(function () {
+      ExtravalidationPass()
+    })
+
+    function ExtravalidationPass() {
+
+    var expiryDate = new Date($('.expiry-check').val());
+    var currentDate = new Date();
+
+    if ( expiryDate <=currentDate ){
+      $('.expiry-check').addClass('is-invalid')
+      $('.id-expiry-date-is-not-valid').removeClass('d-none')
+      return false
+
+    } 
+    else{
+      $('.expiry-check').removeClass('is-invalid')
+      $('.id-expiry-date-is-not-valid').addClass('d-none')
+      return true
+    }
+
+    }
+
+    function sendSuccessMail(id){
+      $.ajax({
+        type: "POST",
+        url: "{% url 'send-success-mail' %}",
+        data: {id:id,'table-name':'event','csrfmiddlewaretoken':'{{csrf_token}}'},
+        dataType: "json",
+        success: function (response) {
+          
+        }
+      });
+    }
+
 
   </script>
 </body>

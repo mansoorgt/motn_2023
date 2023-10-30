@@ -55,7 +55,7 @@ def submit_event_registration(request):
     date_of_birth=request.POST.get('date-of-birth')
     
     company=request.POST.get('company')
-    nationality=request.POST.get('nationdality')
+    nationality=request.POST.get('nationality')
     id_proof_type=request.POST.get('id-proof-type')
     id_proof_number=request.POST.get('id-proof-number')
     id_proof_expiry=request.POST.get('id-expiry-date')
@@ -104,13 +104,14 @@ def submit_build_registration(request):
     data={'success':False}
     try:
         buildcardType=BuildCardType.objects.get(id=card_type_id)
-        BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,
+        obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,
                                           dob=date_of_birth,cardtype=buildcardType)
         if need_event_pass == 'Yes':
             EventcardType=EventCardType.objects.get(id=card_type_id)
             EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,
                                             nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=EventcardType)
         data['success']=True
+        data['id']=obj.id
     except Exception as e:
         data['success']=False
         data['reason']=str(e)
@@ -153,6 +154,14 @@ def send_success_mail(request):
     if table == 'event':
         registration=EventRegistrations.objects.get(id=id)    
         uid='EVP-'+str(registration.id)
+        
+    if table == 'build':
+        registration=BuildRegistrations.objects.get(id=id)    
+        uid='BUP-'+str(registration.id)
+    
+    if table == 'vapp':
+        registration=VappRegistrations.objects.get(id=id)    
+        uid='VAP-'+str(registration.id)
         
     try:
         validate_email(registration.email)
