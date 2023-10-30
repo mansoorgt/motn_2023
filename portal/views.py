@@ -404,15 +404,6 @@ def registration_print_page(request):
     
     return render(request,f"print/{obj.cardtype.name}.html",{'registration':obj})
 
-def registration_bulk_print_page(request):
-    ids=json.loads(request.GET.get('reg-ids'))
-    
-    
-    table=getTable(request)
-    objs=table.objects.filter(id__in=ids)
-    
-    return render(request,'print/bulk_print.html',{'registrations':objs})
-
 def submit_excel_data(request):
     list_data=json.loads(request.POST.get('data'))
     table=getTable(request)
@@ -480,19 +471,41 @@ def print_page(request):
     if table == 'build':
         
         registration=BuildRegistrations.objects.get(id=id)
-        return render(request,f"print/build_print/{registration.cardtype.name}.html",{'registration':registration})
+        return render(request,f"print/{registration.location.name}/build_print/{registration.cardtype.name}.html",{'registration':registration})
     elif table == 'event':
         registration=EventRegistrations.objects.get(id=id)
         
-        return render(request,f"print/event_print/{registration.cardtype.name}.html",{'registration':registration})
+        return render(request,f"print/{registration.location.name}/event_print/{registration.cardtype.name}.html",{'registration':registration})
     elif table == 'vapp':
         registration=VappRegistrations.objects.get(id=id)
         
         # cardtyes=VappCardType.objects.filter(active=True)
-        return render(request,f"print/{registration.cardtype.name}.html",{'registration':registration})
+        return render(request,f"print/{registration.location.name}/vapp_print/{registration.cardtype.name}.html",{'registration':registration})
     else:
         registration=BuildRegistrations.objects.get(id=id)
-        return render(request,f"print/build-print.html",{'registration':registration})
+        return render(request,f"print/{registration.location.name}/build_print/{registration.cardtype.name}.html",{'registration':registration})
+
+
+def registration_bulk_print_page(request):
+    ids=json.loads(request.GET.get('reg-ids'))
+    table=request.GET.get('table-name')
+    location_id=request.GET.get('loc')
+    location_instance=Locations.objects.get(id=location_id)
+    
+    
+    objs=getTable(request).objects.filter(id__in=ids)
+    
+    print(table)
+    if table =='build':
+        return render(request,f'print/{location_instance.name}/build_print/bulk_print.html',{'registrations':objs})
+
+    if table =='event':
+        return render(request,f'print/{location_instance.name}/event_print/bulk_print.html',{'registrations':objs})
+    
+    
+    if table =='vapp':
+        return render(request,f'print/{location_instance.name}/vapp_print/bulk_print.html',{'registrations':objs})
+    
 
 def send_mail(request):
     method=request.POST.get('method')

@@ -2,7 +2,7 @@ let main_table=new DataTable('#regitration-table',{order:[[2,"desc"]]});
 
 let searchParams = new URLSearchParams(window.location.search)
 let table_name=searchParams.get('table-name')
-
+let location_id=searchParams.get('loc')
 $.ajaxSetup({
     headers: { 'table-name': table_name }
 });
@@ -364,7 +364,7 @@ $('.bulk-print-btn').click(function () {
         ids_array.push($(this).attr('reg-id'))
     })
 
-    var printWindow = window.open( "registration-bulk-print-page?table-name="+table_name+"&reg-ids="+JSON.stringify(ids_array), 'Print', 'left=200, top=200, width=950, height=500, toolbar=0, resizable=0');
+    var printWindow = window.open( "registration-bulk-print-page?table-name="+table_name+"&loc="+location_id+"&reg-ids="+JSON.stringify(ids_array), 'Print', 'left=200, top=200, width=950, height=500, toolbar=0, resizable=0');
     printWindow.addEventListener('load', function() {
         if (Boolean(printWindow.chrome)) {
             printWindow.print();
@@ -589,7 +589,7 @@ function getLatestData(){
     $.ajax({
         type: "GET",
         url: "get-latest-data",
-        data: {"table-name":table_name},
+        data: {"table-name":table_name,'loc':location_id},
         dataType: "json",
         success: function (response) {
        
