@@ -26,9 +26,9 @@
             Registrations
           </button> -->
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="{% url 'registrations' %}?table-name=event">Event Applicants</a>
-            <a class="dropdown-item" href="{% url 'registrations' %}?table-name=build">Build Applicants</a> 
-               <a class="dropdown-item" href="{% url 'registrations' %}?table-name=vapp">Vapp Applicants</a>
+            <a class="dropdown-item page-link" href="{% url 'registrations' %}?table-name=event">Event Applicants</a>
+            <a class="dropdown-item page-link" href="{% url 'registrations' %}?table-name=build">Build Applicants</a> 
+           <a class="dropdown-item page-link" href="{% url 'registrations' %}?table-name=vapp">Vapp Applicants</a>
           </div>
         </div>
         </div>
@@ -72,9 +72,9 @@
             Registrations
           </button> -->
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="{% url 'registrations' %}?table-name=event">Event Registrations</a>
-            <a class="dropdown-item" href="{% url 'registrations' %}?table-name=build">Build Registrations</a>
-            <a class="dropdown-item" href="{% url 'registrations' %}?table-name=bapp">Vapp Registrations</a>
+            <a class="dropdown-item page-link" href="{% url 'registrations' %}?table-name=event">Event Registrations</a>
+            <a class="dropdown-item page-link" href="{% url 'registrations' %}?table-name=build">Build Registrations</a>
+            <a class="dropdown-item page-link" href="{% url 'registrations' %}?table-name=bapp">Vapp Registrations</a>
           </div>
         </div>
       </div>
@@ -84,18 +84,19 @@
     </div>
 <!-- navbar menu for mobile view end -->
 
+
       <ul class="navbar-nav navbar-nav-right">
-      <li>
-      
-      </li>
+        <span class="m-2"> {{current_location.name}}</span>
         <li class="nav-item nav-profile dropdown">
          
-          <div class="dropdown">
+          <div class="dropdown ">
+            
             <a><img class="img-fluid shadow mr-5" src="{% static 'images/motn/planet-earth.png' %}" style="width: 22px; height: 20px; "></a>
-            <div class="dropdown-content">
-              <div class="slct_cntry" href="#"><a>ALL REGISTRATION</a></div>
-              <div class="slct_cntry" href="#"><a>CORNICHE</a></div>
-              <div class="slct_cntry" href="#">AL DAFRAH</div>
+            
+            <div class="dropdown-content">  
+              {% for loc in locations %}
+              <div class="slct_cntry select-location-option" loc-id="{{loc.id}}" ><a>{{loc.name}}</a></div>
+              {% endfor %}
               <!-- Add more countries as needed -->
             </div>
           </div>     

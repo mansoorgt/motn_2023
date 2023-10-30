@@ -58,31 +58,33 @@ def dashboard(request):
 @login_required
 def registrations(request):
     table=request.GET.get('table-name')
-    
+    location_id=request.GET.get('loc')
     # if table == ''
+     
+    locations=Locations.objects.filter(active=True)
+    location_instance=locations.get(id=location_id)
     
     if table == 'build':
         
-        registrations=BuildRegistrations.objects.filter(active=True)
+        registrations=BuildRegistrations.objects.filter(active=True,location=location_instance)
         page_path='build-registrations.html'
         cardtyes=BuildCardType.objects.filter(active=True)
     elif table == 'event':
-        registrations=EventRegistrations.objects.filter(active=True)
+        registrations=EventRegistrations.objects.filter(active=True,location=location_instance)
         page_path='event-registrations.html'
         cardtyes=EventCardType.objects.filter(active=True)
     elif table == 'vapp':
-        registrations=VappRegistrations.objects.filter(active=True)
+        registrations=VappRegistrations.objects.filter(active=True,location=location_instance)
         page_path='vapp-registrations.html'
         cardtyes=VappCardType.objects.filter(active=True)
     else:
         registrations=BuildRegistrations.objects.filter(active=True)
         page_path='build-registrations.html'
         cardtyes=BuildCardType.objects.filter(active=True)
+   
     
     
-    
-    
-    data={'username':request.user.username,'registrations':registrations,'cardtypes':cardtyes}
+    data={'username':request.user.username,'registrations':registrations,'cardtypes':cardtyes,'current_location':location_instance,'locations':locations}
     return render(request,page_path,data)
 
 

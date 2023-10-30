@@ -63,5 +63,68 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
   
+
+  <script>
+    function change_pattern_id_card_number_on_change(inp) {
+      if ($('.id-proof-select').val() == 'Emirates-Id'){
+
+        
+        var text=inp.value.replaceAll('-','').split('')
+
+              for (let i = 0; i < text.length; i++) {
+        
+                if (i== 3 ){
+                    text.splice(3,0,'-')
+
+                  
+                  }
+
+                  if (i == 8 ){
+                      text.splice(8,0,'-')
+
+                      
+                  }
+
+                  if (i == 16 ){
+                        text.splice(16,0,'-')
+                  }
+
+                  // if (i == 1 ){
+                  //       text.splice(16,0,'-')
+                  // }
+              
+
+              }
+
+              inp.value=text.join('')
+             
+       
+      }
+       
+     }
+
+     $('.extra-validation').change(function () {
+      ExtravalidationPass()
+    })
+
+    function ExtravalidationPass() {
+
+    var expiryDate = new Date($('.expiry-check').val());
+    var currentDate = new Date();
+
+    if ( expiryDate <=currentDate ){
+      $('.expiry-check').addClass('is-invalid')
+      $('.id-expiry-date-is-not-valid').removeClass('d-none')
+      return false
+
+    } 
+    else{
+      $('.expiry-check').removeClass('is-invalid')
+      $('.id-expiry-date-is-not-valid').addClass('d-none')
+      return true
+    }
+
+    }
+  </script>
 </body>
 </html>

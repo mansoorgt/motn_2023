@@ -46,7 +46,8 @@ def event_registration_form_page(request):
 def vapp_registration_form_page(request):
     cardtypes=VappCardType.objects.filter(active=True)
     vehicletype=VehicleType.objects.filter(active=True)
-    return render(request,'vapp_reg.html',{'cardtypes':cardtypes,'vehicletype':vehicletype})
+    locations=Locations.objects.filter(active=True).order_by('-id')
+    return render(request,'vapp_reg.html',{'cardtypes':cardtypes,'vehicletype':vehicletype,'locations':locations})
 
 def submit_event_registration(request):
     
@@ -114,7 +115,7 @@ def submit_build_registration(request):
         obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,location=location_instance,
                                           dob=date_of_birth,cardtype=buildcardType)
         if need_event_pass == 'Yes':
-            EventcardType=EventCardType.objects.get(id=card_type_id)
+            EventcardType=buildcardType.eventcardtype
             EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,location=location_instance,
                                             nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=EventcardType)
         data['success']=True
@@ -133,6 +134,7 @@ def submit_vapp_registration(request):
     company=request.POST.get('company')
     cardtype_id=request.POST.get('card-type')
     vehicletype_id=request.POST.get('vehicle-type')
+    location=request.POST.get('location')
     
     id_proof_front=request.FILES.get('id-proof-front-file')
     id_proof_back=request.FILES.get('id-proof-back-file')
@@ -143,7 +145,8 @@ def submit_vapp_registration(request):
     try:
         cardtype=VappCardType.objects.get(id=cardtype_id)
         vehicletype=VehicleType.objects.get(id=vehicletype_id)
-        VappRegistrations.objects.create(first_name=first_name,last_name=last_name,company=company,email=email,vehicletype=vehicletype,mobile=mobile,cardtype=cardtype,id_proof_front=id_proof_front,id_proof_back=id_proof_back,vehicle_pass=vehicle_pass,vehicle_number=vehicle_number,
+        location_instance=Locations.objects.get(id=location)
+        VappRegistrations.objects.create(first_name=first_name,last_name=last_name,company=company,email=email,vehicletype=vehicletype,mobile=mobile,cardtype=cardtype,id_proof_front=id_proof_front,id_proof_back=id_proof_back,vehicle_pass=vehicle_pass,vehicle_number=vehicle_number,location=location_instance,
                                          delivery_date=delivery_date)
         data['success']=True
     except Exception as e:

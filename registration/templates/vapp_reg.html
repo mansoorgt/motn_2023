@@ -60,49 +60,55 @@
 </h3>
 </div>
 <div class="vapp_form p-2">
+
+  <form id="vapp-form">
 <div class="row">
 <div class="col-md-6">
 <label>FIRST NAME</label>
-<input class="form-control" type="text">
+<input type="text" class="form-control" name="first-name" required>
 </div>
 
 <div class="col-md-6">
 <label>LAST NAME</label>
-<input class="form-control" type="text">
+<input type="text" class="form-control" name="last-name" required>
 </div>
 <div class="col-md-6">
 <label>MOBILE</label>
-<input type="tel" class="form-control">
+<input type="text" class="form-control" name="mobile" required>
 </div>
 
 <div class="col-md-6">
   <label>EMAIL</label>
-  <input type="email" class="form-control">
+  <input type="text" class="form-control" name="email" required>
   </div>
 
   <div class="col-md-6">
     <label>VEHICLE PLATE NUMBER</label>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" name="vehicle-plate-number" required>
     </div>
 
     <div class="col-md-6">
       <label>COMPANY NAME</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" name="company" required>
       </div>
 
       <div class="col-md-6">
         <label>EVENT LOCATION</label>
-        <select class="form-control">
-          <option>AL-AIN</option>
-          <option>DHAFRA</option>
+        <select class="form-control" name="location">
+          {% for loc in locations %}
+          <option value="{{loc.id}}">{{loc.name}}</option>
+         
+          {% endfor %}
         </select>
         </div>
 
       <div class="col-md-6">
         <label>CATEGORY</label>
-        <select class="form-control">
-          <option>1</option>
-          <option>2</option>
+        <select class="form-control" name="card-type" required>
+          <option value="">Select Card Type</option>
+          {% for type in cardtypes %}
+          <option value="{{type.id}}">{{type.name}}</option>
+          {% endfor %}
         </select>
         </div>
 
@@ -110,51 +116,55 @@
 
         <div class="col-md-6">
 <label>VEHICLE TYPE</label>
-<select class="form-control">
-  <option>1 TON</option>
-  <option>3 TON</option>
+<select class="form-control" name="vehicle-type" required>
+  <option value="">Select Vehicle Type</option>
+  {% for type in vehicletype %}
+  <option value="{{type.id}}">{{type.name}}</option>
+  {% endfor %}
 </select>
         </div>
 
 
         <div class="col-md-6">
 <label>VEHICLE PASS/MULKIYA</label>
-<input type="text" class="form-control">
+<input type="file" class="form-control" name="vehicle-pass" required>
         </div>
 
         <div class="col-md-6">
           <label>UPLOAD EMIRATES ID FRONT</label>
-          <input type="file" class="form-control">
+          <input type="file" class="form-control" name="id-proof-front-file">
                   </div>
 
                   <div class="col-md-6">
                     <label>UPLOAD EMIRATES ID BACK</label>
-                    <input type="file" class="form-control">
+                    <input type="file" class="form-control" name="id-proof-back-file">
                             </div>
                             <div class="col-md-6">
                               <label>EMIRATES ID EXPIRY DATE</label>
-                              <input type="file" class="form-control">
+                              <input type="date" class="form-control expiry-check extra-validation" name="id-expiry-date" required>
+                              <span class="id-expiry-date-is-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">  Expired </span>
                                       </div>
 
                                       <div class="col-md-6">
                                         <label>DELIVERY DATE</label>
-                                        <input type="date" class="form-control">
+                                        <input type="date" class="form-control" name="delivery-date" required>
                                                 </div>
 
 
                                                 
                                                 <div class="col-md-6">
                                                  
-<button class="evnt_button">SUBMIT</button>
+<button type="submit" class="evnt_button">SUBMIT  <div class="spinner-border spinner-border-sm  form-spinner d-none" role="status"></div></button>
 </div>  
 <div class="col-md-6">
                                                  
-  <button class="rst_button">RESET</button>
+  <button type="reset" class="rst_button">RESET</button>
   </div>  
                                                 
 
 
 </div>
+</form>
 </div>
 
 
@@ -168,10 +178,84 @@
   </div>
 
   <!-- Bootstrap JS and Popper.js (Optional) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://unpkg.com/cropperjs/dist/cropper.js"></script>
+  <!-- Bootstrap JS and Popper.js (Optional) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <script>
+
+$('#vapp-form').submit(function (event){
+      
+   
+
+      event.preventDefault()
+
+
+      if (ExtravalidationPass() == false){
+        return false
+      }
+
+      $(':submit').attr('disabled',true)
+      $('.form-spinner').removeClass('d-none')
+      var _formData=new FormData($(event.target)[0])
+      _formData.append('csrfmiddlewaretoken','{{ csrf_token }}')
+      
+      $.ajax({
+        type: "POST",
+        url: "{% url 'submit-vapp-registration' %}",
+        data: _formData,
+        contentType:false,
+        processData:false,
+        dataType: "json",
+        success: function (response) {
+          
+          if(response.success){
+            window.location.href="{% url 'success-page' %}?reg-form=vapp"
+            $(event.target)[0].reset()
+          }else{
+            alert(response.reason)
+          }
+
+          $('.submit-btn-loading').addClass('d-none')
+
+          $(':submit').attr('disabled',false)
+          
+        }
+      });
+    })
+
+    $('.extra-validation').change(function () {
+      ExtravalidationPass()
+    })
+     function ExtravalidationPass() {
+
+        var expiryDate = new Date($('.expiry-check').val());
+        var currentDate = new Date();
+
+        if ( expiryDate <=currentDate ){
+          $('.expiry-check').addClass('is-invalid')
+          $('.id-expiry-date-is-not-valid').removeClass('d-none')
+          return false
+
+        } 
+        else{
+          $('.expiry-check').removeClass('is-invalid')
+          $('.id-expiry-date-is-not-valid').addClass('d-none')
+          return true
+        }
+
+        }
+
+        
+  </script>
 
   
 </body>

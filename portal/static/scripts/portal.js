@@ -616,6 +616,24 @@ function getLatestData(){
         }
     });
 }
+
+SetupLocationLinks()
+
+function SetupLocationLinks() {
+    temp_loc=localStorage.getItem('temp-loc')
+    const locationId=temp_loc ? temp_loc : 1
+    console.log(temp_loc)
+    $('.page-link').each(function(){
+       _href = $(this).attr('href')
+       $(this).attr('href',_href+`&loc=${locationId}`)
+    })
+
+}
+
+
+$('.select-location-option').click(function () {
+    localStorage.setItem('temp-loc',$(this).attr('loc-id'))
+})
 // let eventSource = new EventSource('sse?table-name='+table_name);
 
 // eventSource.onmessage = (event) => {
