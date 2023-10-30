@@ -15,6 +15,51 @@
     }
 
 
+/* event success message start */
+
+.evnt_scs_card
+{
+  margin-top:100px;
+  padding:50px; 
+  background: rgb(53, 135, 190) !important;
+  border-bottom: 5px solid rgb(36, 97, 138);
+  border-right: 5px solid rgb(36, 97, 138);
+
+  
+}
+.build_scs_card
+{
+  margin-top:100px;
+  padding:50px; 
+  background: rgb(176, 190, 53) !important;
+  border-bottom: 5px solid rgb(137, 148, 42);
+  border-right: 5px solid rgb(137, 148, 42);
+}
+.vapp_scs_card
+{
+  margin-top:100px;
+  padding:50px; 
+  background: rgb(190, 53, 183) !important;
+  border-bottom: 5px solid rgb(156, 43, 151);
+  border-right: 5px solid rgb(156, 43, 151);
+}
+.vapp_scs_card h2
+{
+  color: white;
+}
+.build_scs_card h2
+{
+color: white;
+}
+
+.evnt_scs_card h2
+{
+  color: white ;
+}
+
+/* event success message end */
+
+
   .build_reg
     {
       background-color:rgb(53, 135, 190);

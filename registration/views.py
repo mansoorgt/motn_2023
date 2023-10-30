@@ -173,4 +173,14 @@ def send_success_mail(request):
    
 def success_page(request):
     return render(request,'success.html')
+
+def event_success(request):
+    return render(request,'evnt_success.html')
+
+def build_success(request):
+    return render(request,'build_success.html')
+
+def vapp_success(request):
+    return render(request,'vapp_success.html')
+    
     

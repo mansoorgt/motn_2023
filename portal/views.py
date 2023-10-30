@@ -558,4 +558,8 @@ def get_latest_data(request):
         return JsonResponse(data)
     
     return JsonResponse({'new_data':False})
+
+def report(request):
+    return render(request,'report.html')
+
     
