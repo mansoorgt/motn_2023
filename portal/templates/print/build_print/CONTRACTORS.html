@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Infoevent Admin</title>
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+
+
+  <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet">
+
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/daz_favicon.png' %}" />
+  <!-- font awesome cdn start -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <style>
+.id_img
+{
+  border: none;
+  width: 80px;
+  height: 100px;
+}
+.log
+{
+  width: 70%;
+}
+.vapp-card
+{
+  background-color:#5fd8f8;
+  height: 700px;
+
+}
+
+    body{
+        font-family: 'Avenir', sans-serif;
+      -webkit-print-color-adjust:exact !important;
+  print-color-adjust:exact !important;
+    }
+  
+    @media print {
+      @page {
+   
+          size: 54mm 86mm ;   
+      
+margin: 0px;
+
+        }
+   
+      body * {
+        visibility: hidden;
+
+       
+      
+      
+      }
+  
+      #section-to-print, #section-to-print * {
+        visibility: visible;
+        
+      }
+      #section-to-print {
+        position: absolute;
+        left: 0px;
+
+      top:0px;
+   
+
+   
+      }
+  
+    }
+
+</style>
+
+</head>
+<body style="font-family: 'Avenir', sans-serif;">
+<!-- vapp_vip Id card Design Start -->
+<div style="width: 100%;" id="section-to-print">
+
+
+
+<img style="width:100%; height: 86mm;" src="{% static 'images/build_print/CONTRACTORS1.jpg' %}">
+
+
+<div style="position: absolute; top: 65%; left: 2%; width: 95%;">
+  <p id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 10px !important; font-weight: 600; color:white;">{{registration.first_name}} {{registration.last_name}} </p>
+  <p id="company" class="occupation text-center" style="text-transform:capitalize; line-height: .9;  font-size: 10px !important; font-weight: 600; color:white;">{{registration.company}}</p>
+  <p  class="occupation text-center" style="text-transform:capitalize; line-height: .9; font-size: 10px !important; font-weight: 600; color:white;">Validity</p>
+ </div>
+
+ 
+ 
+</div>
+  
+  
+  
+  
+   <!-- Id Card Design End -->
+
+   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+   <!-- endinject -->
+   <!-- Plugin js for this page -->
+   <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+   <script src="{% static 'js/bootstrap.js' %}"></script>
+   <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
+   <script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+   <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+ 
+   <!-- End plugin js for this page -->
+   <!-- inject:js -->
+   <script src="{% static 'js/off-canvas.js' %}"></script>
+   <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+   <script src="{% static 'js/template.js' %}"></script>
+   <script src="{% static 'js/settings.js' %}"></script>
+   <script src="{% static 'js/todolist.js' %}"></script>
+   <!-- endinject -->
+   <!-- Custom js for this page-->
+   <script src="{% static 'js/dashboard.js' %}"></script>
+   <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+   <!-- End custom js for this page-->
+
+   <script>
+    // Get the name and company elements
+    var nameElement = document.getElementById('name');
+    var companyElement = document.getElementById('company');
+
+    // Function to adjust font size based on text length
+    function adjustFontSize(element) {
+      var text = element.innerText || element.textContent;
+      var length = text.length;
+
+      // Decrease font size by 2px for every 15 characters
+      var newSize = 11 - Math.floor(length / 15) * 1;
+
+      // Set the new font size
+      element.style.fontSize = newSize + 'px';
+    }
+
+    // Call the function for name and company elements
+    adjustFontSize(nameElement);
+    adjustFontSize(companyElement);
+  </script>
+
+
+</body>
+</html>
