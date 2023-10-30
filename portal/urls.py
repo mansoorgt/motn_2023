@@ -39,5 +39,6 @@ urlpatterns = [
     path('sse', SSEView.as_view(), name='sse'),
     
     path('print-page',views.print_page,name='print-page'),
-    path('get-latest-data',views.get_latest_data,name='get-latest-data')
+    path('get-latest-data',views.get_latest_data,name='get-latest-data'),
+    path('report',views.report,name="report"),
 ]

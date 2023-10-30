@@ -13,5 +13,9 @@ urlpatterns = [
     path('send-success-mail',views.send_success_mail,name='send-success-mail'),
     
     path('success',views.success_page,name='success-page'),
+    path('event-success',views.event_success,name='event-success'),
+    path('build-success',views.build_success,name='build-success'),
+     path('vapp-success',views.vapp_success,name='vapp-success'),
+
     
 ]

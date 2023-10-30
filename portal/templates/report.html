@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>INFOEVENTZ-DASHBOARD</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+<!-- chart link start -->
+<link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css" rel="stylesheet" />
+<!-- chart link end -->
+  <link rel="shortcut icon" href="{% static 'images/info_logo.png' %}" />
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+  
+  <style>
+  @font-face {
+  font-family: 'AcuminCondensedSemiBold';
+  src: url('{% static 'fonts/AcuminVariableConcept.otf' %}') format('truetype'); /* Adjust the path as needed */
+  font-weight: 600; /* Adjust to match the font's actual weight */
+  font-style: normal; /* Adjust if the font has a specific style */
+}
+body
+{
+      font-family: 'AcuminCondensedSemiBold' !important;
+}
+    .daz_menu:hover
+  {
+    color: #1CAFA0 ;
+    text-decoration: none;
+  }
+  
+  .img-ss
+  {
+    width: 10px;
+    height: 10px;
+  }
+  #settings-trigger
+  {
+    background-color: green !important;
+    color: white !important;
+    cursor: pointer;
+  }
+  #settings-trigger:hover
+  {
+    background-color: white !important;
+  
+    cursor: pointer;
+  }
+
+  .ti-face-smile:hover
+  {
+    color: green !important;
+    cursor: pointer;
+    font-size: 30px !important;
+  }
+</style>
+  
+
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    {% include 'includes/nav.html' %}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+    
+
+      
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+      <h3 class="text-center">REPORT</h3>
+
+      <div class="row">
+<div class="col-md-12">
+  <table class="table table-bordered">
+   
+      <tr style="background-color: #1CAFA0;">
+        <th class="text-center"  rowspan="2">Print Report</th>
+        <th class="text-center" scope="col" colspan="4">PLACE 1</th>
+
+      </tr>
+
+
+      <tr >
+        <td style="font-weight: bold !important;">ENTRIES</td>
+        <td>ACCEPTED</td>
+        <td>REJECT</td>
+        <td>PRINTED</td>
+      </tr>
+      <tr>
+        <td>EVENT</td>
+        <td>2344</td>
+        <td>565667</td>
+        <td>45455</td>
+        <td>233</td>
+      </tr>
+      <tr>
+        <td>BUILD</td>
+        <td>33</td>
+        <td>44</td>
+        <td>412</td>
+        <td>233</td>
+      </tr>
+      <tr>
+        <td>VAPP</td>
+        <td>133</td>
+        <td>434</td>
+        <td>4412</td>
+        <td>2323</td>
+      </tr>
+
+  </table>
+</div>
+      </div>
+   
+
+
+
+
+
+
+
+
+
+   
+        </div>
+
+
+
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.<a href="https://www.infomeuae.com/" target="_blank">INFOME TECHNOLOGIES LLC</a>. All rights reserved.</span>
+
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+
+  <script src="https://canvasjs.com/assets/script/jquery-ui.1.11.2.min.js"></script>
+  <script src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script>
+
+
+  <!-- chart js  -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+
+
+
+<script>
+  const api='8e87bcb2958b1d16235d0f3d430eda69'
+
+
+window.addEventListener('load', () => {
+
+  let long;
+  let lat;
+
+
+
+  // Accesing Geolocation of User
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      // Storing Longitude and Latitude in variables
+      let long = position.coords.longitude;
+      let  lat = position.coords.latitude;
+      const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
+      console.log(base)
+      // Using fetch to get data
+      fetch(base)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          const { temp } = data.main;
+          const country=data.sys.country
+          const place = data.name;
+          const { description, icon } = data.weather[0];
+          $('#place').html(place)
+          $('#country').html(country)
+          $('.temp').html(temp.toFixed())
+          $('#wh-desc').html(description)
+          document.getElementById('wh-icon').src=`http://openweathermap.org/img/wn/${icon}@2x.png`
+   
+        });
+    });
+  }
+});
+
+ 
+
+</script>
+
+</body>
+
+</html>
+
