@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^_c7n@zy(fpk8-%b8d2@ov^aufx^($1e2uj#ul3x=ic(2(w&x-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -143,3 +143,10 @@ EMAIL_HOST_USER='contact@infoeventz.com'
 EMAIL_HOST_PASSWORD='contact@2022'
 EMAIL_PORT = 465    
 EMAIL_USE_SSL = True
+
+if DEBUG:
+    STATICFILES_DIRS=['staticfiles']
+    STATIC_ROOT = None
+else:
+    STATICFILES_DIRS=[]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

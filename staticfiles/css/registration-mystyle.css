@@ -1,0 +1,313 @@
+   body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      
+      color: #fff; /* Set text color to white for better visibility */
+      position: relative;
+     
+
+    }
+
+    .logo_img
+    {
+      margin-left: -30px;
+    }
+
+
+/* event success message start */
+
+.evnt_scs_card
+{
+  margin-top:100px;
+  padding:50px; 
+  background: rgb(53, 135, 190) !important;
+  border-bottom: 5px solid rgb(36, 97, 138);
+  border-right: 5px solid rgb(36, 97, 138);
+
+  
+}
+.build_scs_card
+{
+  margin-top:100px;
+  padding:50px; 
+  background: rgb(176, 190, 53) !important;
+  border-bottom: 5px solid rgb(137, 148, 42);
+  border-right: 5px solid rgb(137, 148, 42);
+}
+.vapp_scs_card
+{
+  margin-top:100px;
+  padding:50px; 
+  background: rgb(190, 53, 183) !important;
+  border-bottom: 5px solid rgb(156, 43, 151);
+  border-right: 5px solid rgb(156, 43, 151);
+}
+.vapp_scs_card h2
+{
+  color: white;
+}
+.build_scs_card h2
+{
+color: white;
+}
+
+.evnt_scs_card h2
+{
+  color: white ;
+}
+
+/* event success message end */
+
+
+  .build_reg
+    {
+      background-color:rgb(53, 135, 190);
+      padding: 20px;
+      font-size: 25px;
+      width: 100%;
+      border-bottom: 5px solid rgb(36, 97, 138);
+      border-right: 5px solid rgb(36, 97, 138);
+      color: rgb(255, 255, 255);
+      text-align: center;
+      border-radius: 5px;
+      
+      margin: 10px;
+      margin-top: 100px;
+      font-weight: bold;
+    }
+.build_pass
+{
+  background-color:rgb(176, 190, 53);
+  padding: 20px;
+  font-size: 25px;
+  width: 100%;
+  border-bottom: 5px solid rgb(137, 148, 42);
+  border-right: 5px solid rgb(137, 148, 42);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.build_vapp
+{
+  background-color:rgb(190, 53, 183);
+  padding: 20px;
+  font-size: 25px;
+  width: 100%;
+  border-bottom: 5px solid rgb(156, 43, 151);
+  border-right: 5px solid rgb(155, 43, 149);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px;
+  font-weight: bold;
+}
+.build_vapp:hover{
+  border-bottom: 1px solid rgb(155, 43, 149);
+  border-right: 1px solid rgb(155, 43, 149);
+  cursor: pointer;
+}
+
+
+.build_reg:hover
+{
+  border-bottom: 1px solid rgb(36, 97, 138);
+  border-right: 1px solid rgb(36, 97, 138);
+  cursor: pointer;
+}
+.build_pass:hover
+{
+  border-bottom: 1px solid rgb(137, 148, 42);
+  border-right: 1px solid rgb(137, 148, 42);
+  cursor: pointer;
+}
+
+
+
+/* motn 2023 style start */
+
+
+.card-head{
+  background-color: rgb(53, 135, 190); 
+  padding: 10px;
+}
+.buildcard-head
+{
+  background-color: rgb(176, 190, 53); 
+  padding: 10px;
+}
+.vappcard-head
+{
+  background-color: rgb(190, 53, 183); 
+  padding: 10px;
+}
+
+.event_form .form-control
+{
+  border: 1px solid rgba(53, 135, 190, 0.705);
+  border-bottom: 3px solid rgba(53, 135, 190, 0.342);
+}
+.vapp_form .form-control
+{
+  border: 1px solid rgba(190, 53, 183, 0.788);
+  border-bottom: 3px solid rgba(90, 32, 87, 0.678);
+}
+.event_form .form-control:focus
+{
+  box-shadow: none;
+  border-bottom: 1px solid rgba(53, 135, 190, 0.705); 
+}
+.vapp_form .form-control:focus
+{
+  box-shadow: none;
+  border-bottom: 1px solid rgba(190, 53, 183, 0.788); 
+}
+
+.build_form .form-control
+{
+  border: 1px solid  rgb(176, 190, 53);
+  border-bottom: 3px solid rgba(176, 190, 53, 0.432);
+}
+.build_form .form-control:focus
+{
+  box-shadow: none;
+  border-bottom: 1px solid  rgb(176, 190, 53); 
+}
+
+
+.evnt_button
+{
+  background-color:  rgb(53, 135, 190);
+  border-bottom: 2px solid  rgba(61, 113, 146, 0.685);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  color: white;
+}
+
+
+.event_form,label
+{
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 15px;
+}
+.vapp_form,label
+{
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 15px;
+}
+.rst_button
+{
+  background-color:  rgb(190, 53, 53);
+  border-bottom: 2px solid  rgba(161, 78, 78, 0.473);
+border-left: none;
+border-right: none;
+border-top: none;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  color: white;
+}
+
+/* motn 2023 style end */
+
+
+
+    header {
+      width: 100%;
+     
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      background: transparent;
+    }
+
+    .sbt_btn
+    {
+background-color:rgb(255 255 255 / 46%);
+width: 100%;
+padding: 10px;
+color: white;
+border-radius: 10px;
+margin-top: 50px;
+font-weight: bold;
+border: none;
+
+    }
+
+    .sbt_btn:hover
+    {
+      cursor: pointer;
+      background-color:rgb(255 255 255 / 20%);
+
+    }
+
+
+    .registration {
+      z-index: 900; /* Adjust z-index to be below header */
+      margin-top: 100px;
+    }
+    .reg_main
+    {
+      z-index: 900;
+      position:absolute;
+      margin-top: 100px;
+    }
+    .registartion h3{
+        color: white;
+    }
+
+    .registration_main
+    {
+    
+    }
+
+    .registration .card
+{
+    padding: 20px;
+    margin-top: 50px;
+    z-index: 1000;
+}
+
+.reg_card
+{
+  background:transparent !important;
+  border: none;
+}
+    .background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+background-size: cover !important;
+      filter: blur(5px); /* Add blur effect */
+      background: url('../img/motn/evnt_bg.jpg') no-repeat center center fixed;
+
+    }
+
+
+
+    @media (min-width: 320px) and (max-width: 425px) {
+
+      .logo_img
+      {
+        margin-left: 0px;
+      }
+      
+      
+          }
+      
+      
+      
+          /* mobile design end */
