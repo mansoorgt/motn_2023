@@ -87,7 +87,7 @@ def submit_event_registration(request):
 
 
 def submit_build_registration(request):
-    print(request.POST)
+
     first_name=request.POST.get('first-name')
     last_name=request.POST.get('last-name')
     mobile=request.POST.get('mobile')
@@ -140,7 +140,7 @@ def submit_vapp_registration(request):
     id_proof_back=request.FILES.get('id-proof-back-file')
     vehicle_pass=request.FILES.get('vehicle-pass')
     delivery_date=request.POST.get('delivery-date')
-    print(vehicletype_id)
+
     data={'success':False}
     try:
         cardtype=VappCardType.objects.get(id=cardtype_id)

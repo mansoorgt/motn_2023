@@ -557,8 +557,10 @@ def send_mail(request):
 def get_latest_data(request):
     checktime_range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()]
     # print(checktime_range)
-    updatedQuery=getTable(request).objects.filter(updated_at__range=checktime_range)
-
+    location=request.GET.get('loc')
+    updatedQuery=getTable(request).objects.filter(updated_at__range=checktime_range,location__id=location)
+    # location=Locations.objects.get(id=request.GET.get('loc'))
+    # print(location.name)
     if updatedQuery.exists():
         try:
             updated_ids=updatedQuery.filter(updated_at__range=checktime_range).values_list('id',flat=True)

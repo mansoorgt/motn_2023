@@ -95,7 +95,7 @@
       <div class="col-md-6">
         <label>EVENT LOCATION</label>
         <select class="form-control" name="location">
-          <option value="">Select Location</option>
+          <option value="" disabled selected>Select Location</option>
           {% for loc in locations %}
           <option value="{{loc.id}}">{{loc.name}}</option>
          
@@ -106,7 +106,7 @@
       <div class="col-md-6">
         <label>CATEGORY</label>
         <select class="form-control" name="card-type" required>
-          <option value="">Select Card Type</option>
+          <option value="" disabled selected>Select Card Type</option>
           {% for type in cardtypes %}
           <option value="{{type.id}}">{{type.name}}</option>
           {% endfor %}
@@ -118,7 +118,7 @@
         <div class="col-md-6">
 <label>VEHICLE TYPE</label>
 <select class="form-control" name="vehicle-type" required>
-  <option value="">Select Vehicle Type</option>
+  <option value="" disabled selected>Select Vehicle Type</option>
   {% for type in vehicletype %}
   <option value="{{type.id}}">{{type.name}}</option>
   {% endfor %}

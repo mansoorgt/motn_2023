@@ -89,7 +89,7 @@
   <div class="col-md-6">
     <label>DESIGNATION</label>
     <select class="form-control" name="card-type" required>
-      <option value="">Select Card Type</option>
+      <option value="" disabled selected>Select Card Type</option>
       {% for type in cardtypes %}
      
       <option value="{{type.id}}" >{{type.name}}</option>
@@ -110,7 +110,7 @@
         <div class="col-md-6">
           <label>EVENT LOCATION</label>
           <select class="form-control" name="location">
-            <option value="" disabled>Select Location</option>
+            <option value="" disabled selected>Select Location</option>
             {% for loc in locations %}
             <option value="{{loc.id}}">{{loc.name}}</option>
            
