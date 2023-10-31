@@ -52,8 +52,9 @@ def dashboard(request):
     build_count=BuildRegistrations.objects.filter(active=True).count()
     event_count=EventRegistrations.objects.filter(active=True).count()
     vapp_count=VappRegistrations.objects.filter(active=True).count()
+    locations=Locations.objects.filter(active=True)
     
-    data={'username':request.user.username,'reg_count':{'build':build_count,'event':event_count,'vapp':vapp_count,'total':sum([build_count,event_count,vapp_count])}}
+    data={'username':request.user.username,'locations':locations,'reg_count':{'build':build_count,'event':event_count,'vapp':vapp_count,'total':sum([build_count,event_count,vapp_count])}}
     return render(request,'dashboard.html',data)
 @login_required
 def registrations(request):

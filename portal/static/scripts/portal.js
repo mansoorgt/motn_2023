@@ -624,7 +624,7 @@ function SetupLocationLinks() {
     const locationId=temp_loc ? temp_loc : 1
     console.log(temp_loc)
     $('.page-link').each(function(){
-       _href = $(this).attr('href')
+       let _href = $(this).attr('href')
        $(this).attr('href',_href+`&loc=${locationId}`)
     })
 
@@ -632,11 +632,10 @@ function SetupLocationLinks() {
 
 
 $('.select-location-option').click(function () {
-    localStorage.setItem('temp-loc',$(this).attr('loc-id'))
-    // window.location.href=`${window.location.href}`
-    // window.location.reload()
-    
-    window.location.search = 
+    let select_loc_id=$(this).attr('loc-id')
+    localStorage.setItem('temp-loc',select_loc_id)
+    window.location.href=`${window.location.pathname}?table-name=${table_name}&loc=${select_loc_id}`
+   
 })
 // let eventSource = new EventSource('sse?table-name='+table_name);
 

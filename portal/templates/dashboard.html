@@ -534,18 +534,39 @@ SetupLocationLinks()
 function SetupLocationLinks() {
     temp_loc=localStorage.getItem('temp-loc')
     const locationId=temp_loc ? temp_loc : 1
-    console.log(temp_loc)
+    
     $('.page-link').each(function(){
-       _href = $(this).attr('href')
-       $(this).attr('href',_href+`&loc=${locationId}`)
+      let _url = new URL($(this).attr('href'),window.location.origin)
+
+      _url.searchParams.set('loc',locationId)
+      $(this).attr('href',_url)
+      
     })
+
+    current_location_name=$(`[loc-id=${locationId}]`).text()
+    $('.current-location-name').text(current_location_name)
 
 }
 
 
 $('.select-location-option').click(function () {
-    localStorage.setItem('temp-loc',$(this).attr('loc-id'))
-    
+ 
+  let select_loc_id=$(this).attr('loc-id')
+    localStorage.setItem('temp-loc',select_loc_id)
+
+  $('.page-link').each(function(){
+
+    let _url = new URL($(this).attr('href'),window.location.origin)
+
+    _url.searchParams.set('loc',select_loc_id)
+    $(this).attr('href',_url)
+
+  })
+  current_location_name=$(`[loc-id=${select_loc_id}]`).text()
+    $('.current-location-name').text(current_location_name)
+
+    // window.location.href=`${window.location.pathname}?table-name=${table_name}&loc=${select_loc_id}`
+   
 })
  
 
