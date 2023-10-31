@@ -562,7 +562,7 @@ $('.select-location-option').click(function () {
     $(this).attr('href',_url)
 
   })
-  current_location_name=$(`[loc-id=${select_loc_id}]`).text()
+  var current_location_name=$(`[loc-id=${select_loc_id}]`).text()
     $('.current-location-name').text(current_location_name)
 
     // window.location.href=`${window.location.pathname}?table-name=${table_name}&loc=${select_loc_id}`
