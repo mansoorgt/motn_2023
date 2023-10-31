@@ -19,7 +19,9 @@ class SSEView(View):
                 
                 checktime_range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()]
                 # print(checktime_range)
-                updatedQuery=getTable(request).objects.filter(updated_at__range=checktime_range)
+                location=Locations.objects.get(id=request.GET.get('loc'))
+                
+                updatedQuery=getTable(request).objects.filter(updated_at__range=checktime_range,location=location)
 
                 if updatedQuery.exists():
                     try:

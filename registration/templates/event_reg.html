@@ -110,6 +110,7 @@
         <div class="col-md-6">
           <label>EVENT LOCATION</label>
           <select class="form-control" name="location">
+            <option value="">Select Location</option>
             {% for loc in locations %}
             <option value="{{loc.id}}">{{loc.name}}</option>
            
