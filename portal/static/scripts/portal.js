@@ -633,6 +633,10 @@ function SetupLocationLinks() {
 
 $('.select-location-option').click(function () {
     localStorage.setItem('temp-loc',$(this).attr('loc-id'))
+    // window.location.href=`${window.location.href}`
+    // window.location.reload()
+    
+    window.location.search = 
 })
 // let eventSource = new EventSource('sse?table-name='+table_name);
 
