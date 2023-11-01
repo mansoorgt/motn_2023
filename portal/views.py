@@ -8,7 +8,7 @@ from .models import *
 from django.template.loader import render_to_string
 from django.core import mail 
 from django.utils.html import strip_tags
-
+from django.db.models import Q, Count
 
 from motn_2023 import settings
 import json
@@ -49,12 +49,19 @@ def logout_user(request):
 @login_required
 def dashboard(request):
     
-    build_count=BuildRegistrations.objects.filter(active=True).count()
-    event_count=EventRegistrations.objects.filter(active=True).count()
-    vapp_count=VappRegistrations.objects.filter(active=True).count()
+  
     locations=Locations.objects.filter(active=True)
     
-    data={'username':request.user.username,'locations':locations,'reg_count':{'build':build_count,'event':event_count,'vapp':vapp_count,'total':sum([build_count,event_count,vapp_count])}}
+    dashboard_data=[]
+    for loc in locations:
+        event_count=EventRegistrations.objects.filter(active=True,location=loc).count()
+        build_count=BuildRegistrations.objects.filter(active=True,location=loc).count()
+        vapp_count=VappRegistrations.objects.filter(active=True,location=loc).count()
+        total_count=sum([event_count,build_count,vapp_count])
+        print(total_count)
+        dashboard_data.append({'loc':loc,'event_count':event_count,'build_count':build_count,'vapp_count':vapp_count,'total_loc_count':total_count})
+    
+    data={'username':request.user.username,'locations':locations,'dashboard_data':dashboard_data}
     return render(request,'dashboard.html',data)
 @login_required
 def registrations(request):
@@ -577,7 +584,42 @@ def get_latest_data(request):
     
     return JsonResponse({'new_data':False})
 
+
+# REPORT 
 def report(request):
-    return render(request,'report.html')
+    loc_id=request.GET.get('loc')
+    location=Locations.objects.get(id=loc_id)
+    report_data={}
+    
+    event=EventRegistrations.objects.filter(active=True,location=location)
+    build=BuildRegistrations.objects.filter(active=True,location=location)
+    vapp=VappRegistrations.objects.filter(active=True,location=location)
+    
+    report_data['event']={'total_entries':event.count(),'total_accepted':event.filter(verification='Approved').count(),'total_rejected':event.filter(verification='Rejected').count(),'total_printed_count':event.filter(print_count__gt=0).count()}
+    
+    report_data['build']={'total_entries':build.count(),'total_accepted':build.filter(verification='Approved').count(),'total_rejected':build.filter(verification='Rejected').count(),'total_printed_count':build.filter(print_count__gt=0).count()}
+    
+    report_data['vapp']={'total_entries':vapp.count(),'total_accepted':vapp.filter(verification='Approved').count(),'total_rejected':vapp.filter(verification='Rejected').count(),'total_printed_count':vapp.filter(print_count__gt=0).count()}
+    
+   
+    event_categorys=[]
+    for evc in EventCardType.objects.filter(active=True):
+        event_categorys.append({'name':evc.name,'total_entries':event.filter(cardtype=evc).count(),'total_accepted':event.filter(cardtype=evc).filter(verification='Approved').count(),'total_rejected':event.filter(cardtype=evc).filter(verification='Rejected').count(),'total_printed_count':event.filter(cardtype=evc).filter(print_count__gt=0).count()})
+    
+    build_categorys=[]
+    for buc in BuildCardType.objects.filter(active=True):
+        build_categorys.append({'name':buc.name,'total_entries':build.filter(cardtype=buc).count(),'total_accepted':build.filter(cardtype=buc).filter(verification='Approved').count(),'total_rejected':build.filter(cardtype=buc).filter(verification='Rejected').count(),'total_printed_count':build.filter(cardtype=buc).filter(print_count__gt=0).count()})
+        
+    vapp_categorys=[]
+    for vac in VappCardType.objects.filter(active=True):
+        vapp_categorys.append({'name':vac.name,'total_entries':vapp.filter(cardtype=vac).count(),'total_accepted':vapp.filter(cardtype=vac).filter(verification='Approved').count(),'total_rejected':vapp.filter(cardtype=vac).filter(verification='Rejected').count(),'total_printed_count':vapp.filter(cardtype=vac).filter(print_count__gt=0).count()})
+        
+        
+    report_data['event']['categorys']=event_categorys
+    report_data['vapp']['categorys']=vapp_categorys
+    report_data['build']['categorys']=build_categorys
+    
+    data={'location':location,'report_data':report_data,'locations':Locations.objects.filter(active=True)}
+    return render(request,'report.html',data)
 
     

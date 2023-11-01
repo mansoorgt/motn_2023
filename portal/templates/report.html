@@ -93,7 +93,7 @@ body
    
       <tr style="background-color: #1CAFA0;">
         <th class="text-center"  rowspan="2">Print Report</th>
-        <th class="text-center" scope="col" colspan="4">PLACE 1</th>
+        <th class="text-center" scope="col" colspan="4">{{location.name}}</th>
 
       </tr>
 
@@ -106,44 +106,139 @@ body
       </tr>
       <tr>
         <td>EVENT</td>
-        <td>2344</td>
-        <td>565667</td>
-        <td>45455</td>
-        <td>233</td>
+        <td>{{report_data.event.total_entries}}</td>
+        <td>{{report_data.event.total_accepted}}</td>
+        <td>{{report_data.event.total_rejected}}</td>
+        <td>{{report_data.event.total_printed_count}}</td>
       </tr>
       <tr>
         <td>BUILD</td>
-        <td>33</td>
-        <td>44</td>
-        <td>412</td>
-        <td>233</td>
+        <td>{{report_data.build.total_entries}}</td>
+        <td>{{report_data.build.total_accepted}}</td>
+        <td>{{report_data.build.total_rejected}}</td>
+        <td>{{report_data.build.total_printed_count}}</td>
       </tr>
       <tr>
         <td>VAPP</td>
-        <td>133</td>
-        <td>434</td>
-        <td>4412</td>
-        <td>2323</td>
+        <td>{{report_data.vapp.total_entries}}</td>
+        <td>{{report_data.vapp.total_accepted}}</td>
+        <td>{{report_data.vapp.total_rejected}}</td>
+        <td>{{report_data.vapp.total_printed_count}}</td>
       </tr>
 
   </table>
 </div>
       </div>
    
-
-
-
-
-
-
-
-
-
    
         </div>
 
 
-
+        <div class="content-wrapper">
+          <h3 class="text-left" style="display: inline;">CATEGORY WISE REPORT</h3>
+        <select class="change-category-table-dropdown" style="display: inline; float: right; border:none;font-size: larger;">
+          <option value="event">EVENT</option>
+          <option value="build">BUILD</option>
+          <option value="vapp" >VAPP</option>
+        </select>
+    <!-- event  -->
+          <div class="row mt-2 category-row event-category-row">
+            <div class="col-md-12">
+              <table class="table table-bordered">
+              
+                  <tr style="background-color: #1CAFA0;">
+                    <th class="text-center"  rowspan="2">EVENT</th>
+                    <th class="text-center" scope="col" colspan="4">{{location.name}}</th>
+            
+                  </tr>
+            
+            
+                  <tr >
+                    <td style="font-weight: bold !important;">ENTRIES</td>
+                    <td>ACCEPTED</td>
+                    <td>REJECT</td>
+                    <td>PRINTED</td>
+                  </tr>
+                  {% for cat in  report_data.event.categorys %}
+                  <tr>
+                    <td>{{cat.name}}</td>
+                    <td>{{cat.total_entries}}</td>
+                    <td>{{cat.total_accepted}}</td>
+                    <td>{{cat.total_rejected}}</td>
+                    <td>{{cat.total_printed_count}}</td>
+                  </tr>
+                  {% endfor %}
+            
+              </table>
+            </div>
+          </div>
+       
+          <!-- build -->
+          <div class="row mt-2 category-row build-category-row d-none ">
+            <div class="col-md-12">
+              <table class="table table-bordered">
+              
+                  <tr style="background-color: #1CAFA0;">
+                    <th class="text-center"  rowspan="2">BUILD</th>
+                    <th class="text-center" scope="col" colspan="4">{{location.name}}</th>
+            
+                  </tr>
+            
+            
+                  <tr >
+                    <td style="font-weight: bold !important;">ENTRIES</td>
+                    <td>ACCEPTED</td>
+                    <td>REJECT</td>
+                    <td>PRINTED</td>
+                  </tr>
+                  {% for cat in  report_data.build.categorys %}
+                  <tr>
+                    <td>{{cat.name}}</td>
+                    <td>{{cat.total_entries}}</td>
+                    <td>{{cat.total_accepted}}</td>
+                    <td>{{cat.total_rejected}}</td>
+                    <td>{{cat.total_printed_count}}</td>
+                  </tr>
+                  {% endfor %}
+            
+              </table>
+            </div>
+          </div>
+       
+ 
+            <!-- vapp -->
+            <div class="row mt-2 category-row vapp-category-row d-none ">
+              <div class="col-md-12">
+                <table class="table table-bordered">
+                
+                    <tr style="background-color: #1CAFA0;">
+                      <th class="text-center"  rowspan="2">VAPP</th>
+                      <th class="text-center" scope="col" colspan="4">{{location.name}}</th>
+              
+                    </tr>
+              
+              
+                    <tr >
+                      <td style="font-weight: bold !important;">ENTRIES</td>
+                      <td>ACCEPTED</td>
+                      <td>REJECT</td>
+                      <td>PRINTED</td>
+                    </tr>
+                    {% for cat in  report_data.vapp.categorys %}
+                    <tr>
+                      <td>{{cat.name}}</td>
+                      <td>{{cat.total_entries}}</td>
+                      <td>{{cat.total_accepted}}</td>
+                      <td>{{cat.total_rejected}}</td>
+                      <td>{{cat.total_printed_count}}</td>
+                    </tr>
+                    {% endfor %}
+              
+                </table>
+              </div>
+            </div>
+         
+       
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
@@ -154,6 +249,8 @@ body
         </footer>
         <!-- partial -->
       </div>
+
+    
       <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
@@ -190,7 +287,7 @@ body
   <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
   <!-- End custom js for this page-->
 
-
+  <script src="{% static 'scripts/location-mapping.js' %}?update=1"></script>
 
 <script>
   const api='8e87bcb2958b1d16235d0f3d430eda69'
@@ -233,7 +330,14 @@ window.addEventListener('load', () => {
   }
 });
 
- 
+ $('.change-category-table-dropdown').change(function(){
+  $('.category-row').addClass('d-none')
+
+  $(`.${$(this).val()}-category-row`).removeClass('d-none')
+
+
+
+ })
 
 </script>
 

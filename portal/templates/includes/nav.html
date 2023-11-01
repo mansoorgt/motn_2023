@@ -26,28 +26,19 @@
             Registrations
           </button> -->
           <div class="dropdown-menu">
-            <a class="dropdown-item page-link" href="{% url 'registrations' %}?table-name=event">Event Applicants</a>
-            <a class="dropdown-item page-link" href="{% url 'registrations' %}?table-name=build">Build Applicants</a> 
-           <a class="dropdown-item page-link" href="{% url 'registrations' %}?table-name=vapp">Vapp Applicants</a>
+            <a class="dropdown-item loc-page-link" href="{% url 'registrations' %}?table-name=event">Event Applicants</a>
+            <a class="dropdown-item loc-page-link" href="{% url 'registrations' %}?table-name=build">Build Applicants</a> 
+           <a class="dropdown-item loc-page-link" href="{% url 'registrations' %}?table-name=vapp">Vapp Applicants</a>
           </div>
         </div>
         </div>
 
-        
+        <div class="col-md-3">
+          <a class="daz_menu loc-page-link" href="{% url 'report' %}"><img  class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/3596/3596029.png" style="width:15%; "><span class="font-weight-bolder m-1"> Report</span></a>
+          </div>
      
      
 
-
-        <!-- <div class="dropdown show" style="margin-top: -5px;">
-          <a class="btn btn-sm btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            MANAGEMENT
-          </a>
-        
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="">NEW REGISTRATIONS</a>
-            
-          </div>
-        </div> -->
         
     </div>
     <!-- navbar menu mob view end -->
@@ -78,6 +69,8 @@
           </div>
         </div>
       </div>
+
+      
     </div>
     </div>
 
