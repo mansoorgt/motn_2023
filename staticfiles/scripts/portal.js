@@ -617,26 +617,7 @@ function getLatestData(){
     });
 }
 
-SetupLocationLinks()
 
-function SetupLocationLinks() {
-    temp_loc=localStorage.getItem('temp-loc')
-    const locationId=temp_loc ? temp_loc : 1
-  
-    $('.page-link').each(function(){
-       let _href = $(this).attr('href')
-       $(this).attr('href',_href+`&loc=${locationId}`)
-    })
-
-}
-
-
-$('.select-location-option').click(function () {
-    let select_loc_id=$(this).attr('loc-id')
-    localStorage.setItem('temp-loc',select_loc_id)
-    window.location.href=`${window.location.pathname}?table-name=${table_name}&loc=${select_loc_id}`
-   
-})
 // let eventSource = new EventSource('sse?table-name='+table_name);
 
 // eventSource.onmessage = (event) => {

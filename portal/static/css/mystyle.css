@@ -268,3 +268,6 @@ border-radius: 5px;
 .swal2-styled.swal2-cancel{
     color:white !important;
 }
+.page-link{
+    border: none !important;
+}

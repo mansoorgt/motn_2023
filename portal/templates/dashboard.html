@@ -46,9 +46,12 @@
         legendText: "THIS IS TOTAL COUNT",
         showInLegend: true,
         dataPoints: [
-        { label: "ALL REGISTRATION", y: 203},	
-			{ label: "CORNICHE", y: 100 },	
-			{ label: "AL DAFRAH", y: 223 },
+        
+        {% for data in dashboard_data %}
+        { label: "{{data.loc.name}}", y: {{data.total_loc_count}}},	
+        {% endfor %}
+			// { label: "CORNICHE", y: 100 },	
+			// { label: "AL DAFRAH", y: 223 },
 			
 			
        
@@ -59,7 +62,10 @@
     $("#resizable").resizable({
       create: function (event, ui) {
         //Create chart.
+
         $("#chartContainer1").CanvasJSChart(options1);
+
+
       },
       resize: function (event, ui) {
         //Update chart size according to its container size.
@@ -209,16 +215,17 @@ body
 
 <div class="row">
 
+  {% for data in dashboard_data %}
 <div class="col-md-6">
   <div class="card card-tale">
     <div class="card-body">
-      <h3 class="mb-4 text-uppercase">Corniche</h3>
+      <h3 class="mb-4 text-uppercase">{{data.loc.name}}</h3>
     <div class="row">
       <div class="col-md-4 text-black">
-<div class="all-box shadow">
-<h4>EVENT</h4>
-<p>1234</p>
-</div>
+        <div class="all-box shadow">
+        <h4>EVENT</h4>
+        <p>{{data.event_count}}</p>
+      </div>
 
 
       </div>
@@ -226,16 +233,16 @@ body
       <div class="col-md-4 text-black">
         <div class="all-box shadow">
           <h4>BUILD</h4>
-          <p>124</p>
+          <p>{{data.build_count}}</p>
           </div>
-                              </div>
+       </div>
 
-                              <div class="col-md-4 text-black">
-                                <div class="all-box shadow">
-                                  <h4>VAPP</h4>
-                                  <p>678</p>
-                                  </div>
-                                                      </div>
+        <div class="col-md-4 text-black">
+          <div class="all-box shadow">
+            <h4>VAPP</h4>
+            <p>{{data.vapp_count}}</p>
+            </div>
+         </div>
       
     </div>
 
@@ -245,86 +252,7 @@ body
 
   </div>
 </div>
-
-
-<div class="col-md-6">
-  <div class="card card-tale">
-    <div class="card-body">
-      <h3 class="mb-4 text-uppercase">Al dafrah</h3>
-    <div class="row">
-      <div class="col-md-4 text-black">
-<div class="all-box shadow">
-<h4>EVENT</h4>
-<p>1234</p>
-</div>
-
-
-      </div>
-
-      <div class="col-md-4 text-black">
-        <div class="all-box shadow">
-          <h4>BUILD</h4>
-          <p>124</p>
-          </div>
-                              </div>
-
-                              <div class="col-md-4 text-black">
-                                <div class="all-box shadow">
-                                  <h4>VAPP</h4>
-                                  <p>678</p>
-                                  </div>
-                                                      </div>
-      
-    </div>
-
-
-      
-    </div>
-
-  </div>
-  </div>
-
-<div class="col-md-6">
-  <div class="card card-tale mt-3">
-    <div class="card-body">
-      <h3 class="mb-4 text-uppercase">All Registrations</h3>
-    <div class="row">
-      <div class="col-md-4 text-black">
-<div class="all-box shadow">
-<h4>EVENT</h4>
-<p>14</p>
-</div>
-
-
-      </div>
-
-      <div class="col-md-4 text-black">
-        <div class="all-box shadow">
-          <h4>BUILD</h4>
-          <p>12</p>
-        </div>
-                              </div>
-
-                              <div class="col-md-4 text-black">
-                                <div class="all-box shadow">
-                                  <h4>VAPP</h4>
-                                  <p>23</p>
-                                </div>
-                                                      </div>
-
-
-
-                                                      
-      
-    </div>
-
-
-      
-    </div>
-
-  </div>
-</div>
-
+{% endfor %}
 
 
 </div>
@@ -535,7 +463,7 @@ function SetupLocationLinks() {
     temp_loc=localStorage.getItem('temp-loc')
     const locationId=temp_loc ? temp_loc : 1
     
-    $('.page-link').each(function(){
+    $('.loc-page-link').each(function(){
       let _url = new URL($(this).attr('href'),window.location.origin)
 
       _url.searchParams.set('loc',locationId)
@@ -554,7 +482,7 @@ $('.select-location-option').click(function () {
   let select_loc_id=$(this).attr('loc-id')
     localStorage.setItem('temp-loc',select_loc_id)
 
-  $('.page-link').each(function(){
+  $('.loc-page-link').each(function(){
 
     let _url = new URL($(this).attr('href'),window.location.origin)
 
@@ -565,8 +493,6 @@ $('.select-location-option').click(function () {
   var current_location_name=$(`[loc-id=${select_loc_id}]`).text()
     $('.current-location-name').text(current_location_name)
 
-    // window.location.href=`${window.location.pathname}?table-name=${table_name}&loc=${select_loc_id}`
-   
 })
  
 

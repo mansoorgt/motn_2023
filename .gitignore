@@ -5,3 +5,4 @@ project_dsa/__pycache__/
 portal/__pycache__/apps.cpython-311.pyc
 *.pyc
 /media/
+motn_2023/settings.py
