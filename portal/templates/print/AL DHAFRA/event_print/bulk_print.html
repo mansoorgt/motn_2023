@@ -57,7 +57,7 @@
     @media print {
       @page {
    
-        size: 54mm 86mm ;   
+        size: 67mm 99mm ;   
       
 margin: 0px;
 
@@ -97,49 +97,51 @@ margin: 0px;
 {% for registration in registrations %}
 
 {{reg.cardtype.id}}
-<!-- EVENT STAFF BUILD START-->
-{% if registration.cardtype.id == 1 %}
+<!-- EVENT STAFF START-->
 
-<div style="width: 30.8%;" id="section-to-print">
+{% if registration.cardtype.id == 4 %}
+
+<div style="width: 38.1%;" id="section-to-print">
 
 
 
-  <img style="width:100%; height: 100%;" src="{% static 'images/build_print/EVENT STAFF.jpg' %}">
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/aldhafra/dhafra_staff.png' %}">
   
   <div style="position: absolute; top: 63%; left: 2%; width: 95%;">
     <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
     <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
-    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5> 
+   
 </div>
   
    
    
   </div>
 <div class="pagebreak"></div>
+
   {% endif %}
   
   
 
 
 
-<!-- EVENT STAFF BUILD  end -->
+<!-- EVENT STAFF end -->
 
 
 
 
-<!-- CONTRACTORS Start -->
+<!-- Media Start -->
 
-{% if registration.cardtype.id == 2 %}
-<div style="width: 30.8%;" id="section-to-print">
+{% if registration.cardtype.id == 5 %}
+<div style="width: 38.1%;" id="section-to-print">
 
 
 
-    <img style="width:100%; height: 100%;" src="{% static 'images/build_print/CONTRACTORS1.jpg' %}">
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/aldhafra/dhafra_media.png' %}">
     
     <div style="position: absolute; top: 63%; left: 2%; width: 95%;">
       <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
       <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
-      <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5> 
+    
   </div>
     
      
@@ -152,22 +154,22 @@ margin: 0px;
 
 
 
-<!-- CONTRACTORS end -->
+<!-- Media end -->
 
 
 
-<!-- TEMPORARY start -->
-{% if registration.cardtype.id == 3 %}
-<div style="width: 30.8%;" id="section-to-print">
+<!-- Guest start -->
+{% if registration.cardtype.id == 6 %}
+<div style="width: 38.1%;" id="section-to-print">
 
 
 
-    <img style="width:100%; height: 100%;" src="{% static 'images/build_print/TEMPORARY.jpg' %}">
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/aldhafra/dhafra_guest.png' %}">
     
     <div style="position: absolute; top: 63%; left: 2%; width: 95%;">
       <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
       <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
-      <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5> 
+      
   </div>
     
      
@@ -181,7 +183,7 @@ margin: 0px;
 
 
 
-<!-- TEMPORARY end -->
+<!-- Guest end -->
 
 
   {% endfor %}
