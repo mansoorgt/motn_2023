@@ -22,7 +22,10 @@
       font-family: 'montbold'; /* Give your font a name */
       src: url("{% static 'font/FontsFree-Net-Mont-Bold.ttf' %}") format('truetype'); /* Specify the path to your .ttf file */
     }
-
+    @font-face {
+      font-family: 'AvenirNext'; /* Give your font a name */
+      src: url("{% static 'font/AvenirNext-Heavy-09.ttf' %}") format('truetype'); /* Specify the path to your .ttf file */
+    }
     body {
       font-family: 'montbold' !important; /* Apply the custom font to the body or any other element */
     }
@@ -30,9 +33,9 @@
 </style>
 
 </head>
-<body style=" font-family: 'montbold' !important; background-color: #1F74BB;">
+<body style=" font-family: 'montbold' !important; ">
 
-  <!-- <div class="background-image"></div> -->
+  <div class="reg_background-image"></div>
 
 
   <header>
@@ -55,7 +58,7 @@
 <div class="card mt-5 mb-5" style="border: 1px solid rgb(53, 135, 190);">
 
 <div class="buildcard-head">
-<h3 class="text-center text-white">
+<h3 class="text-center text-black" style="">
   REGISTER FOR BUILD PASS
 </h3>
 </div>
