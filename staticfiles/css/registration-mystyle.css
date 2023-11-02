@@ -308,6 +308,23 @@ background-size: cover !important;
       {
         margin-left: 0px;
       }
+      .build_reg
+{
+  font-size: 18px;
+  margin-top:50px;
+
+ 
+}
+.build_pass
+{
+  font-size: 18px;
+
+}
+.build_vapp
+{
+  font-size: 18px;
+
+}
       
       
           }
