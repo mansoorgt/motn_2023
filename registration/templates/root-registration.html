@@ -20,7 +20,7 @@
 
 @font-face {
       font-family: 'montbold'; /* Give your font a name */
-      src: url("{% static 'font/FontsFree-Net-Mont-Bold.ttf' %}") format('truetype'); /* Specify the path to your .ttf file */
+      src: url("{% static 'font/AvenirNext-Heavy-09.ttf' %}") format('truetype'); /* Specify the path to your .ttf file */
     }
 
     body {
@@ -37,7 +37,7 @@
 
   <header>
     <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
+      <div class="container justify-content-center">
         <a class="navbar-brand" href="#">
           <img class="logo_img" src="{% static 'img/motn/logo.png' %}" width="170" height="60" alt="logo union">
         </a>
@@ -58,30 +58,36 @@
 
 
               <div class="col-md-12">
+<div class="justify-content-center">
               <a href="{% url 'event-registration' %}" style="text-decoration: none;">
                 <div class="build_reg">
             REGISTER FOR EVENT PASS
               </div>
             </a>
+          </div>
               </div>
 
          
 
                 
               <div class="col-md-12">
+                <div class="justify-content-center">
                 <a href="{% url 'build-registration' %}" style="text-decoration: none;">
                   <div class="build_pass">
               REGISTER FOR BUILD PASS
                 </div>
               </a>
+            </div>
                 </div>
 
                 <div class="col-md-12">
+                  <div class="justify-content-center">
                   <a href="{% url 'vapp-registration' %}" style="text-decoration: none;">
                     <div class="build_vapp">
                 REGISTER FOR VAPP
                   </div>
                 </a>
+              </div>
                   </div>
 
 

@@ -51,7 +51,7 @@
     @media print {
       @page {
    
-          size: 67mm 99mm ;   
+          size: 54mm 86mm ;   
       
 margin: 0px;
 
@@ -84,24 +84,20 @@ margin: 0px;
 </style>
 
 </head>
-<body style=" font-family: 'Avenir', sans-serif;">
+<body style="font-family: 'Avenir', sans-serif;">
 <!-- vapp_vip Id card Design Start -->
 <div style="width: 100%;" id="section-to-print">
 
 
 
-<img style="width:100%; height: 99mm;" src="{% static 'images/evnt_print/abudhabi/abu_staff.png' %}">
-<div class="justify-content-center" >
-<div style="position: absolute; top: 32.4%; left: 31%; width: 95%;  width: 96px; height: 97px;">
-<img style="width: 96px; height: 98px;" src="{{registration.badge_photo.url}}">
-</div>
-</div>
+<img style="width:100%; height: 86mm;" src="{% static 'images/build_print/EVENT STAFF.jpg' %}">
 
-<div style="position: absolute; top: 60%; left: 2%; width: 95%;">
- <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;  font-size: 13px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
- <h5 id="company" class="occupation text-center" style="text-transform:capitalize;  font-size: 13px; font-weight: bold; color:white;">{{registration.company}}</h5>
-</div>
 
+<div style="position: absolute; top: 65%; left: 2%; width: 95%;">
+  <p id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 10px !important; font-weight: 600; color:white;">{{registration.first_name}} {{registration.last_name}} </p>
+  <p id="company" class="occupation text-center" style="text-transform:capitalize; line-height: .9;  font-size: 10px !important; font-weight: 600; color:white;">{{registration.company}}</p>
+  <p  class="occupation text-center" style="text-transform:capitalize; line-height: .9; font-size: 10px !important; font-weight: 600; color:white;">Validity</p>
+ </div>
 
  
  
@@ -145,7 +141,7 @@ margin: 0px;
       var length = text.length;
 
       // Decrease font size by 2px for every 15 characters
-      var newSize = 13 - Math.floor(length / 15) * 1;
+      var newSize = 11 - Math.floor(length / 15) * 1;
 
       // Set the new font size
       element.style.fontSize = newSize + 'px';
