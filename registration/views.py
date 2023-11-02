@@ -7,6 +7,7 @@ from portal.models import *
 from django.template.loader import render_to_string
 from django.core import mail 
 from django.utils.html import strip_tags
+import json
 # Create your views here.
 def root_page(request):
     # try:
@@ -57,7 +58,7 @@ def submit_event_registration(request):
     email=request.POST.get('email')
     date_of_birth=request.POST.get('date-of-birth')
     
-    location=request.POST.get('location')
+    locations=request.POST.get('locations')
     
     company=request.POST.get('company')
     nationality=request.POST.get('nationality')
@@ -71,12 +72,17 @@ def submit_event_registration(request):
     id_proof_back=request.FILES.get('id-proof-back-file')
     badge_photo=request.FILES.get('badge-photo-file')
     
+
+     
     data={'success':False}
     try:
-        location_instance=Locations.objects.get(id=location)
-        cardType=EventCardType.objects.get(id=card_type_id)
-        obj=EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,location=location_instance,
-                                        nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=cardType)
+        
+        for location in json.loads(locations):
+            
+            location_instance=Locations.objects.get(id=location)
+            cardType=EventCardType.objects.get(id=card_type_id)
+            obj=EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,location=location_instance,
+                                            nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=cardType)
         data['success']=True
         data['id']=obj.id
     except Exception as e:
@@ -99,7 +105,7 @@ def submit_build_registration(request):
     id_proof_number=request.POST.get('id-proof-number')
     id_proof_expiry=request.POST.get('id-expiry-date')
 
-    location=request.POST.get('location')
+    locations=request.POST.get('locations')
     card_type_id=request.POST.get('card-type')
     
     id_proof_front=request.FILES.get('id-proof-front-file')
@@ -110,14 +116,18 @@ def submit_build_registration(request):
     
     data={'success':False}
     try:
-        location_instance=Locations.objects.get(id=location)
-        buildcardType=BuildCardType.objects.get(id=card_type_id)
-        obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,location=location_instance,
-                                          dob=date_of_birth,cardtype=buildcardType)
-        if need_event_pass == 'Yes':
-            EventcardType=buildcardType.eventcardtype
-            EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,location=location_instance,
-                                            nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=EventcardType)
+        for location in json.loads(locations):
+            location_instance=Locations.objects.get(id=location)
+            buildcardType=BuildCardType.objects.get(id=card_type_id)
+            
+            obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,location=location_instance,
+                                                dob=date_of_birth,cardtype=buildcardType)
+            
+            if need_event_pass == 'Yes':
+                EventcardType=buildcardType.eventcardtype
+                EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,location=location_instance,
+                                                    nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=EventcardType)
+            
         data['success']=True
         data['id']=obj.id
     except Exception as e:
@@ -134,7 +144,7 @@ def submit_vapp_registration(request):
     company=request.POST.get('company')
     cardtype_id=request.POST.get('card-type')
     vehicletype_id=request.POST.get('vehicle-type')
-    location=request.POST.get('location')
+    locations=request.POST.get('locations')
     
     id_proof_front=request.FILES.get('id-proof-front-file')
     id_proof_back=request.FILES.get('id-proof-back-file')
@@ -142,13 +152,15 @@ def submit_vapp_registration(request):
     delivery_date=request.POST.get('delivery-date')
 
     data={'success':False}
+    
     try:
-        cardtype=VappCardType.objects.get(id=cardtype_id)
-        vehicletype=VehicleType.objects.get(id=vehicletype_id)
-        location_instance=Locations.objects.get(id=location)
-        VappRegistrations.objects.create(first_name=first_name,last_name=last_name,company=company,email=email,vehicletype=vehicletype,mobile=mobile,cardtype=cardtype,id_proof_front=id_proof_front,id_proof_back=id_proof_back,vehicle_pass=vehicle_pass,vehicle_number=vehicle_number,location=location_instance,
-                                         delivery_date=delivery_date)
-        data['success']=True
+        for location in json.loads(locations):
+            cardtype=VappCardType.objects.get(id=cardtype_id)
+            vehicletype=VehicleType.objects.get(id=vehicletype_id)
+            location_instance=Locations.objects.get(id=location)
+            VappRegistrations.objects.create(first_name=first_name,last_name=last_name,company=company,email=email,vehicletype=vehicletype,mobile=mobile,cardtype=cardtype,id_proof_front=id_proof_front,id_proof_back=id_proof_back,vehicle_pass=vehicle_pass,vehicle_number=vehicle_number,location=location_instance,
+                                            delivery_date=delivery_date)
+            data['success']=True
     except Exception as e:
         data['success']=False
         data['reason']=str(e)

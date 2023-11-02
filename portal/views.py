@@ -129,24 +129,25 @@ def get_registration_details(request):
     
     try:
         print(edit_id)
+        locations=Locations.objects.filter(active=True)
         if getTable(request) == EventRegistrations:
 
             obj=EventRegistrations.objects.get(id=edit_id)
             cardtypes=EventCardType.objects.filter(active=True)
             
-            modal_html=render_to_string('includes/edit-models/event-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes})
+            modal_html=render_to_string('includes/edit-models/event-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes,'locations':locations})
         elif getTable(request) == BuildRegistrations:
             obj=BuildRegistrations.objects.get(id=edit_id)
             cardtypes=BuildCardType.objects.filter(active=True)
             
-            modal_html=render_to_string('includes/edit-models/build-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes})
+            modal_html=render_to_string('includes/edit-models/build-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes,'locations':locations})
         elif getTable(request) == VappRegistrations:
             obj=VappRegistrations.objects.get(id=edit_id)
             cardtypes=VappCardType.objects.filter(active=True)
             category=VehicleType.objects.filter(active=True)
         
-            modal_html=render_to_string('includes/edit-models/vapp-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes,'category':category})
-            
+            modal_html=render_to_string('includes/edit-models/vapp-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes,'category':category,'locations':locations})
+
         data['content_html']=modal_html   
         data['success']=True 
         
@@ -181,7 +182,7 @@ def submit_edit_registration(request):
             
             badge_photo=request.FILES.get('badge-photo')
             
-            
+            location=request.POST.get('location')
             # jobtitle=request.POST.get('job-title')
             cardtype=request.POST.get('card-type')
             edit_id=request.POST.get('edit-id')
@@ -190,7 +191,7 @@ def submit_edit_registration(request):
             
             print(badge_photo)
             obj=EventRegistrations.objects.filter(id=edit_id)
-            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,nationality=nationality,email=email,mobile=mobile,cardtype=cardtype,id_proof_number=id_proof_number,updated_at=timezone.now())
+            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,nationality=nationality,email=email,mobile=mobile,cardtype=cardtype,id_proof_number=id_proof_number,updated_at=timezone.now(),location=location)
             
             instance_obj=obj.first()
             if badge_photo != None:
@@ -219,8 +220,10 @@ def submit_edit_registration(request):
             edit_id=request.POST.get('edit-id')
             cardtype=request.POST.get('card-type')
             
+            location=request.POST.get('location')
+            
             obj=BuildRegistrations.objects.filter(id=edit_id)
-            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,email=email,cardtype=cardtype,mobile=mobile,updated_at=timezone.now())
+            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,email=email,cardtype=cardtype,mobile=mobile,updated_at=timezone.now(),location=location)
             row=render_to_string(getTableRow(request),{'r':obj.first()})
         
         if getTable(request) == VappRegistrations:
@@ -237,11 +240,12 @@ def submit_edit_registration(request):
             id_proof_front=request.FILES.get('id-front-photo')
             id_proof_back=request.FILES.get('id-back-photo')
             
-            print(id_proof_front,id_proof_back)
+            location=request.POST.get('location')
+            
             edit_id=request.POST.get('edit-id')
 
             obj=VappRegistrations.objects.filter(id=edit_id)
-            obj.update(first_name=first_name,last_name=last_name,company=company,vehicle_number=vehicle_number,mobile=mobile,email=email,cardtype=card_type,vehicletype=category)
+            obj.update(first_name=first_name,last_name=last_name,company=company,vehicle_number=vehicle_number,mobile=mobile,email=email,cardtype=card_type,vehicletype=category,location=location,updated_at=timezone.now())
             
             instance_obj=obj.first()
             if vehicle_pass != None:

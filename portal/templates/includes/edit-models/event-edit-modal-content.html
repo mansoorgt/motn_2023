@@ -98,6 +98,19 @@
 
           </div>
 
+          <div class="row mt-2">
+
+            <div class="col-6">
+              <label for="">Location</label>
+              <select class="form-control" id="edit-location" name="location" required>
+
+                {% for l in locations %}
+                  <option value="{{l.id}}" {% if r.location.id == l.id %} selected  {% endif %}>{{l.name}}</option>
+                {% endfor %}
+              </select>
+            </div>  
+
+          </div>
         
 
        
