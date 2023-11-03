@@ -382,6 +382,12 @@ background-size: cover !important;
       
           }
       
-      
+          @media (min-width: 426px) and (max-width: 768px) {
+
+            .crop_cont p
+{
+  display: none;
+}
+          }
       
           /* mobile design end */
