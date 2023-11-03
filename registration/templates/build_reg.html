@@ -107,8 +107,8 @@
         <label>EVENT LOCATION</label>
         <br>
           {% for loc in locations %}
-          <label for="">{{loc.name}}</label>
-          <input type="checkbox" value="{{loc.id}}" class="locations extra-validation" >
+          <label style="margin-left: 5px;" for="">{{loc.name}}</label>
+          <input style="margin-left: 5px;" type="checkbox" value="{{loc.id}}" class="locations extra-validation" >
         
           {% endfor %}
           <span class="locations-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">Select any one </span>
