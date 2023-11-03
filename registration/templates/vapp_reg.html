@@ -94,13 +94,15 @@
 
       <div class="col-md-6">
         <label>EVENT LOCATION</label>
-        <select class="form-select" name="location">
-          <option value="" disabled selected>Select Location</option>
-          {% for loc in locations %}
-          <option value="{{loc.id}}">{{loc.name}}</option>
-         
-          {% endfor %}
-        </select>
+        <br>
+        {% for loc in locations %}
+        <label for="">{{loc.name}}</label>
+        <input type="checkbox" value="{{loc.id}}" class="locations extra-validation" >
+      
+        {% endfor %}
+        <br>
+        <span class="locations-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">Select any one </span>
+
         </div>
 
       <div class="col-md-6">
@@ -214,6 +216,7 @@ $('#vapp-form').submit(function (event){
       $(':submit').attr('disabled',true)
       $('.form-spinner').removeClass('d-none')
       var _formData=new FormData($(event.target)[0])
+      _formData.append('locations',JSON.stringify($('.locations:checked').map( function(){return this.value }).get()))
       _formData.append('csrfmiddlewaretoken','{{ csrf_token }}')
       
       $.ajax({
@@ -245,20 +248,46 @@ $('#vapp-form').submit(function (event){
     })
      function ExtravalidationPass() {
 
-        var expiryDate = new Date($('.expiry-check').val());
-        var currentDate = new Date();
-
-        if ( expiryDate <=currentDate ){
-          $('.expiry-check').addClass('is-invalid')
-          $('.id-expiry-date-is-not-valid').removeClass('d-none')
-          return false
-
-        } 
-        else{
-          $('.expiry-check').removeClass('is-invalid')
-          $('.id-expiry-date-is-not-valid').addClass('d-none')
-          return true
-        }
+      var fail_count=0
+      
+      // $('.locations:checked').each(function() {
+      //   console.log($(this).val())
+      // })
+      
+      if (!$('.locations:checked').length){
+        $('.locations').focus()
+        $('.locations-not-valid').removeClass('d-none')
+        fail_count++
+      } else{
+        $('.locations-not-valid').addClass('d-none')
+        
+      }
+      
+  
+      var expiryDate = new Date($('.expiry-check').val());
+      var currentDate = new Date();
+  
+      if ( expiryDate <=currentDate ){
+        $('.expiry-check').addClass('is-invalid')
+        $('.id-expiry-date-is-not-valid').removeClass('d-none')
+        fail_count ++
+  
+      } 
+      else{
+        $('.expiry-check').removeClass('is-invalid')
+        $('.id-expiry-date-is-not-valid').addClass('d-none')
+        
+      }
+   
+      if (fail_count >= 1){
+        
+        return false
+        
+      }
+      else{
+      
+        return true
+      }
 
         }
 
