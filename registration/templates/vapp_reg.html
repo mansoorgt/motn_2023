@@ -94,7 +94,7 @@
 
       <div class="col-md-6">
         <label>EVENT LOCATION</label>
-        <select class="form-control" name="location">
+        <select class="form-select" name="location">
           <option value="" disabled selected>Select Location</option>
           {% for loc in locations %}
           <option value="{{loc.id}}">{{loc.name}}</option>
@@ -105,7 +105,7 @@
 
       <div class="col-md-6">
         <label>CATEGORY</label>
-        <select class="form-control" name="card-type" required>
+        <select class="form-select" name="card-type" required>
           <option value="" disabled selected>Select Card Type</option>
           {% for type in cardtypes %}
           <option value="{{type.id}}">{{type.name}}</option>
@@ -117,7 +117,7 @@
 
         <div class="col-md-6">
 <label>VEHICLE TYPE</label>
-<select class="form-control" name="vehicle-type" required>
+<select class="form-select" name="vehicle-type" required>
   <option value="" disabled selected>Select Vehicle Type</option>
   {% for type in vehicletype %}
   <option value="{{type.id}}">{{type.name}}</option>
@@ -176,6 +176,13 @@
       </div>
 
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+  <img class="footer_img"  src="{% static 'img/motn/footer_bg.png' %}" >
+    </div>
+  
   </div>
 
   <!-- Bootstrap JS and Popper.js (Optional) -->

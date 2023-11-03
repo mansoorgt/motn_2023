@@ -88,7 +88,7 @@
 
   <div class="col-md-6">
     <label>DESIGNATION</label>
-    <select class="form-control" name="card-type" required>
+    <select class="form-select" name="card-type" required>
       <option value="" disabled selected>Select Card Type</option>
       {% for type in cardtypes %}
      
@@ -139,7 +139,7 @@
 
         <div class="col-md-6">
 <label>ID</label>
-<select name="id-proof-type" class="form-control id-proof-select" >
+<select name="id-proof-type" class="form-select id-proof-select" >
   <option value="Passport-Id">PASSPORT</option>
   <option value="Emirates-Id" selected>EMIRATES ID</option>
 </select>
@@ -197,6 +197,16 @@
 
     </div>
   </div>
+
+  <footer>
+<div class="row">
+  <div class="col-md-12">
+<img class="footer_img"  src="{% static 'img/motn/footer_bg.png' %}" >
+  </div>
+
+</div>
+
+  </footer>
 
 <!-- cropper js -->
 
