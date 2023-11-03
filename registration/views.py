@@ -35,19 +35,19 @@ def root_page(request):
     return render(request,'root-registration.html')
 
 def build_registration_form_page(request):
-    cardtypes=BuildCardType.objects.filter(active=True)
-    locations=Locations.objects.filter(active=True).order_by('name')
+    cardtypes=BuildCardType.objects.filter(active=True).order_by('name')
+    locations=Locations.objects.filter(active=True).order_by('-id')
     return render(request,'build_reg.html',{'cardtypes':cardtypes,'locations':locations})
 
 def event_registration_form_page(request):
-    cardtypes=EventCardType.objects.filter(active=True)
-    locations=Locations.objects.filter(active=True).order_by('name')
+    cardtypes=EventCardType.objects.filter(active=True).order_by('name')
+    locations=Locations.objects.filter(active=True).order_by('-id')
     return render(request,'event_reg.html',{'cardtypes':cardtypes,'locations':locations})
 
 def vapp_registration_form_page(request):
-    cardtypes=VappCardType.objects.filter(active=True)
-    vehicletype=VehicleType.objects.filter(active=True)
-    locations=Locations.objects.filter(active=True).order_by('name')
+    cardtypes=VappCardType.objects.filter(active=True).order_by('name')
+    vehicletype=VehicleType.objects.filter(active=True).order_by('name')
+    locations=Locations.objects.filter(active=True).order_by('-id')
     return render(request,'vapp_reg.html',{'cardtypes':cardtypes,'vehicletype':vehicletype,'locations':locations})
 
 def submit_event_registration(request):
