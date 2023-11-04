@@ -165,7 +165,6 @@ def submit_vapp_registration(request):
         data['success']=False
         data['reason']=str(e)
         
-    
     return JsonResponse(data)
 def send_success_mail(request):
     id=request.POST.get('id')
