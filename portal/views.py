@@ -492,7 +492,7 @@ def print_page(request):
         registration=VappRegistrations.objects.get(id=id)
         
         # cardtyes=VappCardType.objects.filter(active=True)
-        return render(request,f"print/{registration.location.name}/vapp_print/{registration.cardtype.name}.html",{'registration':registration})
+        return render(request,f"print/vapp_print/{registration.cardtype.name}.html",{'registration':registration})
     else:
         registration=BuildRegistrations.objects.get(id=id)
         return render(request,f"print/{registration.location.name}/build_print/{registration.cardtype.name}.html",{'registration':registration})
@@ -516,7 +516,7 @@ def registration_bulk_print_page(request):
     
     
     if table =='vapp':
-        return render(request,f'print/{location_instance.name}/vapp_print/bulk_print.html',{'registrations':objs})
+        return render(request,f'print/vapp_print/bulk_print.html',{'registrations':objs})
     
 
 def send_mail(request):
