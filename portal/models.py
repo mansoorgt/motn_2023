@@ -19,7 +19,6 @@ class EventCardType(models.Model):
 
 class BuildCardType(models.Model):
     name=models.CharField(max_length=100)
-    eventcardtype=models.ForeignKey(EventCardType, on_delete=models.CASCADE)
     active=models.BooleanField(default=True)
     class Meta:
         db_table='build_cardtype'

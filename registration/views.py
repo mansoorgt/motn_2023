@@ -36,8 +36,9 @@ def root_page(request):
 
 def build_registration_form_page(request):
     cardtypes=BuildCardType.objects.filter(active=True).order_by('name')
+    event_cardtypes=EventCardType.objects.filter(active=True).order_by('name')
     locations=Locations.objects.filter(active=True).order_by('-id')
-    return render(request,'build_reg.html',{'cardtypes':cardtypes,'locations':locations})
+    return render(request,'build_reg.html',{'cardtypes':cardtypes,'event_cardtypes':event_cardtypes,'locations':locations})
 
 def event_registration_form_page(request):
     cardtypes=EventCardType.objects.filter(active=True).order_by('name')
@@ -111,6 +112,8 @@ def submit_build_registration(request):
     id_proof_back=request.FILES.get('id-proof-back-file')
     badge_photo=request.FILES.get('badge-photo-file')
     
+    event_card_type_id=request.POST.get('event-card-type')
+    
     need_event_pass=request.POST.get('needEventPass')
     
     data={'success':False}
@@ -123,7 +126,7 @@ def submit_build_registration(request):
                                                 dob=date_of_birth,cardtype=buildcardType)
             
             if need_event_pass == 'Yes':
-                EventcardType=buildcardType.eventcardtype
+                EventcardType=EventCardType.objects.get(id=event_card_type_id)
                 EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,location=location_instance,
                                                     nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=EventcardType)
             

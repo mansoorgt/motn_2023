@@ -141,6 +141,20 @@
         <input type="text" name="nationality" class="form-control set-additional-required">
         </div>
 
+        <div class="col-md-6 mt-2">
+          <label>DESIGNATION</label>
+          <select class="form-select" id="card-type-select" name="event-card-type" required>
+            <option value="" disabled selected>Select Card Type</option>
+            {% for type in event_cardtypes %}
+           
+      
+            <option value="{{type.id}}" class="cardtype-options d-none">{{type.name}}</option>
+        
+            {% endfor %}
+          </select>
+          
+          <span class="cardtype-options-no-location d-none ml-2" style="color: rgb(255, 0, 0);">Please select any one location</span>
+          </div>
 
 
         <div class="col-md-6 mt-2">
@@ -545,6 +559,61 @@ function change_pattern_id_card_number_on_change(inp) {
         }
       });
     }
+
+
+     //on location change 
+
+    //abudhabi = 4
+    //al ain   = 2
+    //dhafara  = 3
+
+    var cardtypes={
+      
+      4:[7,33,19,9,8,16,12,13,50,35,5,2,17,27,18,19,20,10,42,1,22,53,52,51,43],
+      2:[7,33,8,12,13,9,50,35,5,2,16,17,37,18,53,19,20,10,42,52,1,44,43,51,22],
+      3:[7,33,8,5,12,13,9,2,16,17,18,19,20,1,22,54],
+  }
+    $('.locations').click(function(){
+
+      let selected_ids=$('.locations:checked').map( function(){return this.value }).get()
+
+      $('#card-type-select').val(null)
+
+      $('.cardtype-options').addClass('d-none')
+      
+      if (selected_ids.length > 0 ){
+   
+        $('.cardtype-options-no-location').addClass('d-none')
+      }
+
+
+      selected_ids.forEach(element => {
+        
+        $('.cardtype-options').each(function(){
+        
+          if (cardtypes[element].includes(Number($(this).val()))){
+            $(this).removeClass('d-none')
+          }
+
+        })
+
+
+      });
+       
+
+       
+
+
+    })
+
+    $('#card-type-select').click(function(){
+      if($('.cardtype-options').not('.d-none').length == 0){
+        $('.cardtype-options-no-location').removeClass('d-none')
+      }else{
+        $('.cardtype-options-no-location').addClass('d-none')
+      }
+      
+    })
 
  </script>
   
