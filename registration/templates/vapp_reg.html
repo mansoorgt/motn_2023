@@ -63,36 +63,36 @@
 
   <form id="vapp-form">
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-6 mt-2">
 <label>FIRST NAME</label>
 <input type="text" class="form-control" name="first-name" required>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 mt-2">
 <label>LAST NAME</label>
 <input type="text" class="form-control" name="last-name" required>
 </div>
-<div class="col-md-6">
+<div class="col-md-6 mt-2">
 <label>MOBILE</label>
-<input type="text" class="form-control" name="mobile" required>
+<input type="text" class="form-control" name="mobile" placeholder="+971 XXXXXXXX" required>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 mt-2">
   <label>EMAIL</label>
   <input type="text" class="form-control" name="email" required>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6 mt-2">
     <label>VEHICLE PLATE NUMBER</label>
     <input type="text" class="form-control" name="vehicle-plate-number" required>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 mt-2">
       <label>COMPANY NAME</label>
       <input type="text" class="form-control" name="company" required>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6 mt-2">
         <label>EVENT LOCATION</label>
         <br>
         {% for loc in locations %}
@@ -105,7 +105,7 @@
 
         </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6 mt-2">
         <label>CATEGORY</label>
         <select class="form-select" name="card-type" required>
           <option value="" disabled selected>Select Card Type</option>
@@ -117,7 +117,7 @@
 
   
 
-        <div class="col-md-6">
+        <div class="col-md-6 mt-2">
 <label>VEHICLE TYPE</label>
 <select class="form-select" name="vehicle-type" required>
   <option value="" disabled selected>Select Vehicle Type</option>
@@ -128,27 +128,27 @@
         </div>
 
 
-        <div class="col-md-6">
+        <div class="col-md-6 mt-2">
 <label>VEHICLE PASS/MULKIYA</label>
 <input type="file" class="form-control" name="vehicle-pass" required>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 mt-2">
           <label>UPLOAD EMIRATES ID FRONT</label>
           <input type="file" class="form-control" name="id-proof-front-file">
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-6 mt-2">
                     <label>UPLOAD EMIRATES ID BACK</label>
                     <input type="file" class="form-control" name="id-proof-back-file">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-2">
                               <label>EMIRATES ID EXPIRY DATE</label>
                               <input type="date" class="form-control expiry-check extra-validation" name="id-expiry-date" required>
                               <span class="id-expiry-date-is-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">  Expired </span>
                                       </div>
 
-                                      <div class="col-md-6">
+                                      <div class="col-md-6 mt-2">
                                         <label>DELIVERY DATE</label>
                                         <input type="date" class="form-control" name="delivery-date" required>
                                                 </div>

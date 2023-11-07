@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.css">
+<link href="https://fonts.cdnfonts.com/css/mont" rel="stylesheet">
 <style>
 
 @font-face {
@@ -65,26 +66,26 @@
 <div class="build_form p-2">
   <form id="build-form" >
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-6 mt-2">
 <label>FIRST NAME</label>
 <input type="text" class="form-control" name="first-name" required>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 mt-2">
 <label>LAST NAME</label>
 <input type="text" class="form-control" name="last-name" required>
 </div>
-<div class="col-md-6">
+<div class="col-md-6 mt-2">
 <label>MOBILE</label>
-<input type="text" class="form-control" name="mobile" required>
+<input type="text" class="form-control" name="mobile" placeholder="+971 XXXXXXXX" required>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 mt-2">
   <label>EMAIL</label>
   <input type="email" class="form-control" name="email" required>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6 mt-2">
     <label>DESIGNATION</label>
     <select class="form-select" name="card-type" required>
       <option value="" disabled selected>Select Card Type</option>
@@ -94,20 +95,20 @@
     </select>
     </div>
     
-    <div class="col-md-6">
+    <div class="col-md-6 mt-2">
       <label >DATE OF BIRTH</label>
       <input type="date" class="form-control" name="date-of-birth" required>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 mt-2">
       <label>COMPANY NAME</label>
       <input type="text" name="company" class="form-control" required>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 mt-2">
         <label>EVENT LOCATION</label>
         <br>
           {% for loc in locations %}
-          <label style="margin-left: 5px;" for="">{{loc.name}}</label>
+          <label class="evnt_text" style="margin-left: 5px;" for="">{{loc.name}}</label>
           <input style="margin-left: 5px;" type="checkbox" value="{{loc.id}}" class="locations extra-validation" >
         
           {% endfor %}
@@ -123,7 +124,7 @@
           {% endfor %}
         </select> -->
         </div>
-      <div class="col-md-6">
+      <div class="col-md-6 mt-2">
         <label>NEED EVENT PASS?</label>
         <br>
         <label class="radio-inline">
@@ -135,14 +136,14 @@
 
       </div>
 <div class="row additional-row"  style="display:none; transition: opacity 0.5s;">
-      <div class="col-md-6">
+      <div class="col-md-6 mt-2">
         <label>NATIONALITY</label>
         <input type="text" name="nationality" class="form-control set-additional-required">
         </div>
 
 
 
-        <div class="col-md-6">
+        <div class="col-md-6 mt-2">
 <label>ID</label>
 <select name="id-proof-type" class="form-select id-proof-select set-additional-required" >
   <option  value="Emirates-Id" selected>Emirates ID</option>
@@ -152,12 +153,12 @@
         </div>
 
 
-        <div class="col-md-6">
+        <div class="col-md-6 mt-2">
           <label class=" id-proof-number-lable set-additional-required">EMIRATES ID NUMBER</label>
 <input type="text" class="form-control set-additional-required" onkeyup="change_pattern_id_card_number_on_change(this)"  name="id-proof-number" >
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 mt-2">
           <label class=" id-proof-file-front-lable">UPLOAD EMIRATES ID FRONT</label>
           <input type="file" class="form-control set-additional-required" accept="image/* , .pdf" name="id-proof-front-file" >
                   </div>
@@ -166,13 +167,13 @@
                     <label class=" id-proof-file-back-lable">UPLOAD EMIRATES ID BACK</label>
                     <input type="file" class="form-control emirates-id-back set-additional-required" accept="image/* , .pdf" name="id-proof-back-file" >
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-2">
                               <label class="id-proof-expire-date-lable">EMIRATES ID EXPIRY DATE</label>
                               <input type="date" class="form-control set-additional-required expiry-check extra-validation"  name="id-expiry-date" >
                               <span class="id-expiry-date-is-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">  Expired </span>        
                             </div>
 
-                                      <div class="col-md-6">
+                                      <div class="col-md-6 mt-2">
                                         <label>UPLOAD PHOTO</label>
                                         <input type="file" class="form-control set-additional-required" accept="image/*" id="photo-badge-upload" onchange="openImageCropPopup(this)" name="badge-photo-file" >
                                                 </div>
