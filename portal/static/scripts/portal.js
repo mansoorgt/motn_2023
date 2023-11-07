@@ -621,7 +621,7 @@ SetupLocationLinks()
 
 function SetupLocationLinks() {
     temp_loc=localStorage.getItem('temp-loc')
-    const locationId=temp_loc ? temp_loc : 1
+    const locationId=temp_loc ? temp_loc : 2
   
     $('.loc-page-link').each(function(){
        let _href = $(this).attr('href')
