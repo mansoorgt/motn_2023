@@ -350,7 +350,33 @@ window.addEventListener('load', () => {
 <script>
 
 
-$('.exportExcel').click(function () {
+$('.exportExcel').click(async function () {
+
+  const location_name=$('.report-location-name').text()
+  const customData=await getExcelData()
+  
+
+    //doownload
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.aoa_to_sheet(customData);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, "CustomData");
+
+    // Generate a data URL for the workbook
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const excelData = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    const excelUrl = URL.createObjectURL(excelData);
+
+    // Create a download link and trigger the download
+    const downloadLink = document.createElement('a');
+    downloadLink.href = excelUrl;
+    downloadLink.download = `${location_name}-REPORT-${new Date().toLocaleDateString()}.xlsx`;
+    downloadLink.click();
+
+})
+
+function getExcelData(){
 
   const location_name=$('.report-location-name').text()
   
@@ -376,7 +402,7 @@ $('.exportExcel').click(function () {
     customData.push(['','',table_name,'',''])
     customData.push(['CATEGORY NAME','ENTRIES','ACCEPTED','REJECTED','PRINTED'])
 
-    $('.cat-row').each(function(){
+    $(this).find('.cat-row').each(function(){
       let cat_name=$(this).find('.cat-name').text()
       let cat_entries=$(this).find('.cat-entries').text()
       let cat_accepted=$(this).find('.cat-accepted').text()
@@ -388,28 +414,13 @@ $('.exportExcel').click(function () {
     customData.push([[]])
 
   })
-  console.log(customData)
+    return customData
 
-    //doownload
-    const workbook = XLSX.utils.book_new();
-    const worksheet = XLSX.utils.aoa_to_sheet(customData);
 
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, "CustomData");
+  
 
-    // Generate a data URL for the workbook
-    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    const excelData = new Blob([excelBuffer], { type: 'application/octet-stream' });
-    const excelUrl = URL.createObjectURL(excelData);
 
-    // Create a download link and trigger the download
-    const downloadLink = document.createElement('a');
-    downloadLink.href = excelUrl;
-    downloadLink.download = `${location_name}-REPORT-${new Date().toLocaleDateString()}.xlsx`;
-    downloadLink.click();
-
-})
-
+}
 
   
 </script>
