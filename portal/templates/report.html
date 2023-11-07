@@ -88,12 +88,14 @@ body
       <h3 class="text-center">REPORT</h3>
 
       <div class="row">
+        
 <div class="col-md-12">
+  <button type="button" class="float-right mb-3 btn btn-primary exportExcel">EXPORT AS EXCEL</button>
   <table class="table table-bordered">
    
       <tr style="background-color: #1CAFA0;">
         <th class="text-center"  rowspan="2">Print Report</th>
-        <th class="text-center" scope="col" colspan="4">{{location.name}}</th>
+        <th class="text-center report-location-name" scope="col" colspan="4">{{location.name}}</th>
 
       </tr>
 
@@ -104,26 +106,26 @@ body
         <td>REJECT</td>
         <td>PRINTED</td>
       </tr>
-      <tr>
-        <td>EVENT</td>
-        <td>{{report_data.event.total_entries}}</td>
-        <td>{{report_data.event.total_accepted}}</td>
-        <td>{{report_data.event.total_rejected}}</td>
-        <td>{{report_data.event.total_printed_count}}</td>
+      <tr class="reg-table">
+        <td class="reg-table-name">EVENT</td>
+        <td class="entries">{{report_data.event.total_entries}}</td>
+        <td class="accepted">{{report_data.event.total_accepted}}</td>
+        <td class="rejected">{{report_data.event.total_rejected}}</td>
+        <td class="printed">{{report_data.event.total_printed_count}}</td>
       </tr>
-      <tr>
-        <td>BUILD</td>
-        <td>{{report_data.build.total_entries}}</td>
-        <td>{{report_data.build.total_accepted}}</td>
-        <td>{{report_data.build.total_rejected}}</td>
-        <td>{{report_data.build.total_printed_count}}</td>
+      <tr  class="reg-table">
+        <td class="reg-table-name">BUILD</td>
+        <td class="entries">{{report_data.build.total_entries}}</td>
+        <td class="accepted">{{report_data.build.total_accepted}}</td>
+        <td class="rejected">{{report_data.build.total_rejected}}</td>
+        <td class="printed">{{report_data.build.total_printed_count}}</td>
       </tr>
-      <tr>
-        <td>VAPP</td>
-        <td>{{report_data.vapp.total_entries}}</td>
-        <td>{{report_data.vapp.total_accepted}}</td>
-        <td>{{report_data.vapp.total_rejected}}</td>
-        <td>{{report_data.vapp.total_printed_count}}</td>
+      <tr  class="reg-table">
+        <td class="reg-table-name">VAPP</td>
+        <td class="entries">{{report_data.vapp.total_entries}}</td>
+        <td class="accepted">{{report_data.vapp.total_accepted}}</td>
+        <td class="rejected">{{report_data.vapp.total_rejected}}</td>
+        <td class="printed">{{report_data.vapp.total_printed_count}}</td>
       </tr>
 
   </table>
@@ -147,7 +149,7 @@ body
               <table class="table table-bordered">
               
                   <tr style="background-color: #1CAFA0;">
-                    <th class="text-center"  rowspan="2">EVENT</th>
+                    <th class="text-center cat-table-name"  rowspan="2">EVENT</th>
                     <th class="text-center" scope="col" colspan="4">{{location.name}}</th>
             
                   </tr>
@@ -160,12 +162,12 @@ body
                     <td>PRINTED</td>
                   </tr>
                   {% for cat in  report_data.event.categorys %}
-                  <tr>
-                    <td>{{cat.name}}</td>
-                    <td>{{cat.total_entries}}</td>
-                    <td>{{cat.total_accepted}}</td>
-                    <td>{{cat.total_rejected}}</td>
-                    <td>{{cat.total_printed_count}}</td>
+                  <tr class="cat-row">
+                    <td class="cat-name">{{cat.name}}</td>
+                    <td class="cat-entries">{{cat.total_entries}}</td>
+                    <td class="cat-accepted">{{cat.total_accepted}}</td>
+                    <td class="cat-rejected">{{cat.total_rejected}}</td>
+                    <td class="cat-printed">{{cat.total_printed_count}}</td>
                   </tr>
                   {% endfor %}
             
@@ -179,7 +181,7 @@ body
               <table class="table table-bordered">
               
                   <tr style="background-color: #1CAFA0;">
-                    <th class="text-center"  rowspan="2">BUILD</th>
+                    <th class="text-center cat-table-name"  rowspan="2">BUILD</th>
                     <th class="text-center" scope="col" colspan="4">{{location.name}}</th>
             
                   </tr>
@@ -192,12 +194,12 @@ body
                     <td>PRINTED</td>
                   </tr>
                   {% for cat in  report_data.build.categorys %}
-                  <tr>
-                    <td>{{cat.name}}</td>
-                    <td>{{cat.total_entries}}</td>
-                    <td>{{cat.total_accepted}}</td>
-                    <td>{{cat.total_rejected}}</td>
-                    <td>{{cat.total_printed_count}}</td>
+                  <tr class="cat-row">
+                    <td class="cat-name">{{cat.name}}</td>
+                    <td class="cat-entries">{{cat.total_entries}}</td>
+                    <td class="cat-accepted">{{cat.total_accepted}}</td>
+                    <td class="cat-rejeceted">{{cat.total_rejected}}</td>
+                    <td class="cat-printed">{{cat.total_printed_count}}</td>
                   </tr>
                   {% endfor %}
             
@@ -212,7 +214,7 @@ body
                 <table class="table table-bordered">
                 
                     <tr style="background-color: #1CAFA0;">
-                      <th class="text-center"  rowspan="2">VAPP</th>
+                      <th class="text-center cat-table-name"  rowspan="2">VAPP</th>
                       <th class="text-center" scope="col" colspan="4">{{location.name}}</th>
               
                     </tr>
@@ -225,12 +227,12 @@ body
                       <td>PRINTED</td>
                     </tr>
                     {% for cat in  report_data.vapp.categorys %}
-                    <tr>
-                      <td>{{cat.name}}</td>
-                      <td>{{cat.total_entries}}</td>
-                      <td>{{cat.total_accepted}}</td>
-                      <td>{{cat.total_rejected}}</td>
-                      <td>{{cat.total_printed_count}}</td>
+                    <tr class="cat-row">
+                      <td class="cat-name">{{cat.name}}</td>
+                      <td class="cat-entries">{{cat.total_entries}}</td>
+                      <td class="cat-accepted">{{cat.total_accepted}}</td>
+                      <td class="cat-rejeceted">{{cat.total_rejected}}</td>
+                      <td class="cat-printed">{{cat.total_printed_count}}</td>
                     </tr>
                     {% endfor %}
               
@@ -288,6 +290,7 @@ body
   <!-- End custom js for this page-->
 
   <script src="{% static 'scripts/location-mapping.js' %}?update=1"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
 
 <script>
   const api='8e87bcb2958b1d16235d0f3d430eda69'
@@ -341,6 +344,86 @@ window.addEventListener('load', () => {
 
 </script>
 
+  
+
+
+<script>
+
+
+$('.exportExcel').click(async function () {
+
+  const location_name=$('.report-location-name').text()
+  const customData=await getExcelData()
+  
+
+    //doownload
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.aoa_to_sheet(customData);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, "CustomData");
+
+    // Generate a data URL for the workbook
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const excelData = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    const excelUrl = URL.createObjectURL(excelData);
+
+    // Create a download link and trigger the download
+    const downloadLink = document.createElement('a');
+    downloadLink.href = excelUrl;
+    downloadLink.download = `${location_name}-REPORT-${new Date().toLocaleDateString()}.xlsx`;
+    downloadLink.click();
+
+})
+
+function getExcelData(){
+
+  const location_name=$('.report-location-name').text()
+  
+  const customData=([[location_name+'-REPORT-'+new Date().toLocaleDateString()]])
+  customData.push([[]])
+  customData.push(['TABLE','ENTRIES','ACCEPTED','REJECTED','PRINTED'])
+  $('.reg-table').each(function(){
+    
+    let table_name=$(this).find('.reg-table-name').text()
+    let entries=$(this).find('.entries').text()
+    let accepted=$(this).find('.accepted').text()
+    let rejected=$(this).find('.rejected').text()
+    let printed=$(this).find('.printed').text()
+
+    customData.push([table_name,entries,accepted,rejected,printed])
+  })
+  customData.push([[]])
+  customData.push([['CATEGORY WISE REPORT']])
+  customData.push([[]])
+  $('.category-row').each(function(){
+    let table_name=$(this).find('.cat-table-name').text()
+
+    customData.push(['','',table_name,'',''])
+    customData.push(['CATEGORY NAME','ENTRIES','ACCEPTED','REJECTED','PRINTED'])
+
+    $(this).find('.cat-row').each(function(){
+      let cat_name=$(this).find('.cat-name').text()
+      let cat_entries=$(this).find('.cat-entries').text()
+      let cat_accepted=$(this).find('.cat-accepted').text()
+      let cat_rejected=$(this).find('.cat-rejected').text()
+      let cat_printed=$(this).find('.cat-printed').text()
+      customData.push([cat_name,cat_entries,cat_accepted,cat_rejected,cat_printed])
+    })
+
+    customData.push([[]])
+
+  })
+    return customData
+
+
+  
+
+
+}
+
+  
+</script>
 </body>
 
 </html>

@@ -221,28 +221,28 @@ body
     <div class="card-body">
       <h3 class="mb-4 text-uppercase">{{data.loc.name}}</h3>
     <div class="row">
-      <div class="col-md-4 text-black">
+      <a class="col-md-4 text-black text-decoration-none" href="{% url 'registrations' %}?table-name=event&loc={{data.loc.id}}">
         <div class="all-box shadow">
         <h4>EVENT</h4>
         <p>{{data.event_count}}</p>
       </div>
 
 
-      </div>
+      </a>
 
-      <div class="col-md-4 text-black">
+      <a class="col-md-4 text-black text-decoration-none" href="{% url 'registrations' %}?table-name=build&loc={{data.loc.id}}">
         <div class="all-box shadow">
           <h4>BUILD</h4>
           <p>{{data.build_count}}</p>
           </div>
-       </div>
+       </a>
 
-        <div class="col-md-4 text-black">
+        <a class="col-md-4 text-black text-decoration-none" href="{% url 'registrations' %}?table-name=vapp&loc={{data.loc.id}}">
           <div class="all-box shadow">
             <h4>VAPP</h4>
             <p>{{data.vapp_count}}</p>
             </div>
-         </div>
+         </a>
       
     </div>
 
