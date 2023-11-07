@@ -91,7 +91,6 @@ def submit_event_registration(request):
 
     return JsonResponse(data)
 
-
 def submit_build_registration(request):
 
     first_name=request.POST.get('first-name')
@@ -135,6 +134,7 @@ def submit_build_registration(request):
         data['reason']=str(e)
         
     return JsonResponse(data)
+
 def submit_vapp_registration(request):
     first_name=request.POST.get('first-name')
     last_name=request.POST.get('last-name')
@@ -166,6 +166,7 @@ def submit_vapp_registration(request):
         data['reason']=str(e)
         
     return JsonResponse(data)
+
 def send_success_mail(request):
     id=request.POST.get('id')
     table=request.POST.get('table-name')
