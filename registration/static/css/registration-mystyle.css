@@ -170,6 +170,7 @@ color: white;
 {
   border: 1px solid  rgb(176, 190, 53);
   border-bottom: 3px solid rgba(176, 190, 53, 0.432);
+  font-family: 'Mont', sans-serif;
 }
 .build_form .form-control:focus
 {

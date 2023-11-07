@@ -74,7 +74,7 @@ color: white;
 
       
       margin: 10px;
-      margin-top: 100px;
+      
       font-weight: bold;
     }
 .build_pass
@@ -85,7 +85,7 @@ color: white;
   width: 100%;
   border: 2px solid #c6cb36;
   border-radius: 30px ;
-
+margin-top: 100px !important;
   color: black;
   text-align: center;
 
@@ -145,78 +145,93 @@ color: white;
 .card-head{
   background-color: white; 
   padding: 10px;
+  border-radius: 10px;
 }
 .buildcard-head
 {
   background-color: white; 
   padding: 10px;
+  border-radius: 10px;
 }
 .vappcard-head
 {
   background-color: white; 
   padding: 10px;
+  border-radius: 10px;
 }
 
 .event_form .form-control 
 {
   border: 1px solid rgba(53, 135, 190, 0.705);
   border-bottom: 3px solid rgba(53, 135, 190, 0.342);
+  font-family: 'Mont', sans-serif;
 }
 .event_form .form-select
 {
   border: 1px solid rgba(53, 135, 190, 0.705);
   border-bottom: 3px solid rgba(53, 135, 190, 0.342);
+  font-family: 'Mont', sans-serif;
 }
 .event_form .form-select:focus
 {
   box-shadow: none;
   border-bottom: 1px solid rgba(53, 135, 190, 0.705); 
+  font-family: 'Mont', sans-serif;
 }
 .vapp_form .form-control
 {
   border: 1px solid rgba(190, 53, 183, 0.788);
   border-bottom: 3px solid rgba(90, 32, 87, 0.678);
+  font-family: 'Mont', sans-serif;
 }
 .vapp_form .form-select
 {
   border: 1px solid rgba(190, 53, 183, 0.788);
   border-bottom: 3px solid rgba(90, 32, 87, 0.678);
+  font-family: 'Mont', sans-serif;
 }
 .vapp_form .form-select:focus
 {
   box-shadow: none;
   border-bottom: 1px solid rgba(190, 53, 183, 0.788); 
+  font-family: 'Mont', sans-serif;
 }
 .event_form .form-control:focus
 {
   box-shadow: none;
   border-bottom: 1px solid rgba(53, 135, 190, 0.705); 
+  font-family: 'Mont', sans-serif;
 }
 .vapp_form .form-control:focus
 {
   box-shadow: none;
   border-bottom: 1px solid rgba(190, 53, 183, 0.788); 
+  font-family: 'Mont', sans-serif;
 }
 
 .build_form .form-control
 {
   border: 1px solid  rgb(176, 190, 53);
   border-bottom: 3px solid rgba(176, 190, 53, 0.432);
+  font-family: 'Mont', sans-serif;
 }
 .build_form .form-select
 {
   border: 1px solid  rgb(176, 190, 53);
   border-bottom: 3px solid rgba(176, 190, 53, 0.432);
+  font-family: 'Mont', sans-serif;
 }
 .build_form .form-control:focus
 {
   box-shadow: none;
   border-bottom: 1px solid  rgb(176, 190, 53); 
+  font-family: 'Mont', sans-serif;
 }
 .build_form .form-select:focus
 {
   box-shadow: none;
   border-bottom: 1px solid  rgb(176, 190, 53); 
+  font-family: 'Mont', sans-serif;
 }
 
 
@@ -227,6 +242,7 @@ color: white;
   border-left: none;
   border-right: none;
   border-top: none;
+  border-radius: 5px;
   width: 100%;
   padding: 10px;
   margin-top: 20px;
@@ -253,12 +269,26 @@ color: white;
 border-left: none;
 border-right: none;
 border-top: none;
+border-radius: 5px;
   width: 100%;
   padding: 10px;
   margin-top: 20px;
   color: white;
 }
 
+
+.evnt_text
+{
+  font-family: 'Mont', sans-serif;
+}
+.form-check-input[type=radio]
+{
+  border: 1px solid black;
+}
+.radio-inline
+{
+  font-family: 'Mont', sans-serif;
+}
 /* motn 2023 style end */
 
 
