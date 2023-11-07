@@ -74,7 +74,7 @@ color: white;
 
       
       margin: 10px;
-      margin-top: 100px;
+      margin-top: 0px;
       font-weight: bold;
     }
 .build_pass
@@ -85,7 +85,7 @@ color: white;
   width: 100%;
   border: 2px solid #c6cb36;
   border-radius: 30px ;
-
+margin-top: 100px !important;
   color: black;
   text-align: center;
 

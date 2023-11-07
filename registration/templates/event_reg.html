@@ -90,7 +90,7 @@
     <label>EVENT LOCATION</label>
     <br>
     {% for loc in locations %}
-    <label class="evnt_text" for="">{{loc.name}}</label>
+    <label class="evnt_text" for="" style="margin-left: 8px;">{{loc.name}}</label>
     <input type="checkbox" value="{{loc.id}}"  class="locations extra-validation" >
   
     {% endfor %}
