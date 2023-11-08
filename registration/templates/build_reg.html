@@ -104,26 +104,7 @@
       <label>COMPANY NAME</label>
       <input type="text" name="company" class="form-control" required>
       </div>
-      <div class="col-md-6 mt-2">
-        <label>EVENT LOCATION</label>
-        <br>
-          {% for loc in locations %}
-          <label class="evnt_text" style="margin-left: 8px;" for="">{{loc.name}}</label>
-          <input  type="checkbox" value="{{loc.id}}" class="locations extra-validation" >
-        
-          {% endfor %}
-          <br>
-          <span class="locations-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">Select any one </span>
-
-        
-        <!-- <select class="form-control" name="location" required>
-          <option value="" disabled selected>Select Location</option>
-          {% for loc in locations %}
-          <option value="{{loc.id}}">{{loc.name}}</option>
-         
-          {% endfor %}
-        </select> -->
-        </div>
+      
       <div class="col-md-6 mt-2">
         <label>NEED EVENT PASS?</label>
         <br>
@@ -140,10 +121,23 @@
         <label>NATIONALITY</label>
         <input type="text" name="nationality" class="form-control set-additional-required">
         </div>
-
+        <div class="col-md-6 mt-2">
+          <label>EVENT LOCATION</label>
+          <br>
+            {% for loc in locations %}
+            <label class="evnt_text" style="margin-left: 8px;" for="">{{loc.name}}</label>
+            
+            <input  type="checkbox" value="{{loc.id}}"  class="locations extra-validation" >
+          
+  
+            {% endfor %}
+            <br>
+            <span class="locations-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">Select any one </span>
+  
+      </div>
         <div class="col-md-6 mt-2">
           <label>DESIGNATION</label>
-          <select class="form-select" id="card-type-select" name="event-card-type" required>
+          <select class="form-select set-additional-required" id="card-type-select" name="event-card-type">
             <option value="" disabled selected>Select Card Type</option>
             {% for type in event_cardtypes %}
            
@@ -174,7 +168,7 @@
 
         <div class="col-md-6 mt-2">
           <label class=" id-proof-file-front-lable">UPLOAD EMIRATES ID FRONT</label>
-          <input type="file" class="form-control set-additional-required" accept="image/* , .pdf" name="id-proof-front-file" >
+          <input type="file" class="form-control set-additional-required" accept="image/*" name="id-proof-front-file" >
           <div class="text-mute" style="font-size: 10px; color: rgba(0, 0, 0, 0.589);">
             <span class="ml-3">*ONLY JPEG FORMAT</span>
                                                 </div>     
@@ -183,7 +177,7 @@
 
                   <div class="col-md-6  mt-2 id-proof-file-back-div">
                     <label class=" id-proof-file-back-lable">UPLOAD EMIRATES ID BACK</label>
-                    <input type="file" class="form-control emirates-id-back set-additional-required" accept="image/* , .pdf" name="id-proof-back-file" >
+                    <input type="file" class="form-control emirates-id-back set-additional-required" accept="image/*" name="id-proof-back-file" >
                     <div class="text-mute" style="font-size: 10px; color: rgba(0, 0, 0, 0.589);">
                       <span class="ml-3">*ONLY JPEG FORMAT</span>
                                                           </div>     
@@ -291,7 +285,7 @@
         additionalRow.style.display = "flex";
 
         $('.set-additional-required').attr('required',true)
-
+     
       } else {
         additionalRow.style.display = "none";
         $('.set-additional-required').attr('required',false)
@@ -512,7 +506,7 @@ function change_pattern_id_card_number_on_change(inp) {
       
       event.preventDefault()
 
-      if (ExtravalidationPass() == false){
+      if (ExtravalidationPass() == false && $('#eventPassYes').is(':checked')){
         return false
       }
 
@@ -550,6 +544,7 @@ function change_pattern_id_card_number_on_change(inp) {
 
 
           }else{
+            console.log(response)
             alert(response.reason)
           }
 
