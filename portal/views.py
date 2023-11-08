@@ -605,7 +605,6 @@ def report(request):
     
     report_data['vapp']={'total_entries':vapp.count(),'total_accepted':vapp.filter(verification='Approved').count(),'total_rejected':vapp.filter(verification='Rejected').count(),'total_printed_count':vapp.filter(print_count__gt=0).count()}
     
-   
     event_categorys=[]
     for evc in EventCardType.objects.filter(active=True):
         event_categorys.append({'name':evc.name,'total_entries':event.filter(cardtype=evc).count(),'total_accepted':event.filter(cardtype=evc).filter(verification='Approved').count(),'total_rejected':event.filter(cardtype=evc).filter(verification='Rejected').count(),'total_printed_count':event.filter(cardtype=evc).filter(print_count__gt=0).count()})
