@@ -239,23 +239,47 @@ $('#vapp-form').submit(function (event){
         success: function (response) {
           
           if(response.success){
-            window.location.href="{% url 'success-page' %}?reg-form=vapp"
-            $(event.target)[0].reset()
+         
+
+            sendSuccessMail(response.id)
+
+                setTimeout(() => {
+                
+                  window.location.href="{% url 'success-page' %}?reg-form=vapp"
+                  $(event.target)[0].reset()
+                  $('.submit-btn-loading').addClass('d-none')
+
+                  $(':submit').attr('disabled',false)
+
+                }, 2000);
+
           }else{
             alert(response.reason)
           }
 
-          $('.submit-btn-loading').addClass('d-none')
-
-          $(':submit').attr('disabled',false)
           
         }
       });
     })
 
+    function sendSuccessMail(id){
+      $.ajax({
+        type: "POST",
+        url: "{% url 'send-success-mail' %}",
+        data: {id:id,'table-name':'vapp','csrfmiddlewaretoken':'{{csrf_token}}'},
+        dataType: "json",
+        success: function (response) {
+          
+        }
+      });
+    }
+
+
     $('.extra-validation').change(function () {
       ExtravalidationPass()
     })
+
+
      function ExtravalidationPass() {
 
       var fail_count=0

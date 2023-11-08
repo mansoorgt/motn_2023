@@ -113,9 +113,9 @@ def submit_build_registration(request):
     badge_photo=request.FILES.get('badge-photo-file')
     
     event_card_type_id=request.POST.get('event-card-type')
-    
+
     need_event_pass=request.POST.get('needEventPass')
-    
+
     data={'success':False}
     try:
         
@@ -124,16 +124,15 @@ def submit_build_registration(request):
         obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,location=Locations.objects.get(id=4),
                                                 dob=date_of_birth,cardtype=buildcardType)
         
-            
         if need_event_pass == 'Yes':
-                 
+        
             for location in json.loads(locations):
                 location_instance=Locations.objects.get(id=location)
                 
                 EventcardType=EventCardType.objects.get(id=event_card_type_id)
                 EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,location=location_instance,
                                                     nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=EventcardType)
-                
+        
         data['success']=True
         data['id']=obj.id
         
@@ -166,9 +165,10 @@ def submit_vapp_registration(request):
             cardtype=VappCardType.objects.get(id=cardtype_id)
             vehicletype=VehicleType.objects.get(id=vehicletype_id)
             location_instance=Locations.objects.get(id=location)
-            VappRegistrations.objects.create(first_name=first_name,last_name=last_name,company=company,email=email,vehicletype=vehicletype,mobile=mobile,cardtype=cardtype,id_proof_front=id_proof_front,id_proof_back=id_proof_back,vehicle_pass=vehicle_pass,vehicle_number=vehicle_number,location=location_instance,
+            obj=VappRegistrations.objects.create(first_name=first_name,last_name=last_name,company=company,email=email,vehicletype=vehicletype,mobile=mobile,cardtype=cardtype,id_proof_front=id_proof_front,id_proof_back=id_proof_back,vehicle_pass=vehicle_pass,vehicle_number=vehicle_number,location=location_instance,
                                             delivery_date=delivery_date)
             data['success']=True
+            data['id']=obj.id
     except Exception as e:
         data['success']=False
         data['reason']=str(e)
