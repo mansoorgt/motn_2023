@@ -487,7 +487,7 @@ def print_page(request):
     elif table == 'event':
         registration=EventRegistrations.objects.get(id=id)
         
-        return render(request,f"print/{registration.location.name}/event_print/{registration.cardtype.name.replace('/',' OR ')}.html",{'registration':registration})
+        return render(request,f"print/{registration.location.name}/event_print/{registration.cardtype.name.replace('/','OR')}.html",{'registration':registration})
     elif table == 'vapp':
         registration=VappRegistrations.objects.get(id=id)
         
