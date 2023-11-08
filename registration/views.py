@@ -136,6 +136,7 @@ def submit_build_registration(request):
                 
         data['success']=True
         data['id']=obj.id
+        
     except Exception as e:
         data['success']=False
         data['reason']=str(e)
