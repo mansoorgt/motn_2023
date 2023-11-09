@@ -221,7 +221,7 @@ body
     <div class="card-body">
       <h3 class="mb-4 text-uppercase">{{data.loc.name}}</h3>
     <div class="row">
-      <a class="col-md-4 text-black text-decoration-none" href="{% url 'registrations' %}?table-name=event&loc={{data.loc.id}}">
+      <a class="col-md-4 text-black dashboard-table-page-redirection-link text-decoration-none" page-loc-id="{{data.loc.id}}" page-link="{% url 'registrations' %}?table-name=event&loc={{data.loc.id}}">
         <div class="all-box shadow">
         <h4>EVENT</h4>
         <p>{{data.event_count}}</p>
@@ -230,14 +230,14 @@ body
 
       </a>
 
-      <a class="col-md-4 text-black text-decoration-none" href="{% url 'registrations' %}?table-name=build&loc={{data.loc.id}}">
+      <a class="col-md-4 text-black text-decoration-none dashboard-table-page-redirection-link" page-loc-id="{{data.loc.id}}" page-link="{% url 'registrations' %}?table-name=build&loc={{data.loc.id}}">
         <div class="all-box shadow">
           <h4>BUILD</h4>
           <p>{{data.build_count}}</p>
           </div>
        </a>
 
-        <a class="col-md-4 text-black text-decoration-none" href="{% url 'registrations' %}?table-name=vapp&loc={{data.loc.id}}">
+        <a class="col-md-4 text-black text-decoration-none dashboard-table-page-redirection-link" page-loc-id="{{data.loc.id}}" page-link="{% url 'registrations' %}?table-name=vapp&loc={{data.loc.id}}">
           <div class="all-box shadow">
             <h4>VAPP</h4>
             <p>{{data.vapp_count}}</p>
@@ -397,15 +397,15 @@ var hrs = myDate.getHours();
 var greet;
 var massage;
 if (hrs < 12){
-  greet = 'Good Morning'
+  greet = 'Good Morning ,'
     massage='Have a great day';
 } 
 else if (hrs >= 12 && hrs <= 15){
-  greet = 'Good Afternoon';
+  greet = 'Good Afternoon ,';
   massage='Its time for lunch'
 }
 else if (hrs >= 15 && hrs <= 24){
-  greet = 'Good Evening';
+  greet = 'Good Evening ,';
   massage='Be Passionate What You Do'
 }
   
@@ -471,7 +471,9 @@ function SetupLocationLinks() {
       
     })
 
+    console.log(locationId,'location-iod')
     current_location_name=$(`[loc-id=${locationId}]`).text()
+    console.log(current_location_name,$(`[loc-id=${locationId}]`))
     $('.current-location-name').text(current_location_name)
 
 }
@@ -495,6 +497,12 @@ $('.select-location-option').click(function () {
 
 })
  
+$('.dashboard-table-page-redirection-link').click(function(){
+  let select_loc_id=$(this).attr('page-loc-id')
+  localStorage.setItem('temp-loc',select_loc_id)
+  window.location.href=$(this).attr('page-link')
+})
+
 
 </script>
 
