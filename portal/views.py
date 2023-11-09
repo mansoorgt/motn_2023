@@ -58,7 +58,7 @@ def dashboard(request):
         build_count=BuildRegistrations.objects.filter(active=True,location=loc).count()
         vapp_count=VappRegistrations.objects.filter(active=True,location=loc).count()
         total_count=sum([event_count,build_count,vapp_count])
-        print(total_count)
+
         dashboard_data.append({'loc':loc,'event_count':event_count,'build_count':build_count,'vapp_count':vapp_count,'total_loc_count':total_count})
     
     data={'username':request.user.username,'locations':locations,'dashboard_data':dashboard_data}
@@ -133,12 +133,12 @@ def get_registration_details(request):
         if getTable(request) == EventRegistrations:
 
             obj=EventRegistrations.objects.get(id=edit_id)
-            cardtypes=EventCardType.objects.filter(active=True)
+            cardtypes=EventCardType.objects.filter(active=True).order_by('name')
             
             modal_html=render_to_string('includes/edit-models/event-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes,'locations':locations})
         elif getTable(request) == BuildRegistrations:
             obj=BuildRegistrations.objects.get(id=edit_id)
-            cardtypes=BuildCardType.objects.filter(active=True)
+            cardtypes=BuildCardType.objects.filter(active=True).order_by('name')
             
             modal_html=render_to_string('includes/edit-models/build-edit-modal-content.html',{"r":obj,'cardtypes':cardtypes,'locations':locations})
         elif getTable(request) == VappRegistrations:
