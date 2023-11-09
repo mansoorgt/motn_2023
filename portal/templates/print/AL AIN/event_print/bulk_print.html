@@ -98,16 +98,15 @@ margin: 0px;
 
 {{reg.cardtype.id}}
 <!-- EVENT STAFF START-->
-
-{% if registration.cardtype.id == 4 %}
+{% if registration.cardtype.id == 1 %}
 
 <div style="width: 38.1%;" id="section-to-print">
 
 
 
-  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/alain/al_staff.png' %}">
+  <img style="width:100%; height: 560px;"  src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 23.png' %}">
   
-  <div style="position: absolute; top: 63%; left: 2%; width: 95%;">
+  <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
     <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
     <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
    
@@ -117,7 +116,6 @@ margin: 0px;
    
   </div>
 <div class="pagebreak"></div>
-
   {% endif %}
   
   
@@ -129,44 +127,37 @@ margin: 0px;
 
 
 
-<!-- Media Start -->
+<!-- Contractor Start -->
 
-{% if registration.cardtype.id == 5 %}
+{% if registration.cardtype.id == 2 %}
 <div style="width: 38.1%;" id="section-to-print">
 
-
-
-    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/alain/al_media.png' %}">
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/al_con.png' %}">
     
-    <div style="position: absolute; top: 63%; left: 2%; width: 95%;">
+    <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
       <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
       <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
     
   </div>
     
-     
-     
+   
     </div>
     <div class="pagebreak"></div>
   {% endif %}
   
-  
+<!-- Contractor end -->
 
 
 
-<!-- Media end -->
-
-
-
-<!-- Guest start -->
-{% if registration.cardtype.id == 6 %}
+<!-- Temporary start -->
+{% if registration.cardtype.id == 3 %}
 <div style="width: 38.1%;" id="section-to-print">
 
 
 
-    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/alain/al_guest.png' %}">
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/abudhabi/TEMPORARY.jpg' %}">
     
-    <div style="position: absolute; top: 63%; left: 2%; width: 95%;">
+    <div style="position: absolute; top: 64%; left: 2%; width: 95%;">
       <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
       <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
       
@@ -178,12 +169,602 @@ margin: 0px;
     <div class="pagebreak"></div>
   {% endif %}
   
+
+<!-- Temporary end -->
+
+
+<!-- Media start -->
+{% if registration.cardtype.id == 5 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/alain/al_media.png' %}">
+    
+    <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+      <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+      <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+      
+  </div>
+    
+     
+     
+    </div>
+    <div class="pagebreak"></div>
+  {% endif %}
   
 
+<!-- Media end -->
+
+
+<!-- DCT AAA start -->
+{% if registration.cardtype.id == 7 %}
+<div style="width: 38.1%;" id="section-to-print">
 
 
 
-<!-- Guest end -->
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1.png' %}">
+    
+    <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+      <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+      <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+      
+  </div>
+    
+     
+     
+    </div>
+    <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!-- DCT AAA end -->
+
+<!-- PROTOCOL start -->
+{% if registration.cardtype.id == 8 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/al_pro.png' %}">
+    
+
+     
+     
+    </div>
+    <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!-- PROTOCOL end -->
+
+<!-- POLICE start -->
+{% if registration.cardtype.id == 9 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/abudhabi/Artboard 1 copy 3.png' %}">
+    
+
+     
+     
+    </div>
+    <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!-- POLICE end -->
+
+
+<!-- volunteers start -->
+{% if registration.cardtype.id == 10 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 20.png' %}">
+    
+
+     
+     
+    </div>
+    <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!-- volunteers end -->
+
+<!-- ORGANIZER AAA start -->
+{% if registration.cardtype.id == 11 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/al_orgaaa.png' %}">
+  
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!-- ORGANIZER AAA end -->
+
+
+<!-- ORGANIZER start -->
+{% if registration.cardtype.id == 12 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/al_org.png' %}">
+  
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!-- ORGANIZER end -->
+
+
+<!-- ARTISTS start -->
+{% if registration.cardtype.id == 13 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/al_art.png' %}">
+  
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--ARTISTS end -->
+
+
+<!-- VENDOR start -->
+{% if registration.cardtype.id == 16 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/al_vendor.png' %}">
+  
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--VENDOR end -->
+
+
+
+<!-- housekeeping start -->
+{% if registration.cardtype.id == 17 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/al_keep.png' %}">
+  
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--housekeeping end -->
+
+
+
+
+<!-- f&b vendor start -->
+{% if registration.cardtype.id == 18 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 16.png' %}">
+  
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--f&b vendor end -->
+
+
+
+<!-- production start -->
+{% if registration.cardtype.id == 19 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 18.png' %}">
+  
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--production end -->
+
+
+<!-- security start -->
+{% if registration.cardtype.id == 20 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 19.png' %}">
+  
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--security end -->
+
+
+
+<!-- visitor start -->
+{% if registration.cardtype.id == 22 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 27.png' %}">
+  
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--visitor end -->
+
+
+
+<!-- dct start -->
+{% if registration.cardtype.id == 33 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy.png' %}">
+  
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--dct end -->
+
+
+
+<!-- live arena stage artist start -->
+{% if registration.cardtype.id == 34 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 25.png' %}">
+  
+  <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--live arena stage artist end -->
+
+
+
+
+<!-- sponsors or partners start -->
+{% if registration.cardtype.id == 35 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/al_spo.png' %}">
+  
+  <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--sponsors or partners end -->
+
+
+<!-- housekeeping live arena start -->
+{% if registration.cardtype.id == 37 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/al_keepla.png' %}">
+  
+  <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--housekeeping live arena end -->
+
+
+<!-- VOLUNTEERS LIVE ARENA start -->
+{% if registration.cardtype.id == 42 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 21.png' %}">
+  
+  <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--VOLUNTEERS LIVE ARENA end -->
+
+
+
+
+<!-- event staff live arena start -->
+ {% if registration.cardtype.id == 43 %}
+ <div style="width: 38.1%;" id="section-to-print">
+ 
+ 
+ 
+   <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 24.png' %}">
+   
+   <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+     <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+     <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+     
+ </div>
+   
+    
+    
+   </div>
+   <div class="pagebreak"></div>
+   {% endif %}
+   
+ 
+ <!--event staff live arena end -->
+
+
+
+ 
+<!-- EVENT STAFF LIVE ARENA STAGE start -->
+{% if registration.cardtype.id == 44 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 25.png' %}">
+  
+  <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--EVENT STAFF LIVE ARENA STAGE end -->
+
+
+<!-- ARTIST LIVE ARENA STAGE start -->
+{% if registration.cardtype.id == 50 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/al_artlas.png' %}">
+  
+  <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--ARTIST LIVE ARENA STAGE end -->
+
+
+<!-- F&B Vendor start -->
+{% if registration.cardtype.id == 53 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 17.png' %}">
+  
+  <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--F&B Vendor end -->
+
+
+<!--volunteers police  start -->
+{% if registration.cardtype.id == 54 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 22.png' %}">
+  
+  <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--volunteers police end -->
+
+<!--EVENT STAFF SPACETOON  start -->
+{% if registration.cardtype.id == 51 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 26.png' %}">
+  
+  <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+  
+
+<!--EVENT STAFF SPACETOON end -->
+
+
 
 
   {% endfor %}
