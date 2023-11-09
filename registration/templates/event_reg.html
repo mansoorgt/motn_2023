@@ -121,7 +121,7 @@
 
       <div class="col-md-6 mt-2">
         <label>NATIONALITY</label>
-        <input type="text" class="form-control" name="nationdality" required>
+        <input type="text" class="form-control" name="nationality" required>
         </div>
 
        
@@ -299,7 +299,7 @@
 
             setTimeout(() => {
               window.location.href="{% url 'success-page' %}?reg-form=event"
-              $(event.target)[0].reset()
+              // $(event.target)[0].reset()
               $('.form-spinner').addClass('d-none')
 
               $(':submit').attr('disabled',false)
