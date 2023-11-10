@@ -80,7 +80,7 @@
 <div class="col-md-6">
     <label> Kindly follow the same template</label>
     <br>
-   <button class="btn btn-primary">Download Template</button>
+<a href="{% static 'excle/build-abu-dhabi-bulk.xlsx' %}">   <button class="btn btn-primary">Download Template</button></a>
     
     </div>
 <hr/>
@@ -119,7 +119,7 @@ Table is empty
 <div class="row" >
 <div class="" >
 <div class="col-md-12">
-<button class="btn btn-success bulk-upload-submit-btn">SUBMIT</button>
+<button class="btn btn-success bulk-upload-submit-btn">SUBMIT <div class="spinner-border spinner-border-sm  form-spinner d-none" role="status"></div></button>
 </div>
 </div>
 </div>
@@ -219,7 +219,7 @@ Table is empty
         des=element[6] != undefined ? element[6] : ''
         
         tr=`
-          <tr style="background-color:#c2f5c1;" id="${row_id}">
+          <tr id="${row_id}">
             <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;"><div style="width:100px;">${first_name}</div></td>
             <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${last_name}</td>
             <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;"> <div style="width:100px;">${email} </div></td>
@@ -235,6 +235,15 @@ Table is empty
       
 
       $('.bulk-upload-submit-btn').click(async function(){
+        
+
+        if (final_data.length == 0 ){
+          alert('Uploaded excel is empty')
+          return false
+        }
+        $(this).attr('disabled',true)
+        $('.form-spinner').removeClass('d-none')
+
 
         $.ajax({
           type: "POST",
@@ -242,17 +251,23 @@ Table is empty
           data: {'final_data':JSON.stringify(final_data),'csrfmiddlewaretoken':'{{csrf_token}}'},
           dataType: "json",
           success: function (response) {
-            console.log(response)
+            $('.bulk-upload-submit-btn').attr('disabled',false)
+            $('.form-spinner').addClass('d-none')
             if (response.success){
-              
+              window.location.href="{% url 'success-page' %}?reg-form=build"
               
             }else{
+
               
+
                 response.error_rows_ids.forEach(row_id =>{
                   $('#'+row_id).addClass('error-row-red')
                 })
 
-            }
+
+                alert(`${response.error_rows_ids.length } Row missing or not valid data. please edit and re-upload the excel`)
+                
+              }
 
           }
         });          

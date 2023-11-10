@@ -210,9 +210,12 @@
   <button type="reset" class="rst_button">RESET</button>
   </div>  
   <div class="col-md-2">
-                                                 
-    <button type="reset" class="blk_button"><img class="img-fluid" src="{% static 'images/upload.png' %}"></button>
-    </div>  
+                                            
+    <a href="{% url 'build_bulk_upload-page' %}">
+    <button type="button" class="blk_button"> <img class="img-fluid" src="{% static 'images/upload.png' %}"></button>
+    </a>  
+    
+  </div>  
                                                 
 </div>
 
