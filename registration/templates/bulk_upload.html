@@ -54,169 +54,64 @@
     <div class="row justify-content-center">
 
 
-      <div class="col-md-8">
+      <div class="col-md-10">
   
 <div class="card mt-5 mb-5" style="border: 1px solid rgb(53, 135, 190);">
 
 <div class="buildcard-head">
 <h3 class="text-center text-black" style="">
-  REGISTER FOR BUILD PASS
+ BUILD PASS BULK UPLOAD
 </h3>
 </div>
+<hr/>
 <div class="build_form p-2">
-  <form id="build-form" >
 <div class="row">
-<div class="col-md-6 mt-2">
-<label>FIRST NAME</label>
-<input type="text" class="form-control" name="first-name" required>
+
+<div class="col-md-6 mb-5">
+<label>Upload Excel</label>
+<input class="form-control" type="file">
+
 </div>
 
-<div class="col-md-6 mt-2">
-<label>LAST NAME</label>
-<input type="text" class="form-control" name="last-name" required>
-</div>
-<div class="col-md-6 mt-2">
-<label>MOBILE</label>
-<input type="text" class="form-control" name="mobile" placeholder="+971 XXXXXXXX" required>
-</div>
-
-<div class="col-md-6 mt-2">
-  <label>EMAIL</label>
-  <input type="email" class="form-control" name="email" required>
-  </div>
-
-  <div class="col-md-6 mt-2">
-    <label>DESIGNATION</label>
-    <select class="form-select" name="card-type" required>
-      <option value="" disabled selected>Select Card Type</option>
-      {% for type in cardtypes %}
-      <option value="{{type.id}}">{{type.name}}</option>
-      {% endfor %}
-    </select>
-    </div>
+<div class="col-md-6">
+    <label> Kindly follow the same template</label>
+    <br>
+   <button class="btn btn-primary">Download Template</button>
     
-    <div class="col-md-6 mt-2">
-      <label >DATE OF BIRTH</label>
-      <input type="date" class="form-control" name="date-of-birth" required>
+    </div>
+<hr/>
+    <div class="col-md-12">
+
+<table class="table table-bordered">
+    <thead>
+        <th>FIRST NAME</th>
+        <th>LAST NAME</th>
+        <th>MOBILE</th>
+        <th>EMAIL</th>
+        <th>DESIGNATION</th>
+        <th>DATE OF BIRTH</th>
+        <th>COMPANY NAME</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="7">
+<div style="padding:50px;">
+        <h3 class="text-center text-muted">
+Table is empty
+
+        </h3>
+    </div>
+</td>
+</tr>
+    </tbody>
+
+</table>
+
     </div>
 
-    <div class="col-md-6 mt-2">
-      <label>COMPANY NAME</label>
-      <input type="text" name="company" class="form-control" required>
-      </div>
-      
-      <div class="col-md-3 mt-2">
-        <label>NEED EVENT PASS?</label>
-        <br>
-        <label class="radio-inline">
-           <input class="form-check-input" type="radio" name="needEventPass" id="eventPassYes" value="Yes" onchange="toggleAdditionalRow()" required> YES
-        </label>
-        <label class="radio-inline">
-          <input class="form-check-input" type="radio" name="needEventPass" id="eventPassNo" value="No" onchange="toggleAdditionalRow()" checked> NO
-        </label>
-
-      </div>
-
-<div class="row additional-row"  style="display:none; transition: opacity 0.5s;">
-      <div class="col-md-6 mt-2">
-        <label>NATIONALITY</label>
-        <input type="text" name="nationality" class="form-control set-additional-required">
-        </div>
-        <div class="col-md-6 mt-2">
-          <label>EVENT LOCATION</label>
-          <br>
-            {% for loc in locations %}
-            <label class="evnt_text" style="margin-left: 8px;" for="">{{loc.name}}</label>
-            
-            <input  type="checkbox" value="{{loc.id}}"  class="locations extra-validation" >
-          
-  
-            {% endfor %}
-            <br>
-            <span class="locations-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">Select any one </span>
-  
-      </div>
-        <div class="col-md-6 mt-2">
-          <label>DESIGNATION</label>
-          <select class="form-select set-additional-required" id="card-type-select" name="event-card-type">
-            <option value="" disabled selected>Select Card Type</option>
-            {% for type in event_cardtypes %}
-           
-      
-            <option value="{{type.id}}" class="cardtype-options d-none">{{type.name}}</option>
-        
-            {% endfor %}
-          </select>
-          
-          <span class="cardtype-options-no-location d-none ml-2" style="color: rgb(255, 0, 0);">Please select any one location</span>
-          </div>
-
-
-        <div class="col-md-6 mt-2">
-<label>ID</label>
-<select name="id-proof-type" class="form-select id-proof-select set-additional-required" >
-  <option  value="Emirates-Id" selected>Emirates ID</option>
-  <option  value="Passport-Id">Passport ID</option>
-
-</select>
-        </div>
-
-
-        <div class="col-md-6 mt-2">
-          <label class=" id-proof-number-lable set-additional-required">EMIRATES ID NUMBER</label>
-<input type="text" class="form-control set-additional-required" onkeyup="change_pattern_id_card_number_on_change(this)"  name="id-proof-number" >
-        </div>
-
-        <div class="col-md-6 mt-2">
-          <label class=" id-proof-file-front-lable">UPLOAD EMIRATES ID FRONT</label>
-          <input type="file" class="form-control set-additional-required" accept="image/*" name="id-proof-front-file" >
-          <div class="text-mute" style="font-size: 10px; color: rgba(0, 0, 0, 0.589);">
-            <span class="ml-3">*ONLY JPEG FORMAT</span>
-                                                </div>     
-        
-        </div>
-
-                  <div class="col-md-6  mt-2 id-proof-file-back-div">
-                    <label class=" id-proof-file-back-lable">UPLOAD EMIRATES ID BACK</label>
-                    <input type="file" class="form-control emirates-id-back set-additional-required" accept="image/*" name="id-proof-back-file" >
-                    <div class="text-mute" style="font-size: 10px; color: rgba(0, 0, 0, 0.589);">
-                      <span class="ml-3">*ONLY JPEG FORMAT</span>
-                                                          </div>     
-                  </div>
-                            <div class="col-md-6 mt-2">
-                              <label class="id-proof-expire-date-lable">EMIRATES ID EXPIRY DATE</label>
-                              <input type="date" class="form-control set-additional-required expiry-check extra-validation"  name="id-expiry-date" >
-                              <span class="id-expiry-date-is-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">  Expired </span>        
-                            </div>
-
-                                      <div class="col-md-6 mt-2">
-                                        <label>UPLOAD PHOTO</label>
-                                        <input type="file" class="form-control set-additional-required" accept="image/*" id="photo-badge-upload" onchange="openImageCropPopup(this)" name="badge-photo-file" >
-                                        <div class="text-mute" style="font-size: 10px; color: rgba(0, 0, 0, 0.589);">
-                                          <span class="ml-3">*ONLY JPEG FORMAT</span>
-                                                                              </div>        
-                                      </div>
-
-                                              </div>
-<div class="row">
-                                                
-                                                <div class="col-md-6">
-                                                 
-<button type="submit" class="evnt_button">SUBMIT <div class="spinner-border spinner-border-sm  form-spinner d-none" role="status"></div></button>
-</div>  
-<div class="col-md-5">
-                                                 
-  <button type="reset" class="rst_button">RESET</button>
-  </div>  
-  <div class="col-md-1">
-                                                 
-    <button type="reset" class="blk_button">+</button>
-    </div>  
-                                                
 </div>
 
-</div>
-</form>
+
 </div>
 
 

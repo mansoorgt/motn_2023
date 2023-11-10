@@ -229,5 +229,8 @@ def build_success(request):
 
 def vapp_success(request):
     return render(request,'vapp_success.html')
+
+def bulk_upload(request):
+    return render(request,'bulk_upload.html')
     
     
