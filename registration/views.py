@@ -224,10 +224,10 @@ def build_excel_bulk_upload(request):
     for data in final_data:
         
     
-        buildcardType=BuildCardType.objects.get(name__icontain=data['designation'])
-                
-        obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,location=Locations.objects.get(id=4),
-                                                dob=date_of_birth,cardtype=buildcardType)
+        buildcardType=BuildCardType.objects.get(name__icontains=data['card-type'])
+        print(buildcardType)
+        obj=BuildRegistrations.objects.create(first_name=data['first-name'],last_name=data['last-name'],mobile=data['mobile'],email=data['email'],company=data['company'],location=Locations.objects.get(id=4),
+                                                dob=data['date-of-birth'],cardtype=buildcardType)
     
     
     return JsonResponse({'success':True})
@@ -239,8 +239,12 @@ def validateData(data):
         return False
     for key in data:
         
+        
         if data[key] == None or data[key] == '':
             return False
+    
+    if not BuildCardType.objects.filter(name__icontains=data['card-type']).exists():
+        return False
     
     return True
 def success_page(request):

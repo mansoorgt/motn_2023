@@ -10,7 +10,7 @@
   <!-- Bootstrap CSS -->
   <link rel="icon" type="image/x-icon" href="{% static 'img/motn/favicon.jfif' %}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<link rel="stylesheet" href="{% static 'css/registration-mystyle.css' %}?update=1" >
+<link rel="stylesheet" href="{% static 'css/registration-mystyle.css' %}?update=2" >
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,7 +80,7 @@
 <div class="col-md-6">
     <label> Kindly follow the same template</label>
     <br>
-   <button class="btn btn-primary">Download Template</button>
+<a href="{% static 'excle/build-abu-dhabi-bulk.xlsx' %}">   <button class="btn btn-primary">Download Template</button></a>
     
     </div>
 <hr/>
@@ -119,7 +119,7 @@ Table is empty
 <div class="row" >
 <div class="" >
 <div class="col-md-12">
-<button class="btn btn-success bulk-upload-submit-btn">SUBMIT</button>
+<button class="btn btn-success bulk-upload-submit-btn">SUBMIT <div class="spinner-border spinner-border-sm  form-spinner d-none" role="status"></div></button>
 </div>
 </div>
 </div>
@@ -186,7 +186,7 @@ Table is empty
 
               row_num++
               row_id='bulk-row-'+row_num.toString()
-              final_data.push({'row-id':row_id,'first-name':element[0],'last-name':element[1],'email':element[2],'mobile':element[3],'date-of-birth':element[4].toLocaleDateString(),'company':element[5],'card-type':element[6]})
+              final_data.push({'row-id':row_id,'first-name':element[0],'last-name':element[1],'email':element[2],'mobile':element[3],'date-of-birth':formatDate(element[4]),'company':element[5],'card-type':element[6]})
              
               tr_html+=getTableRow(element,row_id)
 
@@ -219,7 +219,7 @@ Table is empty
         des=element[6] != undefined ? element[6] : ''
         
         tr=`
-          <tr style="background-color:#c2f5c1;" id="${row_id}">
+          <tr id="${row_id}">
             <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;"><div style="width:100px;">${first_name}</div></td>
             <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${last_name}</td>
             <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;"> <div style="width:100px;">${email} </div></td>
@@ -235,6 +235,15 @@ Table is empty
       
 
       $('.bulk-upload-submit-btn').click(async function(){
+        
+
+        if (final_data.length == 0 ){
+          alert('Uploaded excel is empty')
+          return false
+        }
+        $(this).attr('disabled',true)
+        $('.form-spinner').removeClass('d-none')
+
 
         $.ajax({
           type: "POST",
@@ -242,17 +251,23 @@ Table is empty
           data: {'final_data':JSON.stringify(final_data),'csrfmiddlewaretoken':'{{csrf_token}}'},
           dataType: "json",
           success: function (response) {
-            
+            $('.bulk-upload-submit-btn').attr('disabled',false)
+            $('.form-spinner').addClass('d-none')
             if (response.success){
-              
+              window.location.href="{% url 'success-page' %}?reg-form=build"
               
             }else{
+
               
+
                 response.error_rows_ids.forEach(row_id =>{
                   $('#'+row_id).addClass('error-row-red')
                 })
 
-            }
+
+                alert(`${response.error_rows_ids.length } Row missing or not valid data. please edit and re-upload the excel`)
+                
+              }
 
           }
         });          
@@ -261,6 +276,14 @@ Table is empty
 
       })
 
+
+      function formatDate(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based
+    const day = date.getDate().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+}
   </script>
 
   
