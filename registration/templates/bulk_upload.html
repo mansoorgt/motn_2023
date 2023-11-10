@@ -69,7 +69,7 @@
 
 <div class="col-md-6 mb-5">
 <label>Upload Excel</label>
-<input class="form-control" type="file">
+<input class="form-control upload-inp-build-bulk" type="file">
 
 </div>
 
@@ -82,17 +82,19 @@
 <hr/>
     <div class="col-md-12">
 
-<table class="table table-bordered">
+<table class="table table-bordered" style="height: 200px; overflow: scroll;">
     <thead>
         <th>FIRST NAME</th>
         <th>LAST NAME</th>
-        <th>MOBILE</th>
         <th>EMAIL</th>
-        <th>DESIGNATION</th>
+        <th>MOBILE</th>
         <th>DATE OF BIRTH</th>
         <th>COMPANY NAME</th>
+        <th>DESIGNATION</th>
+
+
     </thead>
-    <tbody>
+    <tbody id="table-tbody">
         <tr>
             <td colspan="7">
 <div style="padding:50px;">
@@ -110,7 +112,13 @@ Table is empty
     </div>
 
 </div>
-
+<div class="row" >
+<div class="" >
+<div class="col-md-12">
+<button class="btn btn-success bulk-upload-submit-btn">SUBMIT</button>
+</div>
+</div>
+</div>
 
 </div>
 
@@ -132,34 +140,6 @@ Table is empty
   </div>
 
 
-
-  <div class="modal fade"  id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="imageCropModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-lg" role="document">
-      <div class="modal-content text-white" style="background-color: black;">
-        <div class="modal-header" style="border-bottom: none ;">
-          <h5 class="modal-title" id="imageCropModalLabel">Crop Image</h5>
-          <!-- <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button> -->
-        </div>
-        <div class="modal-body" >
-          <div style="display: inline-block;" id="cropper-container">
-            <img id="uploaded-image" src="" alt="Uploaded Image">
-            
-          </div>
-          <div class="crop_cont" style="display: inline-block; position: absolute; padding: 50px;">
-            <p style="font-size: 20px;">Please crop the image as you want in badge</p>
-          </div>
-
-        </div>
-        <div class="modal-footer" style="border-top: none;">
-          <button type="button" class="btn btn-light btn-lg" onclick="cropImage()">Done</button>
-          <button type="button" class="btn btn-danger btn-lg" onclick="cancelCrop()" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script src="https://unpkg.com/cropperjs/dist/cropper.js"></script>
   <!-- Bootstrap JS and Popper.js (Optional) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -172,355 +152,98 @@ Table is empty
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.min.js"></script>
+ 
+ <script>
 
-  <script>
+
+    var list_data;
+    var final_data=[]
+    $('.upload-inp-build-bulk').change(function(){
+
+
+
+      const file = event.target.files[0];
+      const reader = new FileReader()
+      reader.onload = function (e) {
+          const contents=e.target.result;
+          const workbook = XLSX.read(contents, { type: 'binary' , cellDates: true, dateNF: 'mm/dd/yyyy;@'});
+          const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+          const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+          var tr_html=''
+          list_data=jsonData.slice(1,jsonData.length)
+          console.log(list_data);
+        
+          row_num=0
+          list_data.forEach(element => {
+      
+              if (element[0] == null || element[6] == "SELECT DEISGNATION" ) return false
+
+              row_num++
+              row_id='bulk-row-'+row_num.toString()
+              final_data.push({'row-id':row_id,'first-name':element[0],'last-name':element[1],'email':element[2],'mobile':element[3],'date-of-birth':element[4].toLocaleDateString(),'company':element[5],'card-type':element[6]})
+             
+              tr_html+=getTableRow(element,row_id)
+
+          });
+          $('#table-tbody').html(tr_html)
+
+          // console.log(final_data);
+
+          // // $('#excel-upload-modal').modal('toggle')
+
+          // // $('#excel-upload-modal tbody').html(tr_html)
+
+      }
+
+      reader.readAsBinaryString(file);
+
+
+
+      })
+
+
+      function getTableRow(element,row_id) {
+
+        tr=`
+          <tr id="${row_id}">
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;"><div style="width:100px;">${element[0]}</div></td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${element[1]}</td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;"> <div style="width:100px;">${element[2]} </div></td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${element[3]}</td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;" >${element[4].toLocaleDateString()}</td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${element[5]}</td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${element[6]}</td>
+            </tr>
+        
+        `
+        return tr
+      }
+      
+
+      $('.bulk-upload-submit-btn').click(async function(){
+
+        $.ajax({
+          type: "POST",
+          url: "{% url 'build-excel-upload' %}",
+          data: {'final_data':JSON.stringify(final_data),'csrfmiddlewaretoken':'{{csrf_token}}'},
+          dataType: "json",
+          success: function (response) {
+            
+
+
+
+
+          }
+        });          
+
+
+
+      })
 
   </script>
-  <script>
-   function toggleAdditionalRow() {
-      const needEventPassYes = document.getElementById("eventPassYes");
-      const additionalRow = document.querySelector(".additional-row");
 
-      if (needEventPassYes.checked) {
-        additionalRow.style.display = "flex";
-
-        $('.set-additional-required').attr('required',true)
-     
-      } else {
-        additionalRow.style.display = "none";
-        $('.set-additional-required').attr('required',false)
-        
-      }
-    }
- 
-    $('.id-proof-select').change(function() {
-      
-      if ($(this).val() == 'Emirates-Id'){
-        $('.id-proof-number-lable').text("EMIRATES ID NUMBER")
-        $('.id-proof-file-front-lable').text("UPLOAD EMIRATES ID FRONT")
-        $('.id-proof-file-back-lable').text("UPLOAD EMIRATES ID BACK")
-        $('.id-proof-expire-date-lable').text("EMIRATES ID EXPIRY DATE")
-        $(".id-proof-file-back-div").removeClass('d-none')
-        $('.emirates-id-back').attr('required',true)
-      }
-      if ($(this).val() == 'Passport-Id'){
-        $('.id-proof-number-lable').text("PASSPORT NUMBER")
-        $('.id-proof-file-front-lable').text("UPLOAD PASSPORT FRONT")
-        
-        $(".id-proof-file-back-div").addClass('d-none')
-        $('.id-proof-file-back-lable').text("UPLOAD PASSPORT BACK")
-        $('.id-proof-expire-date-lable').text("PASSPORT EXPIRY DATE")
-        $('.emirates-id-back').attr('required',false)
-
-      }
-
-    })
-
-    var cropper; // Variable to store the Cropper.js instance
-
-function openImageCropPopup(input) {
-  var file = input.files[0];
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    // Update the image source with the uploaded file
-    document.getElementById('uploaded-image').src = e.target.result;
-
-    // Destroy the previous Cropper.js instance, if exists
-    if (cropper) {
-      cropper.destroy();
-    }
-
-    // Show the image cropping popup
-    $('#imageCropModal').modal('show');
-
-    // Initialize Cropper.js inside the modal
-    cropper = new Cropper(document.getElementById('uploaded-image'), {
-      aspectRatio: 1, // Set the aspect ratio for cropping (e.g., 1:1 for a square)
-      viewMode: 1, // Set the view mode to restrict the cropping area within the container
-      zoomable: false, // Disable zooming the image
-      guides: true, // Show guides for the cropping area
-      minContainerWidth: 400, // Set the minimum width of the cropping container
-      minContainerHeight: 400, // Set the minimum height of the cropping container
-    });
-
- 
-
-
-  };
-  reader.readAsDataURL(file);
-}
-
-
-
-function cropImage() {
-  if (cropper) {
-    // Get the cropped image data
-    var croppedDataUrl = cropper.getCroppedCanvas().toDataURL();
-
-    var m_input =document.getElementById('photo-badge-upload')
-
-    // var image = base64toBlob(croppedDataUrl)
-
-    // console.log(image)
-      let list = new DataTransfer();
-      const file = dataURLtoFile(croppedDataUrl,m_input.files[0].name)
-      list.items.add(file);
-      m_input.files=list.files
-          // Perform any actions with the cropped image data (e.g., upload, save, etc.)
-    //console.log(croppedDataUrl);
-
-  
-
-  // Hide the image cropping popup
-  $('#imageCropModal').modal('hide');
-}
-}
-
-function cancelCrop() {
-  // Reset the file input to clear the selected file
-  var fileInput = document.getElementById('photo-badge-upload');
-  fileInput.value = '';
-
-  // Clone and replace the file input element with a new instance
-  // var newFileInput = fileInput.cloneNode(true);
-  // fileInput.parentNode.replaceChild(newFileInput, fileInput);
-
-  // Hide the image cropping popup
-  $('#imageCropModal').modal('hide');
-}
- 
-$('#imageCropModal').on('hidden.bs.modal', function() {
-  if (cropper) {
-    // Destroy the Cropper.js instance when closing the modal
-    cropper.destroy();
-    cropper = null;
-  }
-  });
-
-
-
-function dataURLtoFile(dataurl, filename) {
-  var arr = dataurl.split(","),
-    mime = arr[0].match(/:(.*?);/)[1],
-    bstr = atob(arr[1]),
-    n = bstr.length,
-    u8arr = new Uint8Array(n);
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n);
-  }
-  return new File([u8arr], filename, { type: mime });
-}
-
-//key number
-function change_pattern_id_card_number_on_change(inp) {
-      if ($('.id-proof-select').val() == 'Emirates-Id'){
-
-        
-        var text=inp.value.replaceAll('-','').split('')
-
-              for (let i = 0; i < text.length; i++) {
-        
-                if (i== 3 ){
-                    text.splice(3,0,'-')
-
-                  
-                  }
-
-                  if (i == 8 ){
-                      text.splice(8,0,'-')
-
-                      
-                  }
-
-                  if (i == 16 ){
-                        text.splice(16,0,'-')
-                  }
-
-                  // if (i == 1 ){
-                  //       text.splice(16,0,'-')
-                  // }
-              
-
-              }
-
-              inp.value=text.join('')
-             
-       
-      }
-       
-     }
-
-     $('.extra-validation').change(function () {
-      ExtravalidationPass()
-    })
-
-    function ExtravalidationPass() {
-    
-   
-    //location validation
-    var fail_count=0
-      
-    // $('.locations:checked').each(function() {
-    //   console.log($(this).val())
-    // })
-    
-    if (!$('.locations:checked').length){
-      $('.locations').focus()
-      $('.locations-not-valid').removeClass('d-none')
-      fail_count++
-    } else{
-      $('.locations-not-valid').addClass('d-none')
-      
-    }
-    
-
-    var expiryDate = new Date($('.expiry-check').val());
-    var currentDate = new Date();
-
-    if ( expiryDate <=currentDate ){
-      $('.expiry-check').addClass('is-invalid')
-      $('.id-expiry-date-is-not-valid').removeClass('d-none')
-      fail_count ++
-
-    } 
-    else{
-      $('.expiry-check').removeClass('is-invalid')
-      $('.id-expiry-date-is-not-valid').addClass('d-none')
-      
-    }
- 
-      if (fail_count >= 1){
-        
-        return false
-        
-      }
-      else{
-      
-        return true
-      }
-    
-    }
-
-
-    $('#build-form').submit(function (event){
-      
-      event.preventDefault()
-
-      if (ExtravalidationPass() == false && $('#eventPassYes').is(':checked')){
-        return false
-      }
-
-
-      $(':submit').attr('disabled',true)
-      $('.form-spinner').removeClass('d-none')
-      var _formData=new FormData($(event.target)[0])
-      _formData.append('locations',JSON.stringify($('.locations:checked').map( function(){return this.value }).get()))
-      _formData.append('csrfmiddlewaretoken','{{ csrf_token }}')
-      
-      $.ajax({
-        type: "POST",
-        url: "{% url 'submit-build-registration' %}",
-        data: _formData,
-        contentType:false,
-        processData:false,
-        dataType: "json",
-        success: function (response) {
-          
-          if(response.success){
-           
-            sendSuccessMail(response.id)
-            
-            setTimeout(() => {
-              window.location.href="{% url 'success-page' %}?reg-form=build"
-            
-            
-              // $(event.target)[0].reset()
-              $('.form-spinner').addClass('d-none')
-
-              $(':submit').attr('disabled',false)
-            
-            }, 2000);
-
-
-
-          }else{
-            console.log(response)
-            alert(response.reason)
-          }
-
-          
-          
-        }
-      });
-    })
-    function sendSuccessMail(id){
-      $.ajax({
-        type: "POST",
-        url: "{% url 'send-success-mail' %}",
-        data: {id:id,'table-name':'build','csrfmiddlewaretoken':'{{csrf_token}}'},
-        dataType: "json",
-        success: function (response) {
-          
-        }
-      });
-    }
-
-
-     //on location change 
-
-    //abudhabi = 4
-    //al ain   = 2
-    //dhafara  = 3
-
-    var cardtypes={
-      
-      4:[7,33,19,9,8,16,12,13,50,35,5,2,17,27,18,19,20,10,42,1,22,53,52,51,43],
-      2:[7,33,8,12,13,9,50,35,5,2,16,17,37,18,53,19,20,10,42,52,1,44,43,51,22],
-      3:[7,33,8,5,12,13,9,2,16,17,18,19,20,1,22,54],
-  }
-    $('.locations').click(function(){
-
-      let selected_ids=$('.locations:checked').map( function(){return this.value }).get()
-
-      $('#card-type-select').val(null)
-
-      $('.cardtype-options').addClass('d-none')
-      
-      if (selected_ids.length > 0 ){
-   
-        $('.cardtype-options-no-location').addClass('d-none')
-      }
-
-
-      selected_ids.forEach(element => {
-        
-        $('.cardtype-options').each(function(){
-        
-          if (cardtypes[element].includes(Number($(this).val()))){
-            $(this).removeClass('d-none')
-          }
-
-        })
-
-
-      });
-       
-
-       
-
-
-    })
-
-    $('#card-type-select').click(function(){
-      if($('.cardtype-options').not('.d-none').length == 0){
-        $('.cardtype-options-no-location').removeClass('d-none')
-      }else{
-        $('.cardtype-options-no-location').addClass('d-none')
-      }
-      
-    })
-
- </script>
   
 </body>
 </html>

@@ -209,7 +209,29 @@ def send_success_mail(request):
         # msg.send()
         #print('Succes mail sended')
     return JsonResponse({})
-   
+
+def build_excel_bulk_upload(request):
+    final_data=json.loads(request.POST.get('final_data'))
+
+    error_row_ids=[]
+    for i in final_data:
+        if validateData(i) == False:
+            error_row_ids.append(i['row-id'])
+    
+    if error_row_ids.__len__ == 0:
+        return JsonResponse ({'success':False,'error_rows_ids':error_row_ids}) 
+    
+    return JsonResponse({'success':True})
+    
+ 
+def validateData(data):
+
+    if len(data) != 8:
+        return False
+    for key in data:
+        if key == None or key == '':
+            return False
+        
 def success_page(request):
     if request.GET.get('reg-form') == 'event':
     

@@ -16,7 +16,8 @@ urlpatterns = [
     path('event-success',views.event_success,name='event-success'),
     path('build-success',views.build_success,name='build-success'),
      path('vapp-success',views.vapp_success,name='vapp-success'),
-     path('bulk_upload',views.bulk_upload,name='bulk_upload'),
+     path('build-bulk-upload',views.bulk_upload,name='build_bulk_upload'),
 
+path('build-excel-upload',views.build_excel_bulk_upload,name='build-excel-upload')
     
 ]
