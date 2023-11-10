@@ -218,24 +218,36 @@ def build_excel_bulk_upload(request):
         if validateData(i) == False:
             error_row_ids.append(i['row-id'])
     
-    if error_row_ids.__len__ == 0:
+    if len(error_row_ids) != 0:
         return JsonResponse ({'success':False,'error_rows_ids':error_row_ids}) 
+    
+    for data in final_data:
+        
+    
+        buildcardType=BuildCardType.objects.get(name__icontain=data['designation'])
+                
+        obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,location=Locations.objects.get(id=4),
+                                                dob=date_of_birth,cardtype=buildcardType)
+    
     
     return JsonResponse({'success':True})
     
  
 def validateData(data):
-
+    print(len(data))
     if len(data) != 8:
         return False
     for key in data:
-        if key == None or key == '':
-            return False
         
+        if data[key] == None or data[key] == '':
+            return False
+    
+    return True
 def success_page(request):
     if request.GET.get('reg-form') == 'event':
-    
+        
         return render(request,'event_success.html')
+
     if request.GET.get('reg-form') == 'build':
     
         return render(request,'build_success.html')

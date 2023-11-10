@@ -31,6 +31,10 @@
       font-family: 'montbold' !important; /* Apply the custom font to the body or any other element */
     }
 
+    .error-row-red{
+      background-color: rgb(255, 98, 98);
+    }
+
 </style>
 
 </head>
@@ -161,7 +165,7 @@ Table is empty
     var final_data=[]
     $('.upload-inp-build-bulk').change(function(){
 
-
+      final_data=[]
 
       const file = event.target.files[0];
       const reader = new FileReader()
@@ -206,15 +210,23 @@ Table is empty
 
       function getTableRow(element,row_id) {
 
+        first_name=element[0] != undefined ? element[0] : ''
+        last_name=element[1] != undefined ? element[1] : ''
+        email=element[2] != undefined ? element[2] : ''
+        mobile=element[3] != undefined ? element[3] : ''
+        dob=element[4] != undefined ? element[4].toLocaleDateString() : ''
+        company=element[5] != undefined ? element[5] : ''
+        des=element[6] != undefined ? element[6] : ''
+        
         tr=`
           <tr id="${row_id}">
-            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;"><div style="width:100px;">${element[0]}</div></td>
-            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${element[1]}</td>
-            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;"> <div style="width:100px;">${element[2]} </div></td>
-            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${element[3]}</td>
-            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;" >${element[4].toLocaleDateString()}</td>
-            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${element[5]}</td>
-            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${element[6]}</td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;"><div style="width:100px;">${first_name}</div></td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${last_name}</td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;"> <div style="width:100px;">${email} </div></td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${mobile}</td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;" >${dob}</td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${company}</td>
+            <td style="font-size:13px; font-weight:none; font-family: 'Mont', sans-serif;">${des}</td>
             </tr>
         
         `
@@ -231,9 +243,16 @@ Table is empty
           dataType: "json",
           success: function (response) {
             
+            if (response.success){
+              
+              
+            }else{
+              
+                response.error_rows_ids.forEach(row_id =>{
+                  $('#'+row_id).addClass('error-row-red')
+                })
 
-
-
+            }
 
           }
         });          
