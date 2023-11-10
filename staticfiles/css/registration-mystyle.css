@@ -15,6 +15,15 @@
     }
 
 
+/* rewrite css style start */
+.table
+{
+  --bs-table-bg:none;
+}
+
+
+/* rewrite css style end */
+
 /* event success message start */
 
 .evnt_scs_card
