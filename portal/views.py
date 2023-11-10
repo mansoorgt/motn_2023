@@ -537,7 +537,7 @@ def send_mail(request):
     if method == 'Approved':
 
       
-        data={"name":registration.first_name+' '+registration.last_name,'uid':uid}
+        data={"name":registration.first_name+' '+registration.last_name,'uid':uid,'location_id':registration.location.id}
         html_contect=render_to_string("email/approved.html",data)
         email_from = settings.EMAIL_HOST_USER
         subject = 'Registration Status – Approved'
