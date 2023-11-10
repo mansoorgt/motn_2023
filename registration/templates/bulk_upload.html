@@ -186,7 +186,7 @@ Table is empty
 
               row_num++
               row_id='bulk-row-'+row_num.toString()
-              final_data.push({'row-id':row_id,'first-name':element[0],'last-name':element[1],'email':element[2],'mobile':element[3],'date-of-birth':element[4].toLocaleDateString(),'company':element[5],'card-type':element[6]})
+              final_data.push({'row-id':row_id,'first-name':element[0],'last-name':element[1],'email':element[2],'mobile':element[3],'date-of-birth':formatDate(element[4]),'company':element[5],'card-type':element[6]})
              
               tr_html+=getTableRow(element,row_id)
 
@@ -242,7 +242,7 @@ Table is empty
           data: {'final_data':JSON.stringify(final_data),'csrfmiddlewaretoken':'{{csrf_token}}'},
           dataType: "json",
           success: function (response) {
-            
+            console.log(response)
             if (response.success){
               
               
@@ -261,6 +261,14 @@ Table is empty
 
       })
 
+
+      function formatDate(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based
+    const day = date.getDate().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+}
   </script>
 
   
