@@ -76,24 +76,25 @@
 
                <p>Your accreditation application for the Mother of the Nation Event has been approved.</p>    
                <p>Please collect your badge from the accreditation office located on site at:  </p> 
-                <!-- abudhai -->
-                {% if location_id == 4 %}
-                    <a href="https://maps.app.goo.gl/GzJxWv62PNHYuuaS6">
-                    <img width="150" src="https://motn.infoeventz.com/static/images/email/email-location-1.png" style="width: 150px; "> 
-                    </a>
+                 
+               <!-- abudhai -->
+                        {% if location_id == 4 %}
+                            <a href="https://maps.app.goo.gl/GzJxWv62PNHYuuaS6">
+                            <img width="150" src="https://motn.infoeventz.com/static/images/email/email-location-1.png" style="width: 150px; "> 
+                            </a>
+                    {% endif  %}
+                        <!-- dhafra -->
+                        {% if location_id == 3 %}
+                        <a href="https://maps.app.goo.gl/GzJxWv62PNHYuuaS6">
+                        <img width="150" src="https://motn.infoeventz.com/static/images/email/email-location-3.png" style="width: 150px; "> 
+                        </a>
+                {% endif  %}
+                <!-- al ain -->
+                {% if location_id == 2 %} 
+                <a href="https://maps.app.goo.gl/GzJxWv62PNHYuuaS6">
+                <img width="150" src="https://motn.infoeventz.com/static/images/email/email-location-2.png" style="width: 150px; "> 
+                </a>
             {% endif  %}
-            <!-- dhafra -->
-            {% if location_id == 3 %}
-            <a href="https://maps.app.goo.gl/GzJxWv62PNHYuuaS6">
-            <img width="150" src="https://motn.infoeventz.com/static/images/email/email-location-3.png" style="width: 150px; "> 
-            </a>
-    {% endif  %}
-    <!-- al ain -->
-    {% if location_id == 2 %} 
-    <a href="https://maps.app.goo.gl/GzJxWv62PNHYuuaS6">
-    <img width="150" src="https://motn.infoeventz.com/static/images/email/email-location-2.png" style="width: 150px; "> 
-    </a>
-{% endif  %}
 
 <!-- <p style="font-weight: bold;">Site Location :</p> -->
 <!-- <img width="120" src="https://hosnaletihad.infoeventz.com/static/images/fotress/map_qr.jpeg" style="width: 120px;"> -->
