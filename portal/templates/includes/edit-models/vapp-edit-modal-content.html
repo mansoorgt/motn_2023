@@ -109,6 +109,16 @@
 
           </div>
 
+          <div class="row mt-2">
+            <div class="col-6">
+              <label for="">Delivery From</label>
+              <input type="date" id="edit-email" class="form-control" value="{{r.delivery_date|date:"Y-m-d"}}" name="from-delivery-date" required>
+            </div>
+            <div class="col-6">
+              <label for="">Delivery To</label>
+              <input type="date" id="edit-email" class="form-control" value="{{r.delivery_to_date|date:"Y-m-d"}}" name="to-delivery-date" required>
+            </div>
+          </div>
         
 
        

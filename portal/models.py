@@ -91,6 +91,9 @@ class VappRegistrations(models.Model):
     collected=models.BooleanField(default=False)
     print_count=models.IntegerField(default=0)
     
+    delivery_to_date=models.DateField(null=True)
+    
+    
     verification=models.CharField(max_length=50,choices=(("Approved",'Approved'),("Rejected","Rejected"),("Pending","Pending")),default="Pending")
     
     active=models.BooleanField(default=True)
@@ -101,6 +104,7 @@ class VappRegistrations(models.Model):
     class Meta:
         db_table='vapp_registrations'
 
+    
 class EventRegistrations(models.Model):
     first_name=models.TextField()
     last_name=models.TextField()

@@ -244,8 +244,11 @@ def submit_edit_registration(request):
             
             edit_id=request.POST.get('edit-id')
 
+            delivery_from_date=request.POST.get('from-delivery-date')
+            delivery_to_date=request.POST.get('to-delivery-date')
+            
             obj=VappRegistrations.objects.filter(id=edit_id)
-            obj.update(first_name=first_name,last_name=last_name,company=company,vehicle_number=vehicle_number,mobile=mobile,email=email,cardtype=card_type,vehicletype=category,location=location,updated_at=timezone.now())
+            obj.update(first_name=first_name,last_name=last_name,company=company,vehicle_number=vehicle_number,mobile=mobile,email=email,cardtype=card_type,vehicletype=category,location=location,updated_at=timezone.now(),delivery_to_date=delivery_to_date,delivery_date=delivery_from_date)
             
             instance_obj=obj.first()
             if vehicle_pass != None:

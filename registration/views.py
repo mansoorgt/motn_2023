@@ -166,7 +166,7 @@ def submit_vapp_registration(request):
             vehicletype=VehicleType.objects.get(id=vehicletype_id)
             location_instance=Locations.objects.get(id=location)
             obj=VappRegistrations.objects.create(first_name=first_name,last_name=last_name,company=company,email=email,vehicletype=vehicletype,mobile=mobile,cardtype=cardtype,id_proof_front=id_proof_front,id_proof_back=id_proof_back,vehicle_pass=vehicle_pass,vehicle_number=vehicle_number,location=location_instance,
-                                            delivery_date=delivery_date)
+                                            delivery_to_date=delivery_date,delivery_date=delivery_date)
             data['success']=True
             data['id']=obj.id
     except Exception as e:

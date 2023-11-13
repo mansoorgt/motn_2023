@@ -128,7 +128,7 @@ NAME : {{registration.first_name}} {{registration.last_name}}
 
     <div class="col-md-12 mt-2">
       <div style="font-family: 'avenirheavy'; font-weight: bold; background-color: white; width: 300px; border-radius: 30px; border: 1px solid #FEE998; padding: 10px;">
-      DATE :
+      DATE : {{registration.delivery_date|date:"d-m-y"}} TO {% if registration.delivery_to_date %} {{registration.delivery_to_date|date:"d-m-y"}} {% else %} {{registration.delivery_date|date:"d-m-y"}} {% endif %}
       </div>
       </div>
 
