@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <p class="m-b-10 f-w-600">Created At</p>
-                                    <h6 class="text-muted f-w-400" id="profile-created">{{registration.created_at | date:'d-m-y H:i' }}</h6>
+                                    <h6 class="text-muted f-w-400 profile-registration-created-time-date" id="profile-created">{{registration.created_at | date:'c' }}</h6>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                 <p class="m-b-10 f-w-600">Company Name</p>
@@ -181,4 +181,9 @@
             </div>
             </div>
 
-       
+            <script>
+            
+
+                $('.profile-registration-created-time-date').text(new Date($('.profile-registration-created-time-date').text()).toLocaleString('en-US', { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, year: 'numeric' ,month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:true, }).replaceAll('/','-'))
+                
+           </script>
