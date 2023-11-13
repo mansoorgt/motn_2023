@@ -47,6 +47,13 @@ class BuildRegistrations(models.Model):
     #locaiton
     location=models.ForeignKey(Locations,on_delete=models.CASCADE)
     
+    id_proof_expiry=models.DateField(null=True)
+    id_proof_type=models.CharField(max_length=50,choices=(("Passport-Id",'Passport-Id'),("Emirates-Id","Emirates-Id")),default="Emirates-Id")
+    id_proof_number=models.TextField(null=True)
+    id_proof_front=models.FileField(upload_to='id-proof-front/',null=True)
+    id_proof_back=models.FileField(upload_to='id-proof-back/',null=True)
+    
+    
     remark=models.TextField(default='',null=True)
     collected=models.BooleanField(default=False)
     print_count=models.IntegerField(default=0)
@@ -129,3 +136,4 @@ class EventRegistrations(models.Model):
 
     class Meta:
         db_table='event_registrations'
+

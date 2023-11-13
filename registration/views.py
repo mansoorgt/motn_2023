@@ -100,7 +100,7 @@ def submit_build_registration(request):
     email=request.POST.get('email')
     date_of_birth=request.POST.get('date-of-birth')
     company=request.POST.get('company')
-    nationality=request.POST.get('nationdality')
+    nationality=request.POST.get('nationality')
     id_proof_type=request.POST.get('id-proof-type')
     id_proof_number=request.POST.get('id-proof-number')
     id_proof_expiry=request.POST.get('id-expiry-date')
@@ -122,7 +122,7 @@ def submit_build_registration(request):
         buildcardType=BuildCardType.objects.get(id=card_type_id)
             
         obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,location=Locations.objects.get(id=4),
-                                                dob=date_of_birth,cardtype=buildcardType)
+                                                dob=date_of_birth,cardtype=buildcardType,id_proof_expiry=id_proof_expiry,id_proof_number=id_proof_number,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back)
         
         if need_event_pass == 'Yes':
         
