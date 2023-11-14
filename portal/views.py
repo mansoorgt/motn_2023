@@ -157,6 +157,7 @@ def get_registration_details(request):
  
     return JsonResponse(data) 
 def submit_edit_registration(request):
+    
     # name=request.POST.get('name')
     # company=request.POST.get('company')
     # jobtitle=request.POST.get('job-title')
@@ -165,7 +166,7 @@ def submit_edit_registration(request):
     # print(edit_id)
     
     data={'success':False}
-    try:
+    try:    
         if getTable(request) == EventRegistrations:
             
             first_name=request.POST.get('first-name')
@@ -201,15 +202,13 @@ def submit_edit_registration(request):
                 instance_obj.id_proof_front=id_proof_front
             if id_proof_back != None:
                 instance_obj.id_proof_back=id_proof_back
-        
+
             instance_obj.save()
             
-            
-            
             row=render_to_string(getTableRow(request),{'r':obj.first()})
-        
+            
         if getTable(request) == BuildRegistrations:
-        
+            
             first_name=request.POST.get('first-name')
             last_name=request.POST.get('last-name')
             company=request.POST.get('company')
@@ -217,15 +216,30 @@ def submit_edit_registration(request):
             mobile=request.POST.get('mobile')
             email=request.POST.get('email')
 
+            id_proof_number=request.POST.get('id-proof-number')
+            
+            id_proof_front=request.FILES.get('id-front-photo')
+            id_proof_back=request.FILES.get('id-back-photo')
+            
             edit_id=request.POST.get('edit-id')
             cardtype=request.POST.get('card-type')
             
             location=request.POST.get('location')
             
             obj=BuildRegistrations.objects.filter(id=edit_id)
-            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,email=email,cardtype=cardtype,mobile=mobile,updated_at=timezone.now(),location=location)
+            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,email=email,cardtype=cardtype,mobile=mobile,updated_at=timezone.now(),location=location,id_proof_number=id_proof_number)
+            
+            instance_obj=obj.first()
+            
+            if id_proof_front != None:
+                instance_obj.id_proof_front=id_proof_front
+            if id_proof_back != None:
+                instance_obj.id_proof_back=id_proof_back
+                
+            instance_obj.save()
+            
             row=render_to_string(getTableRow(request),{'r':obj.first()})
-        
+
         if getTable(request) == VappRegistrations:
             first_name=request.POST.get('first-name')
             last_name=request.POST.get('last-name')
@@ -260,13 +274,13 @@ def submit_edit_registration(request):
             instance_obj.save()
             
             row=render_to_string(getTableRow(request),{'r':obj.first()})
-         
+            
         data['success']=True
         data['row']=row
     except Exception as e:
         print(e)
         data['success']=False     
-        
+
     return JsonResponse(data)
 
 def submit_bulk_edit_registration(request):

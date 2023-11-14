@@ -109,14 +109,15 @@
                                     <p class="m-b-10 f-w-600">{% if registration.id_proof_type == 'Passport-Id' %} Passport Id Front {% endif %} {% if registration.id_proof_type == 'Emirates-Id' %} Emirates Id Front {% endif %}</p>
                                     <img class="img-fluid" height="50px" width="50px" id='mulkiya-img' onclick="onPreviewImage(this)" src="{% if registration.id_proof_front %} {{registration.id_proof_front.url}} {% else %} https://img.freepik.com/premium-vector/file-linear-style-sign-with-cross-sign-inside-it-mobile-concept-web-design-symbol-logo-illustration_691771-123.jpg {% endif %}">
                                     
-                                    <br><a href="{{registration.id_proof_front.url}}" download id="download-id-mulkya-proof"><img  width="20px" src="{% static 'images/download.png' %}" class="img-fluid down_icon ml-3 mt-2" alt=""></a>
+                                    {% if registration.id_proof_front %} <br><a href="{{registration.id_proof_front.url}}" download id="download-id-mulkya-proof"><img  width="20px" src="{% static 'images/download.png' %}" class="img-fluid down_icon ml-3 mt-2" alt=""></a>{% endif %}
                                     </div>
     
                                     {% if registration.id_proof_type == 'Emirates-Id' %}
                                 <div class="col-lg-6 col-md-6 col-sm-6" id="id-photo-img-back-div">
                                     <p class="m-b-10 f-w-600">{% if registration.id_proof_type == 'Passport-Id' %} Passport Id Back {% endif %} {% if registration.id_proof_type == 'Emirates-Id' %} Emirates Id Back {% endif %}</p>
                                     <img class="img-fluid" onclick="onPreviewImage(this)" id="id-photo-img-back" height="50px" width="50px" src="{% if registration.id_proof_back %} {{registration.id_proof_back.url}} {% else %} https://img.freepik.com/premium-vector/file-linear-style-sign-with-cross-sign-inside-it-mobile-concept-web-design-symbol-logo-illustration_691771-123.jpg {% endif %}">
-                                    <br><a href="{{registration.id_proof_back.url}}" id="download-id-back-proof" download=""><img  width="20px" src="{% static 'images/download.png' %}" class="img-fluid down_icon ml-3 mt-2" alt=""></a>  
+                                    
+                                    {% if registration.id_proof_back %} <br><a href="{{registration.id_proof_back.url}}" id="download-id-back-proof" download=""><img  width="20px" src="{% static 'images/download.png' %}" class="img-fluid down_icon ml-3 mt-2" alt=""></a>   {% endif %}
                                 </div>
                                     {% endif %}
     

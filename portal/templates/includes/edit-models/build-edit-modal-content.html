@@ -66,6 +66,34 @@
              
             </div>
 
+            <div class="row mt-2">
+           
+           
+              <div class="col-6">
+                <label for="">{{r.id_proof_type}} Proof Number</label>
+                <input type="text" id="edit-id-number" value="{{r.id_proof_number}}" class="form-control" name="id-proof-number" required>
+              </div>
+              
+              <div class="col-6">
+                <label for="">{{r.id_proof_type}} Front Photo {% if r.id_proof_front %} <a href="{{r.id_proof_front.url}}" target="_blank">View</a> {% endif %}</label>
+                <input type="file" id="edit-badge-photo" class="form-control" name="id-front-photo" >
+              </div>
+
+            </div>
+            
+              
+            <div class="row mt-2">
+             
+              
+  
+              {% if r.id_proof_type == 'Emirates-Id' %}
+              <div class="col-6">
+                <label for="">{{r.id_proof_type}} Back Photo {% if r.id_proof_back %} <a href="{{r.id_proof_back.url}}" target="_blank">View</a> {% endif %}</label>
+                <input type="file" id="edit-badge-photo" class="form-control" name="id-back-photo" >
+              </div>
+              {% endif %}
+  
+            </div>
 
           </div>
 
