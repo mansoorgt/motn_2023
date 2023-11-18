@@ -9,11 +9,11 @@ from django.template.loader import render_to_string
 from django.core import mail 
 from django.utils.html import strip_tags
 from django.db.models import Q, Count
-
+from datetime import timedelta
 from motn_2023 import settings
 import json
 
-from django.utils import timezone
+from django.utils import timezone 
 # Create your views here.
 
 
@@ -484,7 +484,12 @@ def change_verifcation(request):
     try:
         obj=table.objects.get(id=id)
         obj.verification=method
+        
+        if table == VappRegistrations:
+            obj.delivery_to_date =timezone.now() + timezone.timedelta(days=7)
+        
         obj.save()
+        
         
         row=render_to_string(getTableRow(request),{'r':obj})
         data['row']=row
