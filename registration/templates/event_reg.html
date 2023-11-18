@@ -104,9 +104,10 @@
       <option value="" disabled selected>Select Card Type</option>
       {% for type in cardtypes %}
      
-
+      {% if type.id != 11 %}
       <option value="{{type.id}}" class="cardtype-options d-none">{{type.name}}</option>
-  
+      {% endif %}
+
       {% endfor %}
     </select>
     
@@ -136,12 +137,12 @@
 
 
         <div class="col-md-6 mt-2">
-<label class="id-proof-number-lable">EMIRATES ID NUMBER</label>
+<label class="id-proof-number-lable ">EMIRATES ID NUMBER</label>
 <input type="text " onkeyup="change_pattern_id_card_number_on_change(this)" class="form-control"name="id-proof-number" required>
         </div>
 
         <div class="col-md-6 mt-2">
-          <label class=".id-proof-file-front-lable">UPLOAD EMIRATES ID FRONT</label>
+          <label class="id-proof-file-front-lable">UPLOAD EMIRATES ID FRONT</label>
           <input type="file" class="form-control" name="id-proof-front-file" accept="image/*" required>
                
         

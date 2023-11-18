@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 from django.core import mail 
 from django.utils.html import strip_tags
 from django.db.models import Q, Count
-from datetime import timedelta
+
 from motn_2023 import settings
 import json
 
