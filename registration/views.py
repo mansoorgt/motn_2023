@@ -35,6 +35,7 @@ def root_page(request):
     return render(request,'root-registration.html')
 
 def build_registration_form_page(request):
+
     cardtypes=BuildCardType.objects.filter(active=True).order_by('name')
     event_cardtypes=EventCardType.objects.filter(active=True).order_by('name')
     locations=Locations.objects.filter(active=True).order_by('-id')
@@ -124,6 +125,7 @@ def submit_build_registration(request):
         obj=BuildRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,company=company,location=Locations.objects.get(id=4),
                                                 dob=date_of_birth,cardtype=buildcardType,id_proof_expiry=id_proof_expiry,id_proof_number=id_proof_number,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back)
         
+        
         if need_event_pass == 'Yes':
         
             for location in json.loads(locations):
@@ -132,7 +134,7 @@ def submit_build_registration(request):
                 EventcardType=EventCardType.objects.get(id=event_card_type_id)
                 EventRegistrations.objects.create(first_name=first_name,last_name=last_name,mobile=mobile,email=email,dob=date_of_birth,id_proof_expiry=id_proof_expiry,location=location_instance,
                                                     nationality=nationality,id_proof_number=id_proof_number,badge_photo=badge_photo,company=company,id_proof_type=id_proof_type,id_proof_front=id_proof_front,id_proof_back=id_proof_back,cardtype=EventcardType)
-        
+                
         data['success']=True
         data['id']=obj.id
         

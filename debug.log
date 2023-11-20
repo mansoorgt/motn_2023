@@ -1,0 +1,12 @@
+Internal Server Error: /build-registration
+Traceback (most recent call last):
+  File "C:\Users\lenovo\AppData\Roaming\Python\Python311\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\AppData\Roaming\Python\Python311\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "S:\office\motn-2023\registration\views.py", line 38, in build_registration_form_page
+    raise "PRINTE________"
+TypeError: exceptions must derive from BaseException
+"GET /build-registration HTTP/1.1" 500 67065
