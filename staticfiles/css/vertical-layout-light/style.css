@@ -12704,6 +12704,23 @@ input[type="button"].btn-block {
   border-radius: 2px;
 }
 
+
+/* printing card design start */
+
+h3
+{
+  text-transform: uppercase !important;
+}
+h5
+{
+  text-transform: uppercase !important;
+}
+
+
+/* printing card design end */
+
+
+
 .input-group-text input[type="radio"],
 .input-group-text input[type="checkbox"] {
   margin-top: 0;
