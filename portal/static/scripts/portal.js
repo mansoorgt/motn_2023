@@ -249,6 +249,31 @@ function onDeleteRegistration(elm) {
     
 }
 
+let copyLocationid=0
+function onClickCopyLocation(id) {
+    copyLocationid=id    
+}
+function onSubmitCopyLocation(e) {
+    console.log('d------------')
+    e.preventDefault(); 
+    
+    var _formData=new FormData($(e.target)[0])
+    _formData.append('reg-id',copyLocationid)
+    _formData.append('csrfmiddlewaretoken',csrf_token)
+
+    $.ajax({
+        type: "POST",
+        url: "submit-copylocation",
+        data: _formData,
+        processData:false,
+        contentType:false,
+        dataType: "json",
+        success: function (response) {
+            
+        }
+    });
+
+}
 
 function onCollect(elm) {   
     id=$(elm).attr('reg-id')

@@ -543,6 +543,47 @@ p {
   </div>
 
 
+  <div class="modal fade" id="copy-to-location-form-model" tabindex="-1" aria-labelledby="exampleModalLabelCopy" aria-hidden="true" style="z-index: 1052 !important;">
+    <div class="modal-dialog shadow-lg" >
+  
+<Form id="copy-to-location-form" onsubmit="onSubmitCopyLocation(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Copy Registration To </h5>
+        <i class="fa-solid fa-xmark btn-close"  data-dismiss="modal" aria-label="Close"></i>
+      </div>
+      <div class="modal-body">
+       
+      
+    <div class="row ">
+
+            <div class="col-6 m-2">
+
+              <label for="location-select">Location</label>
+              <Select name="location-select" class="form-control">
+               {% for loc in locations %} 
+                <option value="{{loc.id}}" {% if current_location.id == loc.id %} selected {% endif %}>{{loc.name}}</option>
+               {% endfor %}
+
+              </Select>
+
+            </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+
+ 
+    </div>
+</div>
+  </Form>
+
+     
+</div>
+</div>
+
   <!-- Reason Modal -->
 
   <div class="modal fade" id="rejection-reason-model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -633,7 +674,7 @@ p {
 ></script>
 
   <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-  <script src="{% static 'scripts/portal.js' %}?update=9"></script>
+  <script src="{% static 'scripts/portal.js' %}?update=10"></script>
   <script src="{% static 'scripts/profile-view.js' %}?update=1"></script>
   <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom/dist/panzoom.min.js"></script>
   <script src="{% static 'scripts/location-mapping.js' %}?update=1"></script>

@@ -202,6 +202,48 @@ function onSubmitEditBulkForm(e){
 
 }   
 
+let copyLocationid=0
+function onClickCopyLocation(id) {
+    copyLocationid=id    
+}
+function onSubmitCopyLocation(e) {
+
+    e.preventDefault(); 
+    
+    var _formData=new FormData($(e.target)[0])
+    _formData.append('reg-id',copyLocationid)
+    _formData.append('csrfmiddlewaretoken',csrf_token)
+
+    $.ajax({
+        type: "POST",
+        url: "submit-copylocation",
+        data: _formData,
+        processData:false,
+        contentType:false,
+        dataType: "json",
+        success: function (response) {
+            
+            if (response.success){
+                
+                $('#copy-to-location-form-model .btn-close').click()
+
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+
+                $(e.target)[0].reset()
+            
+            }
+        }
+    });
+
+}
+
+
 function onDeleteRegistration(elm) {
 
 
