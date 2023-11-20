@@ -71,7 +71,7 @@
           <div class="row mt-2">
            
             <div class="col-6">
-              <label for="">Badge Photo <a href="{{r.badge_photo.url}}" target="_blank">View</a> </label>
+              <label for="">Badge Photo <a href="{% if r.badge_photo %} {{r.badge_photo.url}} {% endif %}" target="_blank">View</a> </label>
               <input type="file" id="edit-badge-photo" class="form-control" name="badge-photo" >
             </div>
             <div class="col-6">
