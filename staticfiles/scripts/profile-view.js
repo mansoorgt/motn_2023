@@ -2,7 +2,7 @@ var current_id=0
 var next_id=0
 var previous_id=0
 function onProfileClick(id){
-
+    // $('#profile-modal .profile-content').html(`<div class="col-md-12" > <div class="spinner-border text-primary" role="status"></div></div>`)
     $.ajax({
         type: "GET",
         url: "get-profile-data",
@@ -17,6 +17,7 @@ function onProfileClick(id){
 
         }
     });
+
 }
 
 function initailSetupProfileview() {
