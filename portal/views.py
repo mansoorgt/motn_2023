@@ -177,6 +177,7 @@ def submit_edit_registration(request):
             email=request.POST.get('email')
             nationality=request.POST.get('nationality')
             id_proof_number=request.POST.get('id-proof-number')
+            id_proof_expiry_date=request.POST.get('id-proof-expiry')
             
             id_proof_front=request.FILES.get('id-front-photo')
             id_proof_back=request.FILES.get('id-back-photo')
@@ -192,7 +193,7 @@ def submit_edit_registration(request):
             
             print(badge_photo)
             obj=EventRegistrations.objects.filter(id=edit_id)
-            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,nationality=nationality,email=email,mobile=mobile,cardtype=cardtype,id_proof_number=id_proof_number,updated_at=timezone.now(),location=location)
+            obj.update(first_name=first_name,last_name=last_name,company=company,dob=dob,nationality=nationality,email=email,mobile=mobile,cardtype=cardtype,id_proof_number=id_proof_number,updated_at=timezone.now(),location=location,id_proof_expiry=id_proof_expiry_date)
             
             instance_obj=obj.first()
             if badge_photo != None:
@@ -282,6 +283,56 @@ def submit_edit_registration(request):
         data['success']=False     
 
     return JsonResponse(data)
+
+def submit_copy_location(request):
+
+    if getTable(request) == EventRegistrations:
+        
+        reg_id=request.POST.get('reg-id')
+        location_select=request.POST.get('location-select')
+        
+        res={'success':False}
+        
+        try:
+            
+            instance_obj=EventRegistrations.objects.get(id=reg_id)
+            instance_obj.id=None
+            instance_obj.location=Locations.objects.get(id=location_select)
+            instance_obj.save()
+
+            res['success']=True
+        except Exception as e:
+            res['success']=False
+            res['reason']=str(e)
+       
+        
+        
+        return JsonResponse(res)
+    
+    if getTable(request) == VappRegistrations:
+        
+        reg_id=request.POST.get('reg-id')
+        location_select=request.POST.get('location-select')
+        
+        res={'success':False}
+        
+        try:
+            
+            instance_obj=VappRegistrations.objects.get(id=reg_id)
+            instance_obj.id=None
+            instance_obj.location=Locations.objects.get(id=location_select)
+            instance_obj.save()
+
+            res['success']=True
+        except Exception as e:
+            res['success']=False
+            res['reason']=str(e)
+       
+        
+        
+        return JsonResponse(res)
+    
+            
 
 def submit_bulk_edit_registration(request):
     

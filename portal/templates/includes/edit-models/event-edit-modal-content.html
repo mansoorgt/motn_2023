@@ -109,7 +109,10 @@
                 {% endfor %}
               </select>
             </div>  
-
+            <div class="col-6">
+              <label for="">{{r.id_proof_type}} Expiry Date</label>
+              <input type="date" id="edit-expiry" class="form-control" value="{{r.id_proof_expiry|date:"Y-m-d" }}" name="id-proof-expiry" required>
+            </div>
           </div>
         
 

@@ -31,6 +31,7 @@ urlpatterns = [
     path('registration-bulk-print-page',views.registration_bulk_print_page,name='registration-bulk-print-page'),
     path('submit-upload-excel-data',views.submit_excel_data,name='submit-upload-excel-data'),
     path('send-mail-in-portal',views.send_mail,name='send-mail-in-portal'),
+    path('submit-copylocation',views.submit_copy_location,name='submit-copylocation'),
     
     
     path('get-profile-data',views.get_profile_data,name='get-profile-data'),
