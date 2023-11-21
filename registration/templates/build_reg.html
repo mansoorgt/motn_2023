@@ -127,6 +127,12 @@
                   <label class=" id-proof-number-lable set-additional-required">EMIRATES ID NUMBER</label>
                   <input type="text" class="form-control" onkeyup="change_pattern_id_card_number_on_change(this)"  name="id-proof-number" required>
                 </div>
+
+                <div class="col-md-6 mt-2">
+                  <label class="id-proof-expire-date-lable">EMIRATES ID EXPIRY DATE</label>
+                  <input type="date" class="form-control expiry-check extra-validation" required  name="id-expiry-date" >
+                  <span class="id-expiry-date-is-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">  Expired </span>        
+                </div>
         
                 <div class="col-md-6 mt-2">
                   <label class=" id-proof-file-front-lable">UPLOAD EMIRATES ID FRONT</label>
@@ -144,11 +150,7 @@
                               <span class="ml-3">*ONLY JPEG FORMAT</span>
                                                                   </div>     
                           </div>
-                                    <div class="col-md-6 mt-2">
-                                      <label class="id-proof-expire-date-lable">EMIRATES ID EXPIRY DATE</label>
-                                      <input type="date" class="form-control expiry-check extra-validation" required  name="id-expiry-date" >
-                                      <span class="id-expiry-date-is-not-valid d-none ml-2" style="color: rgb(255, 0, 0);">  Expired </span>        
-                                    </div>
+                          
         
       
       <div class="col-md-3 mt-2">
