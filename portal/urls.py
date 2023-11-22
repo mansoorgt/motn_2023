@@ -32,6 +32,7 @@ urlpatterns = [
     path('submit-upload-excel-data',views.submit_excel_data,name='submit-upload-excel-data'),
     path('send-mail-in-portal',views.send_mail,name='send-mail-in-portal'),
     path('submit-copylocation',views.submit_copy_location,name='submit-copylocation'),
+    path('change-bulk-collected',views.bulk_collect,name='change-bulk-collected'),
     
     
     path('get-profile-data',views.get_profile_data,name='get-profile-data'),

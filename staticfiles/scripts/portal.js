@@ -447,6 +447,48 @@ $('.bulk-print-btn').click(function () {
 
 })
 
+
+
+$('.bulk-collect-btn').click(function(){
+
+    var ids_array=[]
+    $('.reg-check-box:checked').each(function () {
+        ids_array.push($(this).attr('reg-id'))
+    })
+
+    console.log(JSON.stringify(ids_array))
+
+
+    $.ajax({
+        type: "POST",
+        url: "change-bulk-collected",
+        data: {ids:JSON.stringify(ids_array),csrfmiddlewaretoken:csrf_token},
+        dataType: "json",
+        success: function (response) {
+            if (response.success){
+                $('#bulk-buttons-top-row').addClass('d-none')
+                $('.reg-check-box').prop('checked',false)
+
+                Swal.fire(
+                    'Success',
+                    'Selected registrations status changed to collected',
+                    'success'
+                  )
+
+            }else{
+                Swal.fire(
+                    'Error',
+                    response.reason,
+                    'error'
+                  )
+            }
+           
+            
+       
+        }
+    });
+})
+
 $('#excel-upload-btn').click(function () {
 
     $('#excel-upload-file-inp').click()
