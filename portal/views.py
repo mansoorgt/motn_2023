@@ -550,6 +550,7 @@ def change_verifcation(request):
         data['reason']=str(e)
     return JsonResponse(data)
 
+
 def print_page(request):
     table=request.GET.get('table-name')
     id=request.GET.get('reg-id')
@@ -590,7 +591,22 @@ def registration_bulk_print_page(request):
     
     if table =='vapp':
         return render(request,f'print/vapp_print/bulk_print.html',{'registrations':objs})
+
+def bulk_collect(request):
+    ids=json.loads(request.POST.get('ids'))  
     
+    data={'success':False}
+    
+    try:
+
+        getTable(request).objects.filter(id__in=ids).update(collected=True,updated_at=timezone.now())
+        
+        data['success']=True
+    except Exception as e:
+        data['reason']=str(e)
+        data['success']=False
+        
+    return JsonResponse(data)
 
 def send_mail(request):
     method=request.POST.get('method')
@@ -634,7 +650,7 @@ def send_mail(request):
     
     
     return JsonResponse({})
-
+    ids=json.loads(request.GET.get('reg-ids'))
 
 #Get latest update 
 
