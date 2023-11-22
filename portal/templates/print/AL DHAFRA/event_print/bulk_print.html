@@ -756,7 +756,32 @@ margin: 0px;
 
 
 <!-- Medic end -->
+<!-- sponsors or partners start -->
 
+{% if registration.cardtype.id == 35 %}
+<div style="width: 38.1%;" id="section-to-print">
+
+
+
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/aldhafra/spo_new.jpg' %}">
+  <div class="justify-content-center" >
+    <div style="position: absolute; top: 32.4%; left: 31%; width: 38%;   height: 150px;">
+    <img style="width: 100%; height: 150px;" src="{{registration.badge_photo.url}}">
+    </div>
+    </div>
+  <div style="position: absolute; top: 62%; left: 2%; width: 95%;">
+    <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+    <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+    
+</div>
+  
+   
+   
+  </div>
+  <div class="pagebreak"></div>
+  {% endif %}
+
+<!-- sponsors or partners end -->
 
 
   {% endfor %}
