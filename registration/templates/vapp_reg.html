@@ -245,7 +245,7 @@ $('#vapp-form').submit(function (event){
 
                 setTimeout(() => {
                 
-                  window.location.href="{% url 'success-page' %}?reg-form=vapp"
+                  window.location.replace("{% url 'success-page' %}?reg-form=vapp")
                   // $(event.target)[0].reset()
                   $('.submit-btn-loading').addClass('d-none')
 
