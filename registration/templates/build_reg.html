@@ -553,7 +553,7 @@ function change_pattern_id_card_number_on_change(inp) {
             sendSuccessMail(response.id)
             
             setTimeout(() => {
-              window.location.href="{% url 'success-page' %}?reg-form=build"
+              window.location.replace("{% url 'success-page' %}?reg-form=build")
             
             
               // $(event.target)[0].reset()

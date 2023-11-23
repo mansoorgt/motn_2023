@@ -662,6 +662,8 @@ $('.select-location-option').click(function () {
     window.location.href=`${window.location.pathname}?table-name=${table_name}&loc=${select_loc_id}`
    
 })
+
+
 // let eventSource = new EventSource('sse?table-name='+table_name);
 
 // eventSource.onmessage = (event) => {
