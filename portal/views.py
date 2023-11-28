@@ -605,7 +605,7 @@ def bulk_collect(request):
     except Exception as e:
         data['reason']=str(e)
         data['success']=False
-        
+           
     return JsonResponse(data)
 
 def send_mail(request):
@@ -627,7 +627,12 @@ def send_mail(request):
 
       
         data={"name":registration.first_name+' '+registration.last_name,'uid':uid,'location_id':registration.location.id}
+        
         html_contect=render_to_string("email/approved.html",data)
+        
+        if getTable(request) == VappRegistrations:
+            html_contect=render_to_string("email/vapp-approved.html",data)
+            
         email_from = settings.EMAIL_HOST_USER
         subject = 'Registration Status – Approved'
         # msg= mail.EmailMultiAlternatives(subject,'From info-events ',email_from,[registration.email])
