@@ -298,6 +298,9 @@ def submit_copy_location(request):
             instance_obj=EventRegistrations.objects.get(id=reg_id)
             instance_obj.id=None
             instance_obj.location=Locations.objects.get(id=location_select)
+            instance_obj.collected=False
+            instance_obj.verification='Pending'
+            instance_obj.print_count=0
             instance_obj.save()
 
             res['success']=True
@@ -321,6 +324,9 @@ def submit_copy_location(request):
             instance_obj=VappRegistrations.objects.get(id=reg_id)
             instance_obj.id=None
             instance_obj.location=Locations.objects.get(id=location_select)
+            instance_obj.collected=False
+            instance_obj.verification='Pending'
+            instance_obj.print_count=0
             instance_obj.save()
 
             res['success']=True
@@ -630,8 +636,6 @@ def send_mail(request):
         
         html_contect=render_to_string("email/approved.html",data)
         
-        if getTable(request) == VappRegistrations:
-            html_contect=render_to_string("email/vapp-approved.html",data)
             
         email_from = settings.EMAIL_HOST_USER
         subject = 'Registration Status – Approved'
@@ -656,7 +660,7 @@ def send_mail(request):
     
     return JsonResponse({})
     ids=json.loads(request.GET.get('reg-ids'))
-
+    
 #Get latest update 
 
 def get_latest_data(request):
