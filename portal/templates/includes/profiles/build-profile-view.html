@@ -77,6 +77,11 @@
                                 <h6 class="text-muted f-w-400" id="profile-created">{{registration.dob | date:'d-m-y' }}</h6>
                             </div>
 
+                            <div class="col-md-6 col-sm-6">
+                                <p class="m-b-10 f-w-600">Date Of Birth</p>
+                                <h6 class="text-muted f-w-400" id="profile-dob">{{registration.dob|date:'d-m-Y'}}</h6>
+                            </div>
+
                             {% if registration.id_proof_front %}
                             <div id="profile-verf-div">
                                 <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Verification</h6>
