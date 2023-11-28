@@ -202,6 +202,9 @@ def send_success_mail(request):
     else:
         data={"name":registration.first_name+' '+registration.last_name,'uid':uid}
         html_contect=render_to_string("email/success.html",data)
+        
+        if table == 'vapp':
+            html_contect=render_to_string("email/vapp-success.html",data)
         email_from = settings.EMAIL_HOST_USER
         subject = 'Registration Status – Pending'
         # msg= mail.EmailMultiAlternatives(subject,'From info-events ',email_from,[registration.email])

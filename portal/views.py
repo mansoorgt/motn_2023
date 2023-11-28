@@ -630,8 +630,6 @@ def send_mail(request):
         
         html_contect=render_to_string("email/approved.html",data)
         
-        if getTable(request) == VappRegistrations:
-            html_contect=render_to_string("email/vapp-approved.html",data)
             
         email_from = settings.EMAIL_HOST_USER
         subject = 'Registration Status – Approved'
