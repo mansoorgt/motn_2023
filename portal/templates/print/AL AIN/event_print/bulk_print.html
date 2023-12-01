@@ -105,7 +105,11 @@ margin: 0px;
 
 
   <img style="width:100%; height: 560px;"  src="{% static 'images/evnt_print/AL AIN/badge -alain-24.jpg' %}">
-  
+     <div class="justify-content-center" >
+      <div style="position: absolute; top: 32.4%; left: 31%; width: 38%;   height: 150px;">
+      <img style="width: 100%; height: 150px;" src="{{registration.badge_photo.url}}">
+      </div>
+      </div>
   <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
     <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
     <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
@@ -260,7 +264,7 @@ margin: 0px;
 
 
 
-    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/abudhabi/police_black_alain.jpg' %}">
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/abudhabi/police-new-alain.jpg' %}">
     
 
      
@@ -758,7 +762,7 @@ margin: 0px;
 
 
 
-  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/artist_live_alain.jpg' %}">
+  <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/band-alain.jpg' %}">
   <div class="justify-content-center" >
     <div style="position: absolute; top: 32.4%; left: 31%; width: 38%;   height: 150px;">
     <img style="width: 100%; height: 150px;" src="{{registration.badge_photo.url}}">
@@ -885,7 +889,7 @@ margin: 0px;
 
 
 
-    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/police_black_alain.jpg' %}">
+    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/police-new-alain.jpg' %}">
     
 
      
@@ -898,25 +902,7 @@ margin: 0px;
 <!-- police black end -->
 
 
-<!-- police card start -->
 
-
-{% if registration.cardtype.id == 9 %}
-<div style="width: 38.1%;" id="section-to-print">
-
-
-
-    <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/Artboard 1 copy 3.png' %}">
-    
-
-     
-     
-    </div>
-    <div class="pagebreak"></div>
-  {% endif %}
-
-
-<!-- police card end -->
 
 
 <!-- traffic marshal start -->
@@ -985,7 +971,72 @@ margin: 0px;
 <!-- organizer aaa star end -->
 
 
+<!-- Medic start -->
 
+{% if registration.cardtype.id == 61 %}
+
+
+
+    <div style="width: 38.1%;" id="section-to-print">
+
+
+
+      <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/medic-alain.jpg' %}">
+      <div class="justify-content-center" >
+        <div style="position: absolute; top: 32.4%; left: 31%; width: 38%;   height: 150px;">
+        <img style="width: 100%; height: 150px;" src="{{registration.badge_photo.url}}">
+        </div>
+        </div>
+      <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+        <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+        <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+        
+    </div>
+      
+       
+       
+      </div>
+      <div class="pagebreak"></div>
+      {% endif %}
+
+
+
+
+<!-- medic end -->
+
+
+<!-- Crew start -->
+
+{% if registration.cardtype.id == 63 %}
+
+
+
+    <div style="width: 38.1%;" id="section-to-print">
+
+
+
+      <img style="width:100%; height: 560px;" src="{% static 'images/evnt_print/AL AIN/crew-alian.jpg' %}">
+      <div class="justify-content-center" >
+        <div style="position: absolute; top: 32.4%; left: 31%; width: 38%;   height: 150px;">
+        <img style="width: 100%; height: 150px;" src="{{registration.badge_photo.url}}">
+        </div>
+        </div>
+      <div style="position: absolute; top: 61%; left: 2%; width: 95%;">
+        <h3 id="name" class="name text-center" style="text-transform:capitalize; line-height: .9;   font-size: 18px; font-weight: bold; color:white;">{{registration.first_name}} {{registration.last_name}} </h3>
+        <h5 id="company" class="company occupation text-center" style="text-transform:capitalize;  font-size: 18px; font-weight: bold; color:white;">{{registration.company}}</h5>
+        
+    </div>
+      
+       
+       
+      </div>
+      <div class="pagebreak"></div>
+      {% endif %}
+
+
+
+
+<!-- Crew end -->
 
 
 
