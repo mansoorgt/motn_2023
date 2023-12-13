@@ -191,7 +191,7 @@
             <option value="" disabled selected>Select Card Type</option>
             {% for type in event_cardtypes %}
            
-            {% if type.id != 11 and type.id != 62 %} 
+            {% if type.id != 11 and type.id != 62 and type.id != 63 %} 
             <option value="{{type.id}}" class="cardtype-options d-none">{{type.name}}</option>
         
             {% endif %}
